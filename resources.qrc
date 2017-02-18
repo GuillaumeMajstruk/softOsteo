@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/form">
+        <file>UserInterface/ui_Files/mainwindow.ui</file>
+        <file>UserInterface/ui_Files/SelectPatientScreen.ui</file>
+        <file>UserInterface/ui_Files/WelcomeScreen.ui</file>
+        <file>UserInterface/ui_Files/createpatientscreen.ui</file>
+        <file>UserInterface/ui_Files/CreateNewDate.ui</file>
+    </qresource>
+    <qresource prefix="/connection">
+        <file>ConnectionDataBase/connectionDB.db</file>
+    </qresource>
+</RCC>
