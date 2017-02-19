@@ -3,15 +3,15 @@
 SelectPatientScreen::SelectPatientScreen(Screen *parent) :
     Screen(parent)
 {
-
     qDebug() << "SelectPatientScreen::SelectPatientScreen()";
-    m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>("SelectPatientScreen.ui");
 
     /// Définition du nom visuel de l'interface
     setInterfaceName(Global::InterfaceName::SelectPatientScreen_name);
 
     /// Déclaration du nom de l'objet d'interface
     setInterfaceObjectName(Global::InterfaceObjectName::SelectPatientScreen_obj_name);
+
+    m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>(m_objectInterfaceName + ".ui");
 
     /// Initialisation des Widgets de l'interfaces ////////////////////////////////////
     m_newPatientButton = m_interface->findChild<QPushButton*>("newPatientButton");

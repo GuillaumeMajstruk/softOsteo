@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>868</width>
+    <width>901</width>
     <height>521</height>
    </rect>
   </property>
@@ -141,7 +141,7 @@
    <item row="2" column="0">
     <widget class="QTabWidget" name="informationTabs">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
@@ -252,6 +252,9 @@
            </item>
            <item row="0" column="0">
             <widget class="QComboBox" name="patientFamilialStatus_CB">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="currentText">
               <string>Marié</string>
              </property>
@@ -386,6 +389,12 @@
          </item>
          <item row="0" column="1">
           <widget class="QComboBox" name="patientSex_CB">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
            <item>
             <property name="text">
              <string>Homme</string>
@@ -417,7 +426,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>484</width>
+            <width>517</width>
             <height>398</height>
            </rect>
           </property>

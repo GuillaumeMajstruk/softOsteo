@@ -12,14 +12,15 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
     Screen(parent)
 {
     qDebug() << "WelcomeScreen::WelcomeScreen()";
-    /// chargement de l'interface graphique
-    m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>("WelcomeScreen.ui");
 
     /// définition du nom de l'interface
     setInterfaceName(Global::InterfaceName::WelcomeScreen_name);
 
     /// définition du nom de l'objet interface
     setInterfaceObjectName(Global::InterfaceObjectName::WelcomeScreen_obj_name);
+
+    /// chargement de l'interface graphique
+    m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName + ".ui");
 
 #ifdef DEBUG
     QPalette pal = palette();
@@ -42,11 +43,6 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
             ||  !m_newMeetingButton
             ||  !m_patientsFolderButton ) throw std::exception {};
 
-    m_billButton->setToolTip(trUtf8("Consulter les factures"));
-    m_managementButton->setToolTip(trUtf8("Gestion de la base de donnée, des patients, etc..."));
-    m_newConsultationButton->setToolTip(trUtf8("Lancer une nouvelle consultation"));
-    m_newMeetingButton->setToolTip(trUtf8("Enregistrer un nouveau rendez-vous"));
-    m_patientsFolderButton->setToolTip(trUtf8("Accéder au dossier 'patients' de la base de donnée"));
 
     /// connection des signaux/slots des boutons de cette interface
     connect (m_billButton, &QPushButton::clicked, this, &WelcomeScreen::billButton_clicked);
