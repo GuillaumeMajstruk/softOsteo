@@ -141,7 +141,7 @@
    <item row="2" column="0">
     <widget class="QTabWidget" name="informationTabs">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
