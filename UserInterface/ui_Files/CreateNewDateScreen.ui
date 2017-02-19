@@ -70,6 +70,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>searchPatient_LE</tabstop>
+  <tabstop>search_PB</tabstop>
+  <tabstop>patientList_LW</tabstop>
+  <tabstop>calendarWidget</tabstop>
+  <tabstop>saveNewDate_PB</tabstop>
+  <tabstop>cancel_PB</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

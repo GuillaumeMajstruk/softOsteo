@@ -30,7 +30,8 @@ FORMS += \
     UserInterface/ui_Files/WelcomeScreen.ui \
     UserInterface/ui_Files/ConnectionDialog.ui \
     UserInterface/ui_Files/CreatePatientScreen.ui \
-    UserInterface/ui_Files/CreateNewDateScreen.ui
+    UserInterface/ui_Files/CreateNewDateScreen.ui \
+    UserInterface/ui_Files/PatientMedicalFolderScreen.ui
 
 RESOURCES += \
     resources.qrc
