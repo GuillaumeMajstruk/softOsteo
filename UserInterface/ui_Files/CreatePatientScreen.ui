@@ -26,33 +26,6 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
         <layout class="QGridLayout" name="generalTabLayout">
-         <item row="8" column="1">
-          <widget class="QLineEdit" name="patientHobbies_LE"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="patientSurname_LE"/>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="patientJob">
-           <property name="text">
-            <string>Profession du patient:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="patientFamilialStatus">
-           <property name="text">
-            <string>Situation Familiale:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="patientCurrentMedic">
-           <property name="text">
-            <string>Médecin traitant:</string>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="patientEmail_LE"/>
          </item>
@@ -74,7 +47,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="postalCodeAdress">
              <property name="text">
-              <string>Code Postal:</string>
+              <string>Code Postale:</string>
              </property>
             </widget>
            </item>
@@ -200,9 +173,9 @@
           </widget>
          </item>
          <item row="8" column="0">
-          <widget class="QLabel" name="patientHobbies">
+          <widget class="QLabel" name="label">
            <property name="text">
-            <string>Loisir(s) pratiqué(s)</string>
+            <string>Loisir(s) pratiqué(s)line</string>
            </property>
           </widget>
          </item>
@@ -225,6 +198,33 @@
             <cstring>patientPhoneNumber_LE</cstring>
            </property>
           </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="patientSurname_LE"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="patientJob">
+           <property name="text">
+            <string>Profession du patient:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="patientFamilialStatus">
+           <property name="text">
+            <string>Situation Familiale:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="patientCurrentMedic">
+           <property name="text">
+            <string>Médecin traitant:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="lineEdit"/>
          </item>
         </layout>
        </item>
@@ -481,7 +481,7 @@
   <tabstop>patientChildNumber_SB</tabstop>
   <tabstop>patientJob_LE</tabstop>
   <tabstop>patientCurrentMedic_LE</tabstop>
-  <tabstop>patientHobbies_LE</tabstop>
+  <tabstop>lineEdit</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>cardioPneumo_PTE</tabstop>
   <tabstop>patientIsSmoker</tabstop>

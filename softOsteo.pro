@@ -28,9 +28,9 @@ FORMS += \
     UserInterface/ui_Files/mainwindow.ui \
     UserInterface/ui_Files/SelectPatientScreen.ui \
     UserInterface/ui_Files/WelcomeScreen.ui \
-    UserInterface/ui_Files/connectiondialog.ui \
-    UserInterface/ui_Files/createpatientscreen.ui \
-    UserInterface/ui_Files/CreateNewDate.ui
+    UserInterface/ui_Files/ConnectionDialog.ui \
+    UserInterface/ui_Files/CreatePatientScreen.ui \
+    UserInterface/ui_Files/CreateNewDateScreen.ui
 
 RESOURCES += \
     resources.qrc
