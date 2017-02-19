@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, &MainWindow::printMessage);
 
     ui->statusbar->showMessage(QString("Bienvenue Guillaume, "
-                                       "nous sommes le %1").arg(QDate::currentDate().toString()));
+                                       "nous sommes le %1").arg(QDate::currentDate().toString(Qt::SystemLocaleLongDate)), 5000);
 }
 
 MainWindow::~MainWindow()
