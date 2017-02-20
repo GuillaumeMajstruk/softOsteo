@@ -57,7 +57,7 @@ public:
     dataBase (const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword = "");
 
 private: /// FUNCTIONS
-    bool checkConnection();
+    bool checkConnectionToDatabase();
 
 
 private: /// ATRIBUTES

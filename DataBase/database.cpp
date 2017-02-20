@@ -6,7 +6,7 @@ dataBase::dataBase()
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE", ":/ConnectionDataBase/connectionDB.db");
 
-    checkConnection();
+    checkConnectionToDatabase();
 }
 
 dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword)
@@ -21,11 +21,11 @@ dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName,
 
     log_d (m_dbConnectionOptions.getConnectionInformations());
 
-    checkConnection();
+    checkConnectionToDatabase();
 }
 
 
-bool dataBase::checkConnection()
+bool dataBase::checkConnectionToDatabase()
 {
     /// Impossibilité à se connecter à la base de donnée
     if (!m_db.open())

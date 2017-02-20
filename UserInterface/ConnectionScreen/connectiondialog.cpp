@@ -45,6 +45,9 @@ void ConnectionDialog::updateEnteredIds()
     enteredUsername =  ui->UsernameTexte->text();
     enteredPass = ui->PasswordTexte->text();
 
+
+    QSqlQuery connectionQuery;
+
     if (enteredUsername.isEmpty() || enteredPass.isEmpty())
         QMessageBox::warning(NULL,
                              Message::MsgBoxTitle::title_ConnectionRequestInformationLack,
