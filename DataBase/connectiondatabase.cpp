@@ -8,6 +8,6 @@ connectionDataBase::connectionDataBase()
     m_db = QSqlDatabase::addDatabase("QSQLITE");
 
     m_db.setDatabaseName("/Users/Guillaume/softOsteo/ConnectionDataBase/connectionDB.db");
-    // vérification que la connection à pue être établie
+    // vérification que la connection a pue être établie
     checkConnectionToDatabase();
 }
