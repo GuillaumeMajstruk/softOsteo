@@ -35,11 +35,6 @@ private: /// Attributs
     // Provisoire: base de donnée de connection
     connectionDataBase *connection_db = Q_NULLPTR;
 
-    //Provisoire: nom d'utilisateur provisoire
-    const QString m_userName = "Guillaume";
-    // Provisoire: mot de passe
-    const QString m_password = "nathalie";
-
     /// Correspond à ce qu'il y a dans UsernameTexte.
     QString enteredUsername;
     ///Correspond à ce qu'il y a dans PasswordTexte.
