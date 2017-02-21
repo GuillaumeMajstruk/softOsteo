@@ -8,7 +8,4 @@
         <file>UserInterface/ui_Files/PatientMedicalFolderScreen.ui</file>
         <file>UserInterface/ui_Files/OldConsultationReportScreen.ui</file>
     </qresource>
-    <qresource prefix="/connection">
-        <file>ConnectionDataBase/connectionDB.db</file>
-    </qresource>
 </RCC>

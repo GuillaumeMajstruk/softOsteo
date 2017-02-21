@@ -13,6 +13,7 @@
 #include "UserInterface/interfaceGlobal.hpp"
 
 class dataBase;
+class connectionDataBase;
 
 /// Un objet pour stocker les données de connection à la base de donnée
 typedef struct dataBaseConnectionOptions
@@ -48,6 +49,7 @@ typedef struct dataBaseConnectionOptions
 class dataBase
 {
     friend struct dataBaseConnectionOptions;
+    friend class connectionDataBase;
 
 public:
     // constructeur par défaut

@@ -7,8 +7,10 @@
 #include <QInputEvent>
 #include <QDir>
 
+#include <QSqlQuery>
+
 #include "Messages/messages.hpp"
-#include "DataBase/database.h"
+#include "DataBase/connectiondatabase.hpp"
 
 /// ConnectionDialog est une classe qui est chargée de gérer l'accès
 /// à l'application en fonction depar l'utilisation d'un mot de passe et
@@ -31,7 +33,7 @@ private: /// Attributs
     Ui::ConnectionDialog *ui;
 
     // Provisoire: base de donnée de connection
-    dataBase *connection_db = Q_NULLPTR;
+    connectionDataBase *connection_db = Q_NULLPTR;
 
     //Provisoire: nom d'utilisateur provisoire
     const QString m_userName = "Guillaume";

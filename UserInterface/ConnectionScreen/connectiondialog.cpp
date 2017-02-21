@@ -29,7 +29,7 @@ ConnectionDialog::ConnectionDialog(QWidget *parent) :
             this,
             &ConnectionDialog::Quit);
 
-    connection_db = new dataBase;
+    connection_db = new connectionDataBase;
 
 }
 
@@ -42,12 +42,11 @@ ConnectionDialog::~ConnectionDialog()
 
 void ConnectionDialog::updateEnteredIds()
 {
+    // les variables sont initialisées en fonction de ce qu'il y a dans les champs correspondants
     enteredUsername =  ui->UsernameTexte->text();
     enteredPass = ui->PasswordTexte->text();
 
-
-    QSqlQuery connectionQuery;
-
+    // Si au moins un des champs est vide, on le signal avec un message
     if (enteredUsername.isEmpty() || enteredPass.isEmpty())
         QMessageBox::warning(NULL,
                              Message::MsgBoxTitle::title_ConnectionRequestInformationLack,
@@ -58,22 +57,47 @@ void ConnectionDialog::updateEnteredIds()
 
 bool ConnectionDialog::compareEnteredIds()
 {
-    if (enteredUsername != m_userName || enteredPass != m_password)
-    {
-        QMessageBox::critical(NULL,
-                              Message::MsgBoxTitle::Error_Msg::title_AuthentificationError,
-                              Message::MsgBoxContent::content_AuthentificationError);
+    // Création du la requête de connection de la base de données qui contient les identifiants de connection
+    QSqlQuery connectionQuery (connection_db->getDataBaseConnection());
 
-        ui->UsernameTexte->clear();
-        ui->PasswordTexte->clear();
-        return false;
+    // Demande dans la table à accéder aux champs username et password
+    if (!connectionQuery.exec("SELECT username, password FROM user"))
+        QMessageBox::critical(NULL, "Error !", connectionQuery.lastError().text());
+
+    // Tant qu'il y a des données on les parcours ...
+    while (connectionQuery.next())
+    {
+        // Pour chaque ligne on stock les informations recontrées
+        QString usrNme = connectionQuery.value(0).toString();
+        QString pwd = connectionQuery.value(1).toString();
+
+        // Puis on les compares aux infos rentrées dans les champs dédiés
+        if (usrNme == enteredUsername && pwd == enteredPass)
+        {
+            // S'ils correspondent -> IDENTIFICATION OK !
+            return true;
+        }
     }
-    else return true;
+
+    // Sinon si on a pas recontré d'éléments qui correspondent -> message d'erreur d'autentification
+    QMessageBox::critical(NULL,
+                          Message::MsgBoxTitle::Error_Msg::title_AuthentificationError,
+                          Message::MsgBoxContent::content_AuthentificationError);
+
+    // On néttoie les champs qui ont étés remplis dans les Line Edit correspondants
+    ui->UsernameTexte->clear();
+    ui->PasswordTexte->clear();
+
+    // La fonction renvoie faux pour signaler que les informations ne correspondent pas !
+    return false;
 }
 
 void ConnectionDialog::checkConnectionIds()
 {
+    // On met à jour les variables enteredUsername et enteredPass pour être sûr de leur validité
     updateEnteredIds();
+
+    // Si l'autentification réussie -> on affiche un message pour le signaler
     if (compareEnteredIds())
     {
         QMessageBox::information(NULL,
@@ -83,7 +107,7 @@ void ConnectionDialog::checkConnectionIds()
 
         close();
     }
-    update();
+    //update();
 }
 
 void ConnectionDialog::Quit()

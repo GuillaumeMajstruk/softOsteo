@@ -12,7 +12,8 @@ HEADERS += \
     UserInterface/UserInterfaceSourcesFiles/welcomescreen.hpp \
     DataBase/database.h \
     UserInterface/ConnectionScreen/connectiondialog.h \
-    UserInterface/UserInterfaceSourcesFiles/createpatientscreen.h
+    UserInterface/UserInterfaceSourcesFiles/createpatientscreen.h \
+    DataBase/connectiondatabase.hpp
 
 SOURCES += \
     UserInterface/userinterfaceloader.cpp \
@@ -22,7 +23,8 @@ SOURCES += \
     main.cpp \
     DataBase/database.cpp \
     UserInterface/ConnectionScreen/connectiondialog.cpp \
-    UserInterface/UserInterfaceSourcesFiles/createpatientscreen.cpp
+    UserInterface/UserInterfaceSourcesFiles/createpatientscreen.cpp \
+    DataBase/connectiondatabase.cpp
 
 FORMS += \
     UserInterface/ui_Files/mainwindow.ui \

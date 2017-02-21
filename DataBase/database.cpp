@@ -2,12 +2,7 @@
 
 using Global::Debug::log_d;
 
-dataBase::dataBase()
-{
-    m_db = QSqlDatabase::addDatabase("QSQLITE", ":/ConnectionDataBase/connectionDB.db");
-
-    checkConnectionToDatabase();
-}
+dataBase::dataBase() {}
 
 dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword)
 {
