@@ -22,7 +22,7 @@ dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName,
 
 bool dataBase::checkConnectionToDatabase()
 {
-    /// Impossibilité à se connecter à la base de donnée
+    // Impossibilité à se connecter à la base de donnée
     if (!m_db.open())
     {
         QMessageBox::warning(NULL,
@@ -31,7 +31,7 @@ bool dataBase::checkConnectionToDatabase()
                              QMessageBox::Ok);
         isConnected = false;
     }
-    /// Connection à la base de donnée établie avec succés !
+    // Connection à la base de donnée établie avec succés !
     else
     {
         QMessageBox::information(NULL,

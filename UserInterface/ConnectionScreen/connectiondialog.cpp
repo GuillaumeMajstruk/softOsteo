@@ -5,21 +5,21 @@ ConnectionDialog::ConnectionDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConnectionDialog)
 {
-    /// Mise à jour de l'interface
+    // Mise à jour de l'interface
     ui->setupUi(this);
 
-    /// Définition de la taille fixe de la fenêtre de connection
+    // Définition de la taille fixe de la fenêtre de connection
     setFixedSize(250, 150);
     this->setWindowState(Qt::WindowActive);
 
-    /// Mise à jour des Tooltips
+    // Mise à jour des Tooltips
     ui->UsernameTexte->setToolTip(Message::ToolTips::tt_Connection_UserName);
     ui->PasswordTexte->setToolTip(Message::ToolTips::tt_Connection_Password);
 
-    /// Mise à jour du mode de remplissage de QLineEdit "PasswordText"
+    // Mise à jour du mode de remplissage de QLineEdit "PasswordText"
     ui->PasswordTexte->setEchoMode(QLineEdit::Password);
 
-    /// Connection des éléments de l'interface
+    // Connection des éléments de l'interface
     connect(ui->OkButton,
             &QPushButton::clicked,
             this,
@@ -33,7 +33,7 @@ ConnectionDialog::ConnectionDialog(QWidget *parent) :
 
 }
 
-/// Destructeur
+// Destructeur
 ConnectionDialog::~ConnectionDialog()
 {
     delete ui;
