@@ -58,6 +58,9 @@ public:
     // Constructeurs surchargé
     dataBase (const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword = "");
 
+    // Destructeur
+    ~dataBase() { m_db.close(); }
+
 private: /// FUNCTIONS
     bool checkConnectionToDatabase();
 

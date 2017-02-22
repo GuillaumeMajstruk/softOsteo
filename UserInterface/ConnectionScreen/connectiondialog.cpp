@@ -61,7 +61,7 @@ bool ConnectionDialog::compareEnteredIds()
     QSqlQuery connectionQuery (connection_db->getDataBaseConnection());
 
     // Demande dans la table à accéder aux champs username et password
-    if (!connectionQuery.exec("SELECT username, password FROM user"))
+    if (!connectionQuery.exec("SELECT Username, password FROM users"))
         QMessageBox::critical(NULL, "Error !", connectionQuery.lastError().text());
 
     // Tant qu'il y a des données on les parcours ...
@@ -71,8 +71,15 @@ bool ConnectionDialog::compareEnteredIds()
         QString usrNme = connectionQuery.value(0).toString();
         QString pwd = connectionQuery.value(1).toString();
 
-        // Puis on les compares aux infos rentrées dans les champs dédiés
-        if (usrNme == enteredUsername && pwd == enteredPass)
+        // On transforme ce qui est entré par l'utilisateur en tableau de bits
+        QByteArray enteredUsername_ba = enteredUsername.toUtf8();
+        QByteArray enteredPass_ba = enteredPass.toUtf8();
+
+
+
+        // Puis on compare la valeur hashé de ce qui est entré avec ce qui est stocké dans la base de données
+        if (usrNme == QCryptographicHash::hash(enteredUsername_ba, QCryptographicHash::Sha256).toHex()
+                && pwd == QCryptographicHash::hash(enteredPass_ba, QCryptographicHash::Sha256).toHex())
         {
             // S'ils correspondent -> IDENTIFICATION OK !
             return true;
@@ -100,6 +107,12 @@ void ConnectionDialog::checkConnectionIds()
     // Si l'autentification réussie -> on affiche un message pour le signaler
     if (compareEnteredIds())
     {
+        // TODO test des settings !!!!
+        // Enregistrement du dernier utilisateur connecté
+        QSettings settings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), qApp->applicationName());
+        qDebug() << enteredUsername;
+        settings.setValue("connection/UserId", enteredUsername);
+        // ////////////////////////////////////////////////
         QMessageBox::information(NULL,
                                  Message::MsgBoxTitle::title_Connection_Ok,
                                  QString(Message::MsgBoxContent::content_Connection_Ok).arg(enteredUsername));

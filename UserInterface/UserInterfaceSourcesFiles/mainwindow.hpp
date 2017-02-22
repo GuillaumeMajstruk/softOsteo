@@ -8,6 +8,7 @@
 #include <QString>
 #include <QWidget>
 #include <QSize>
+#include <QSettings>
 
 
 #include "UserInterface/UserInterfaceSourcesFiles/selectpatientscreen.hpp"
@@ -68,6 +69,9 @@ private:
     /// interface utilisateur
     Ui::MainWindow *ui;
 
+    /// Utilisateur actuel du programme
+    QString m_currentUserName;
+
     /// Chargeur d'interface
     userInterfaceLoader * m_uiLoader = nullptr;
 
@@ -84,11 +88,6 @@ private:
     /// quand l'interface change, on garde en mémoire l'interface précédente pour pouvoir faire un
     /// retour
     Screen * m_previousInterface = nullptr;
-
-    /// nom de l'application
-    const QString m_AppName = "softOsteo";
-
-
 
     /////////////////////////////////////////////////////////////////////////////////
 

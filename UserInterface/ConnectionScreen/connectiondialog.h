@@ -6,15 +6,16 @@
 #include <QString>
 #include <QInputEvent>
 #include <QDir>
+#include <QSettings>
 
 #include <QSqlQuery>
 
 #include "Messages/messages.hpp"
 #include "DataBase/connectiondatabase.hpp"
 
-/// ConnectionDialog est une classe qui est chargée de gérer l'accès
-/// à l'application en fonction depar l'utilisation d'un mot de passe et
-/// d'un nom d'utilisateur.
+// ConnectionDialog est une classe qui est chargée de gérer l'accès
+// à l'application en fonction depar l'utilisation d'un mot de passe et
+// d'un nom d'utilisateur.
 
 namespace Ui {
 class ConnectionDialog;

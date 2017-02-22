@@ -32,7 +32,13 @@ MainWindow::MainWindow(QWidget *parent) :
             &WelcomeScreen::managementButton_HasBeenClicked,
             this, &MainWindow::printMessage);
 
-    ui->statusbar->showMessage(QString("Bienvenue Guillaume, "
+    // Récupération du nom de l'utilisateur actuel
+    // TODO: test des settings !!!!
+    QSettings settings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), qApp->applicationName());
+    m_currentUserName = settings.value("connection/UserId").toString();
+
+
+    ui->statusbar->showMessage(QString("Bienvenue " + m_currentUserName + ", "
                                        "nous sommes le %1").arg(QDate::currentDate().toString(Qt::SystemLocaleLongDate)), 5000);
 }
 
