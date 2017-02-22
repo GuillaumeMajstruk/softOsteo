@@ -71,15 +71,9 @@ bool ConnectionDialog::compareEnteredIds()
         QString usrNme = connectionQuery.value(0).toString();
         QString pwd = connectionQuery.value(1).toString();
 
-        // On transforme ce qui est entré par l'utilisateur en tableau de bits
-        QByteArray enteredUsername_ba = enteredUsername.toUtf8();
-        QByteArray enteredPass_ba = enteredPass.toUtf8();
-
-
-
         // Puis on compare la valeur hashé de ce qui est entré avec ce qui est stocké dans la base de données
-        if (usrNme == QCryptographicHash::hash(enteredUsername_ba, QCryptographicHash::Sha256).toHex()
-                && pwd == QCryptographicHash::hash(enteredPass_ba, QCryptographicHash::Sha256).toHex())
+        if (usrNme == connectionDataBase::hashWithoutSalt(enteredUsername)
+                && pwd == connectionDataBase::hashWithSalt(enteredPass))
         {
             // S'ils correspondent -> IDENTIFICATION OK !
             return true;

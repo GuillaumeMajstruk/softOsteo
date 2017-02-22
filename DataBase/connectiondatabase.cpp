@@ -21,21 +21,29 @@ connectionDataBase::connectionDataBase()
     insert("Guillaume", "030893Guigui");
 }
 
+QString connectionDataBase::hashWithoutSalt(const QString &strToHash)
+{
+    return dataEncryptor::hashIt_SHA256(strToHash);
+}
+
+QString connectionDataBase::hashWithSalt(const QString &strToHash)
+{
+    return QString ( dataEncryptor::hashIt_MD5(SALT_BEFORE) +
+                     dataEncryptor::hashIt_SHA256(strToHash) +
+                     dataEncryptor::hashIt_MD5(SALT_AFTER));
+}
+
 
 void connectionDataBase::insert(const QString &userName, const QString &password)
 {
-    // Transforme en tableau de bits les chaines de caractères
-    QByteArray userBa = userName.toUtf8();
-    QByteArray passBa = password.toUtf8();
+    QSqlQuery query (m_db);
 
-    // Hash les tableau binaires
-    QString usernameHash = QCryptographicHash::hash(userBa, QCryptographicHash::Sha256).toHex();
-    QString passwordHash = QCryptographicHash::hash(passBa, QCryptographicHash::Sha256).toHex();
-
-    QSqlQuery query(m_db);
 
     // Insère dans la base de donnée ce qui à été hashé pour les stocker
     if (!query.exec("INSERT INTO users (Username, Password)"
-               "VALUES ( '" + usernameHash + "', '" + passwordHash + "')"))
+                       "VALUES  ( "
+                            " '" + hashWithoutSalt(userName) + "',"
+                            " '" + hashWithSalt(password) + "'"
+                                ")"))
         QMessageBox::warning(NULL, "error", query.lastError().text());
 }

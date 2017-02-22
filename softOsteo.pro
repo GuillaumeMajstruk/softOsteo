@@ -13,7 +13,8 @@ HEADERS += \
     DataBase/database.h \
     UserInterface/ConnectionScreen/connectiondialog.h \
     UserInterface/UserInterfaceSourcesFiles/createpatientscreen.h \
-    DataBase/connectiondatabase.hpp
+    DataBase/connectiondatabase.hpp \
+    CryptData/dataencryptor.hpp
 
 SOURCES += \
     UserInterface/userinterfaceloader.cpp \
@@ -24,7 +25,8 @@ SOURCES += \
     DataBase/database.cpp \
     UserInterface/ConnectionScreen/connectiondialog.cpp \
     UserInterface/UserInterfaceSourcesFiles/createpatientscreen.cpp \
-    DataBase/connectiondatabase.cpp
+    DataBase/connectiondatabase.cpp \
+    CryptData/dataencryptor.cpp
 
 FORMS += \
     UserInterface/ui_Files/mainwindow.ui \
