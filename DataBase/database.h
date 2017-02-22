@@ -15,7 +15,7 @@
 class dataBase;
 class connectionDataBase;
 
-/// Un objet pour stocker les données de connection à la base de donnée
+// Un objet pour stocker les données de connection à la base de donnée
 typedef struct dataBaseConnectionOptions
 {
 
@@ -61,18 +61,18 @@ public:
     // Destructeur
     ~dataBase() { m_db.close(); }
 
-private: /// FUNCTIONS
+private: // FUNCTIONS
     bool checkConnectionToDatabase();
 
 
-private: /// ATRIBUTES
-    /// Connection à une base de donnée.
+private: // ATRIBUTES
+    // Connection à une base de donnée.
     QSqlDatabase m_db;
 
     // Pour stocker les options de connection à la base de donnée
     dbConnectionOptions m_dbConnectionOptions;
 
-    /// Quand la base de donnée est connecté => isConnected est passé à "true"
+    // Quand la base de donnée est connecté => isConnected est passé à "true"
     bool isConnected = false;
 };
 

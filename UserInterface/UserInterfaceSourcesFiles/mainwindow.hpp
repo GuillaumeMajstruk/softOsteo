@@ -25,9 +25,9 @@ class MainWindow;
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// la classe MainWindow est la fenêtre qui contiendra les interfaces (QWidget) représentants les différentes fenêtres du programme ///
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// / la classe MainWindow est la fenêtre qui contiendra les interfaces (QWidget) représentants les différentes fenêtres du programme ///
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class  MainWindow : public QMainWindow
 {
@@ -35,92 +35,92 @@ class  MainWindow : public QMainWindow
 
 public:
 
-    /////////////////////////////////////////////////////////////////////////////////
-    ///                       CONSTRUCTEUR/DESTRUCTEUR                             //
-    /////////////////////////////////////////////////////////////////////////////////
-    /// constructeur
+    // ///////////////////////////////////////////////////////////////////////////////
+    // /                       CONSTRUCTEUR/DESTRUCTEUR                             //
+    // ///////////////////////////////////////////////////////////////////////////////
+    // / constructeur
     explicit MainWindow(QWidget *parent = 0);
 
-    /// destructeur
+    // / destructeur
     virtual ~MainWindow();
 
-    /////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
 
 
-    /////////////////////////////////////////////////////////////////////////////////
-    ///                              METHODES/ACCESSEURS                           //
-    /////////////////////////////////////////////////////////////////////////////////
-    /// retourne le nom de l'interface actuelle
+    // ///////////////////////////////////////////////////////////////////////////////
+    // /                              METHODES/ACCESSEURS                           //
+    // ///////////////////////////////////////////////////////////////////////////////
+    // / retourne le nom de l'interface actuelle
     QString getActualInterfaceName() const
     {
         return { m_currentInterface->getInterfaceName() };
     }
 
-    /// retourne l'objet interface acuelle (m_currentInterface)
+    //  retourne l'objet interface acuelle (m_currentInterface)
     QWidget* getActualInterface() const { return m_currentInterface->getWidget(); }
 
     /////////////////////////////////////////////////////////////////////////////////
 
 private:
 
-    /////////////////////////////////////////////////////////////////////////////////
-    ///                              METHODES:ATTRIBUTS                            //
-    /////////////////////////////////////////////////////////////////////////////////
-    /// interface utilisateur
+    // ///////////////////////////////////////////////////////////////////////////////
+    // /                              METHODES:ATTRIBUTS                            //
+    // ///////////////////////////////////////////////////////////////////////////////
+    // / interface utilisateur
     Ui::MainWindow *ui;
 
-    /// Utilisateur actuel du programme
+    // / Utilisateur actuel du programme
     QString m_currentUserName;
 
-    /// Chargeur d'interface
+    // / Chargeur d'interface
     userInterfaceLoader * m_uiLoader = nullptr;
 
-    /// Taille par défaut de l'interface utilisateur (-> mode fenêtré)
+    // / Taille par défaut de l'interface utilisateur (-> mode fenêtré)
     QSize *m_windowSize = new QSize     (
                                             Global::Screen::defaultScreenSizeWindowed().widht,
                                             Global::Screen::defaultScreenSizeWindowed().height
                                         );
 
-    /// interface utilisateur actuelle (utilisée en tant que widget dans la fenêtre principale)
-    ///appelle le constructeur de Qwidget->Screen->WelcomeScreen
+    // / interface utilisateur actuelle (utilisée en tant que widget dans la fenêtre principale)
+    // /appelle le constructeur de Qwidget->Screen->WelcomeScreen
     Screen * m_currentInterface = nullptr;
 
-    /// quand l'interface change, on garde en mémoire l'interface précédente pour pouvoir faire un
-    /// retour
+    // / quand l'interface change, on garde en mémoire l'interface précédente pour pouvoir faire un
+    // / retour
     Screen * m_previousInterface = nullptr;
 
-    /////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
 
-    /// Défini l'interface utilisateur actuellement utilisée
+    // / Défini l'interface utilisateur actuellement utilisée
     void setCurrentInterface (const QString& currentInterface, const QString& neededInterface);
 
 protected:
     void closeEvent(QCloseEvent * event);
 
 
-    /////////////////////////////////////////////////////////////////////////////////
-    ///                              SLOTS                                         //
-    /////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
+    // /                              SLOTS                                         //
+    // ///////////////////////////////////////////////////////////////////////////////
 private slots:
-    /// mettre l'échelle de l'interface en mode plein écran
+    // / mettre l'échelle de l'interface en mode plein écran
     void setFullScreen ();
 
-    /// mettre l'échelle de l'interface en mode fenêtré
+    // / mettre l'échelle de l'interface en mode fenêtré
     void setWindowed ();
 
-    /// demande à l'utilisateur s'il veut vraiment quitter ?
+    // / demande à l'utilisateur s'il veut vraiment quitter ?
     void quitValidating ();
 
-    /// test pour le slot
+    // / test pour le slot
     void printMessage ();
 
-    /////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
 
-    /////////////////////////////////////////////////////////////////////////////////
-    ///                              SIGNALS                                       //
-    /////////////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////////////////////////////
+    // /                              SIGNALS                                       //
+    // ///////////////////////////////////////////////////////////////////////////////
 signals:
-    ///...
+    // /...
 };
 
-#endif /// MAINWINDOW_HPP
+#endif // / MAINWINDOW_HPP
