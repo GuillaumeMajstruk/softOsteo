@@ -2,12 +2,7 @@
 
 using Global::Debug::log_d;
 
-dataBase::dataBase()
-{
-    m_db = QSqlDatabase::addDatabase("QSQLITE", ":/ConnectionDataBase/connectionDB.db");
-
-    checkConnection();
-}
+dataBase::dataBase() {}
 
 dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword)
 {
@@ -21,13 +16,13 @@ dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName,
 
     log_d (m_dbConnectionOptions.getConnectionInformations());
 
-    checkConnection();
+    checkConnectionToDatabase();
 }
 
 
-bool dataBase::checkConnection()
+bool dataBase::checkConnectionToDatabase()
 {
-    /// Impossibilité à se connecter à la base de donnée
+    // / Impossibilité à se connecter à la base de donnée
     if (!m_db.open())
     {
         QMessageBox::warning(NULL,
@@ -36,7 +31,7 @@ bool dataBase::checkConnection()
                              QMessageBox::Ok);
         isConnected = false;
     }
-    /// Connection à la base de donnée établie avec succés !
+    // / Connection à la base de donnée établie avec succés !
     else
     {
         QMessageBox::information(NULL,

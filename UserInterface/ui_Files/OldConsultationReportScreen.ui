@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OldConsultationReportScreen</class>
+ <widget class="QWidget" name="OldConsultationReportScreen">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>465</width>
+    <height>44</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="2">
+    <widget class="QPushButton" name="showSelectedReport_PB">
+     <property name="toolTip">
+      <string>Afficher le compte rendu sélectionné</string>
+     </property>
+     <property name="text">
+      <string>Voir le compte rendu</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="reportList_LBL">
+     <property name="text">
+      <string>Comptes rendus de %1 %2:</string>
+     </property>
+     <property name="buddy">
+      <cstring>reportList_CB</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="reportList_CB">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sélectionnez un compte rendu&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>1000000000</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>reportList_CB</tabstop>
+  <tabstop>showSelectedReport_PB</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

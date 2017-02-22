@@ -33,6 +33,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string>Consulter le dossier d'un patient</string>
+       </property>
        <property name="text">
         <string>Dossiers Patients</string>
        </property>
@@ -45,6 +48,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Enregistrer un nouveau rendez-vous</string>
        </property>
        <property name="text">
         <string>Nouveau Rendez-vous</string>
@@ -59,6 +65,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string>Consulter des factures</string>
+       </property>
        <property name="text">
         <string>Factures</string>
        </property>
@@ -72,6 +81,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string>Gestion de la base de données, des patients, etc...</string>
+       </property>
        <property name="text">
         <string>Gestion</string>
        </property>
@@ -84,6 +96,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Lancer une nouvelle consultation</string>
        </property>
        <property name="text">
         <string>Nouvelle Consultation</string>
@@ -113,6 +128,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>patientsFolderButton</tabstop>
+  <tabstop>newConsultationButton</tabstop>
+  <tabstop>managementButton</tabstop>
+  <tabstop>newMeetingButton</tabstop>
+  <tabstop>billButton</tabstop>
+  <tabstop>calendarWidget</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

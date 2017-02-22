@@ -33,13 +33,23 @@
           <property name="text">
            <string>Rechercher un patient: </string>
           </property>
+          <property name="buddy">
+           <cstring>searchPatient_LE</cstring>
+          </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="searchPatient_LE"/>
+         <widget class="QLineEdit" name="searchPatient_LE">
+          <property name="toolTip">
+           <string>Entrez le nom d'un patient</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="search_PB">
+          <property name="toolTip">
+           <string>Rechercher un patient dans la base de données ...</string>
+          </property>
           <property name="text">
            <string>Rechercher</string>
           </property>
@@ -54,6 +64,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="saveNewDate_PB">
+       <property name="toolTip">
+        <string>Retour à la page précédente</string>
+       </property>
        <property name="text">
         <string>Annuler</string>
        </property>
@@ -61,6 +74,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="cancel_PB">
+       <property name="toolTip">
+        <string>Enregistrer le rendez-vous dans le planning</string>
+       </property>
        <property name="text">
         <string>Enregistrer le rendez-vous</string>
        </property>
@@ -70,6 +86,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>searchPatient_LE</tabstop>
+  <tabstop>search_PB</tabstop>
+  <tabstop>patientList_LW</tabstop>
+  <tabstop>calendarWidget</tabstop>
+  <tabstop>saveNewDate_PB</tabstop>
+  <tabstop>cancel_PB</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

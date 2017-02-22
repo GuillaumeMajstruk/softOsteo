@@ -5,8 +5,7 @@
         <file>UserInterface/ui_Files/WelcomeScreen.ui</file>
         <file>UserInterface/ui_Files/CreateNewDateScreen.ui</file>
         <file>UserInterface/ui_Files/CreatePatientScreen.ui</file>
-    </qresource>
-    <qresource prefix="/connection">
-        <file>ConnectionDataBase/connectionDB.db</file>
+        <file>UserInterface/ui_Files/PatientMedicalFolderScreen.ui</file>
+        <file>UserInterface/ui_Files/OldConsultationReportScreen.ui</file>
     </qresource>
 </RCC>
