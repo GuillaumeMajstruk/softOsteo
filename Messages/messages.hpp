@@ -1,8 +1,8 @@
 #ifndef MESSAGES_HPP
 #define MESSAGES_HPP
-///////////////////////////////////////////////
-/// Contient tous les messages du programme ///
-///////////////////////////////////////////////
+// /////////////////////////////////////////////
+// / Contient tous les messages du programme ///
+// /////////////////////////////////////////////
 #include <QString>
 
 typedef const char* Msg;
@@ -14,6 +14,12 @@ typedef const char* Msg;
             static Msg msg_sureToQuit = "Êtes-vous sûr de vouloir quitter ?";
         }
 
+        namespace QActionText
+        {
+            static Msg QA_maximizedMode = "Mode Pl&ein Écran";
+            static Msg QA_windowedMode = "Mode &fenêtré";
+        }
+
         namespace MsgBoxTitle
         {
             static Msg title_Quit = "Quitter ?";
@@ -22,6 +28,7 @@ typedef const char* Msg;
 
             static Msg title_ConnectionRequestInformationLack = "Manque d'information(s) !";
             static Msg title_Connection_Ok = "Connection réussie.";
+
             struct Error_Msg
             {
                 static constexpr Msg title_Error = "Error !";

@@ -8,30 +8,30 @@
 #include <memory>
 
 
-///////////////
-/// DEFINES ///
-///////////////
+// /////////////
+// / DEFINES ///
+// /////////////
 
 #define STATIC true
 #define DYNAMIC false
 
-///////////////
+// /////////////
 
 
-//////////////////////////////////////////////////////////////////////////////
-///                             GLOBALES:                                  ///
-/// contient des namespaces pour déclarer/définir des variables globales   ///
-//////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////
+// /                             GLOBALES:                                  ///
+// / contient des namespaces pour déclarer/définir des variables globales   ///
+// ////////////////////////////////////////////////////////////////////////////
 namespace Global
 {
 
-    /// Contient les chemins d'accés de certaines ressources
+    // / Contient les chemins d'accés de certaines ressources
     namespace Path
     {
         static const QString resourcesUiFilesRoot = ":/form/UserInterface/ui_Files/";
     }
 
-    /// Contient les noms des différentes objets interfaces
+    // / Contient les noms des différentes objets interfaces
     namespace InterfaceObjectName
     {
         static const char* WelcomeScreen_obj_name       = "WelcomeScreen";
@@ -39,7 +39,7 @@ namespace Global
         static const char* CreatePatientScreen_obj_name = "CreatePatientScreen";
     }
 
-    /// Contient les noms d'interfaces utilisateurs
+    // /  Contient les noms d'interfaces utilisateurs
     namespace InterfaceName
     {
         static const char * WelcomeScreen_name = "Écran d'accueil";
@@ -47,7 +47,7 @@ namespace Global
         static const char * CreatePatientScreen_name = "Enregistrement d'un nouveau patient";
     }
 
-    /// Contient des éléments utiles au débogage
+    // /  Contient des éléments utiles au débogage
     namespace Debug
     {
 
@@ -58,7 +58,7 @@ namespace Global
 
     }
 
-    /// Contient les éléments relatifs à l'écran
+    // / Contient les éléments relatifs à l'écran
     namespace Screen {
 
         struct defaultScreenSizeWindowed
@@ -68,5 +68,5 @@ namespace Global
         };
     }
 }
-//////////////////////////////////////////////////////////////////////////////
-#endif /// INTERFACEGLOBAL_HPP
+// ////////////////////////////////////////////////////////////////////////////
+#endif // / INTERFACEGLOBAL_HPP

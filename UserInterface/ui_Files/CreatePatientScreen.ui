@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>776</width>
+    <height>513</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QTabWidget" name="informationTabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="generalTab">
+      <attribute name="title">
+       <string>Informations générales</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="generalTabLayout">
+         <item row="2" column="0">
+          <widget class="QLabel" name="patientSurname">
+           <property name="text">
+            <string>Prénom du patient:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientSurname_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="patientEmail_LE">
+           <property name="toolTip">
+            <string>Entrez l'adresse e-mail du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="patientAdress">
+           <property name="text">
+            <string>Adresse du patient:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="patientPhoneNumber">
+           <property name="text">
+            <string>Numéro de téléphone du patient:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientPhoneNumber_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="patientName">
+           <property name="text">
+            <string>Nom de famille du patient:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientName_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="patientEmail">
+           <property name="text">
+            <string>Adresse Email du patient:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientEmail_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="patientSex">
+           <property name="text">
+            <string>Sexe du patient: </string>
+           </property>
+           <property name="buddy">
+            <cstring>patientHobbies_CB</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="patientHobbies_CB">
+           <property name="toolTip">
+            <string>Choisissez le sexe du patient</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Homme</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Femme</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <layout class="QGridLayout" name="familialStatusLayout">
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="patientChildNumber_SB">
+             <property name="toolTip">
+              <string>Sélectionnez le nombre d'enfants du patient</string>
+             </property>
+             <property name="maximum">
+              <number>20</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="patientChildNumber">
+             <property name="text">
+              <string>Nombre d'enfants:</string>
+             </property>
+             <property name="buddy">
+              <cstring>patientChildNumber_SB</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QComboBox" name="patientFamilialStatus_CB">
+             <property name="toolTip">
+              <string>Choisissez le statuts familial du patient</string>
+             </property>
+             <property name="currentText">
+              <string>Marié</string>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <item>
+              <property name="text">
+               <string>Marié</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Divorcé</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Célibataire</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="patientCurrentMedic_LE">
+           <property name="toolTip">
+            <string>Entrez le nom du médecin traitant ainsi que sa localisation</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="patientCurrentMedic">
+           <property name="text">
+            <string>Médecin traitant:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientCurrentMedic_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLineEdit" name="patientHobbies_LE">
+           <property name="toolTip">
+            <string>Entrez le(s) loisir(s) pratiqué(s) par le patient, s'il y en a ...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <layout class="QGridLayout" name="adressLayout">
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="postalCodeAdress_LE">
+             <property name="toolTip">
+              <string>Entrez le code postal</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="cityNameAdress">
+             <property name="text">
+              <string>Nom de la ville:</string>
+             </property>
+             <property name="buddy">
+              <cstring>cityNameAdress_LE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="cityNameAdress_LE">
+             <property name="toolTip">
+              <string>Entrez le nom de la ville</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="postalCodeAdress">
+             <property name="text">
+              <string>Code Postale:</string>
+             </property>
+             <property name="buddy">
+              <cstring>postalCodeAdress_LE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="3">
+            <widget class="QLineEdit" name="streetAndNumAdress_LE">
+             <property name="toolTip">
+              <string>entrez le nom de la rue et le numéro de rue</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="streetAndNumAdress">
+             <property name="text">
+              <string>Rue et Numéro de rue:</string>
+             </property>
+             <property name="buddy">
+              <cstring>streetAndNumAdress_LE</cstring>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="patientFamilialStatus">
+           <property name="text">
+            <string>Situation Familiale:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientFamilialStatus_CB</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="patientSurname_LE">
+           <property name="toolTip">
+            <string>Entrez le prénom du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="patientJob">
+           <property name="text">
+            <string>Profession du patient:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientJob_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLineEdit" name="patientJob_LE">
+           <property name="toolTip">
+            <string>Entrez la profession du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="patientName_LE">
+           <property name="toolTip">
+            <string>Entrez le nom de famille du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="patientHobbies">
+           <property name="text">
+            <string>Loisir(s) pratiqué(s):</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientHobbies_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="patientPhoneNumber_LE">
+           <property name="toolTip">
+            <string>Entrez le numéro de téléphone du patient</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="medicalTab">
+      <attribute name="title">
+       <string>Antécédents médicaux</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>689</width>
+            <height>999</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="1">
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QCheckBox" name="patientIsSmoker">
+               <property name="toolTip">
+                <string>Le patient est-il fumeur ? coché -&gt; oui</string>
+               </property>
+               <property name="text">
+                <string>Fumeur</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QPlainTextEdit" name="cardioPneumo_PTE">
+               <property name="toolTip">
+                <string>Entrez les renseignements concernant les domaines cardiologie et/ou pneumologie</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="uroGyneco">
+             <property name="text">
+              <string>Urologie / Gynécologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>uroGyneco_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <widget class="QPlainTextEdit" name="ophtalmo_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le domaine ophtalmologique</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="endocrino">
+             <property name="text">
+              <string>Endocrinologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>endocrino_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="ophtalmo">
+             <property name="text">
+              <string>Ophtalmologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>ophtalmo_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPlainTextEdit" name="uroGyneco_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant les domaines d'urologie et/ou gynécologie</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QPlainTextEdit" name="psycho_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le domaine psychologique</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="pyscho">
+             <property name="text">
+              <string>Psychologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>psycho_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPlainTextEdit" name="endocrino_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le domaine de l'endocrinologie</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="orl">
+             <property name="text">
+              <string>ORL:</string>
+             </property>
+             <property name="buddy">
+              <cstring>orl_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="occlusal">
+             <property name="text">
+              <string>Occlusal:</string>
+             </property>
+             <property name="buddy">
+              <cstring>occlusal_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1">
+            <widget class="QPlainTextEdit" name="occlusal_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le domaine occlusal</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="neuro">
+             <property name="text">
+              <string>Neurologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>neuro_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="digest">
+             <property name="text">
+              <string>Système Digestif:</string>
+             </property>
+             <property name="buddy">
+              <cstring>digest_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QPlainTextEdit" name="neuro_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le domaine neurologique</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="allergoDermato">
+             <property name="text">
+              <string>Allergologie / Dermatologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>allergoDermato_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="cardioPneumo">
+             <property name="text">
+              <string>Cardiologie / Pneumologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>cardioPneumo_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QPlainTextEdit" name="allergoDermato_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant les domaines Allergologique et/ou dermatologique</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QPlainTextEdit" name="digest_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le système digestif</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QPlainTextEdit" name="orl_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant le domaine ORL</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="orthoTraumatoRhumato">
+             <property name="text">
+              <string>Ortho-traumatologie / Rhumatologie: </string>
+             </property>
+             <property name="buddy">
+              <cstring>orthoTraumatoRhumato_PTE</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1">
+            <widget class="QPlainTextEdit" name="orthoTraumatoRhumato_PTE">
+             <property name="toolTip">
+              <string>Entrez les renseignements concernant les domaines d'ortho-traumtologie et/ou rhumatologie</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="antecedentsTab">
+      <attribute name="title">
+       <string>Conclusion</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="1" column="0">
+          <widget class="QLabel" name="patientFamilialAntecedents">
+           <property name="text">
+            <string>Antécédents familiaux: </string>
+           </property>
+           <property name="buddy">
+            <cstring>patientFamilialAntecedents_PTE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPlainTextEdit" name="patientFamilialAntecedents_PTE">
+           <property name="toolTip">
+            <string>Entrez les renseignements concernant les possibles antécédants familiaux</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="currentMedCure">
+           <property name="text">
+            <string>Traitements médicaux en cours: </string>
+           </property>
+           <property name="buddy">
+            <cstring>currentMedCure_PTE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPlainTextEdit" name="currentMedCure_PTE">
+           <property name="toolTip">
+            <string>Entrez les différents traitements médicaux en cours</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="conclusion">
+           <property name="text">
+            <string>Motif de conclusion:</string>
+           </property>
+           <property name="buddy">
+            <cstring>conclusion_PTE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPlainTextEdit" name="conclusion_PTE">
+           <property name="toolTip">
+            <string>Entrez votre conclusion</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="return_PB">
+           <property name="toolTip">
+            <string>retourner à l'écran d'accueil</string>
+           </property>
+           <property name="text">
+            <string>Retour</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="savePatientFolder_PB">
+           <property name="toolTip">
+            <string>Enregistrer le dossier dans la base de données</string>
+           </property>
+           <property name="text">
+            <string>Enregistrer le dossier de %1 %2</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>informationTabs</tabstop>
+  <tabstop>patientName_LE</tabstop>
+  <tabstop>patientSurname_LE</tabstop>
+  <tabstop>streetAndNumAdress_LE</tabstop>
+  <tabstop>postalCodeAdress_LE</tabstop>
+  <tabstop>cityNameAdress_LE</tabstop>
+  <tabstop>patientPhoneNumber_LE</tabstop>
+  <tabstop>patientEmail_LE</tabstop>
+  <tabstop>patientFamilialStatus_CB</tabstop>
+  <tabstop>patientChildNumber_SB</tabstop>
+  <tabstop>patientJob_LE</tabstop>
+  <tabstop>patientCurrentMedic_LE</tabstop>
+  <tabstop>patientHobbies_LE</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>cardioPneumo_PTE</tabstop>
+  <tabstop>patientIsSmoker</tabstop>
+  <tabstop>uroGyneco_PTE</tabstop>
+  <tabstop>endocrino_PTE</tabstop>
+  <tabstop>digest_PTE</tabstop>
+  <tabstop>orl_PTE</tabstop>
+  <tabstop>neuro_PTE</tabstop>
+  <tabstop>psycho_PTE</tabstop>
+  <tabstop>allergoDermato_PTE</tabstop>
+  <tabstop>ophtalmo_PTE</tabstop>
+  <tabstop>occlusal_PTE</tabstop>
+  <tabstop>orthoTraumatoRhumato_PTE</tabstop>
+  <tabstop>currentMedCure_PTE</tabstop>
+  <tabstop>patientFamilialAntecedents_PTE</tabstop>
+  <tabstop>conclusion_PTE</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
