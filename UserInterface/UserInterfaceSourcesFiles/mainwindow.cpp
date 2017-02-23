@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // / connecte les éléments activables de la fenêtre principale à leurs slots respectifs
     connect(ui->actionQuitter, &QAction::triggered, this, &MainWindow::quitValidating);
-    connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::setFullScreen);
+    connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::changeWindowMode);
 
     // / initialisation de l'interface actuelle
     setCurrentInterface("", Global::InterfaceObjectName::WelcomeScreen_obj_name);
@@ -55,42 +55,31 @@ MainWindow::~MainWindow()
 // ///////////////////////////////////////////////////////////////////////////////
 // /                              SLOTS                                         //
 // ///////////////////////////////////////////////////////////////////////////////
-void MainWindow::setFullScreen()
+
+void MainWindow::changeWindowModeText()
 {
-    disconnect(ui->actionPlein_cran, SIGNAL(triggered()), this, SLOT(setFullScreen()));
+    ui->actionPlein_cran->text() == Message::QActionText::QA_maximizedMode ?
+                ui->actionPlein_cran->setText(Message::QActionText::QA_windowedMode) :
+                ui->actionPlein_cran->setText(Message::QActionText::QA_maximizedMode);
 
-    // / met à jour la nouvelle taille de fenêtre en fonction de
-    // / l'écran principale
-    m_windowSize = new QSize    (
-                                    QDesktopWidget().width(),
-                                    QDesktopWidget().height()
-                                );
-
-    // /applique la taille à l'écran
-//    this->resize(*m_windowSize);
-    this->setGeometry(0,0, QDesktopWidget().width(), QDesktopWidget().height());
-
-    ui->actionPlein_cran->setText(trUtf8("Mode &fenêtré"));
-    connect(ui->actionPlein_cran, SIGNAL(triggered()), this, SLOT(setWindowed()));
+    return;
 }
 
-void MainWindow::setWindowed()
+void MainWindow::changeWindowMode()
 {
-    // /déconnection pour éviter le conflit entre les signaux
-    disconnect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::setWindowed);
+    switch(windowState())
+    {
+    case Qt::WindowMaximized:
+        changeWindowModeText();
+        setWindowState(Qt::WindowNoState);
+        break;
+    case Qt::WindowNoState:
+        changeWindowModeText();
+        setWindowState(Qt::WindowMaximized);
+        break;
+    }
+    return;
 
-    // / met à jour la nouvelle taille de fenêtre
-    // / en fonction de l'écran sur lequel le programme fonctionne
-    m_windowSize = new QSize    (
-                                    Global::Screen::defaultScreenSizeWindowed().widht,
-                                    Global::Screen::defaultScreenSizeWindowed().height
-                                );
-
-    // / applique la taille à l'écran
-    this->resize(*m_windowSize);
-
-    ui->actionPlein_cran->setText(trUtf8("Mode Pl&ein Écran"));
-    connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::setFullScreen);
 }
 
 void MainWindow::quitValidating()

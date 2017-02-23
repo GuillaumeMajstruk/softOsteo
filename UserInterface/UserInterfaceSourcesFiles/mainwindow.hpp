@@ -94,6 +94,9 @@ private:
     // / Défini l'interface utilisateur actuellement utilisée
     void setCurrentInterface (const QString& currentInterface, const QString& neededInterface);
 
+    // / change le message de l'action de mode de fenêtre
+    void changeWindowModeText();
+
 protected:
     void closeEvent(QCloseEvent * event);
 
@@ -102,11 +105,9 @@ protected:
     // /                              SLOTS                                         //
     // ///////////////////////////////////////////////////////////////////////////////
 private slots:
-    // / mettre l'échelle de l'interface en mode plein écran
-    void setFullScreen ();
 
-    // / mettre l'échelle de l'interface en mode fenêtré
-    void setWindowed ();
+    // / Gère la mise à l'échelle de l'écran (plein écran / fenêtré)
+    void changeWindowMode();
 
     // / demande à l'utilisateur s'il veut vraiment quitter ?
     void quitValidating ();
