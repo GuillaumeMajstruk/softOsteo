@@ -7,7 +7,14 @@ connectionDataBase::connectionDataBase()
     // Connection à la base de donnée de connection
     m_db = QSqlDatabase::addDatabase("QSQLITE");
 
+#ifdef Q_OS_WIN
+    m_db.setDatabaseName("F:/Programmes/Programme_Alisson/ConnectionDataBase/connectionDB.db");
+#else
     m_db.setDatabaseName("/Users/Guillaume/softOsteo/ConnectionDataBase/connectionDB.db");
+<<<<<<< HEAD
+#endif
+
+    m_db.setPassword("1234");
 
 
     // vérification que la connection à pue être établie
@@ -19,6 +26,7 @@ connectionDataBase::connectionDataBase()
         QMessageBox::warning(NULL, "error", query.lastError().text());
 
     insert("Guillaume", "030893Guigui");
+    insert("Tatiana", "jesuistata");
 }
 
 QString connectionDataBase::hashWithoutSalt(const QString &strToHash)
