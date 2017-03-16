@@ -30,7 +30,7 @@ public:
     T * loadUi(const QString& uiToLoadName)
     {
         // / Est-ce que le nom d'interface correspond bien à un fichier d'interface .ui ?
-            QFile _interface (Global::Path::resourcesUiFilesRoot + uiToLoadName);
+            QFile _interface (SharedVar::Path::resourcesUiFilesRoot + uiToLoadName);
 
             // / peut-on ouvrir le fichier en lecture ?
             if (!_interface.open(QFile::ReadOnly)) qDebug() << "erreur à l'ouverture du fichier de configuration"

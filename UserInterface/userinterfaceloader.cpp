@@ -27,13 +27,13 @@ userInterfaceLoader::userInterfaceLoader(bool staticOrDynamic)
         static std::unique_ptr<SelectPatientScreen> UiLoaderInstance_SelectPatientScreen (new SelectPatientScreen);
         static std::unique_ptr<CreatePatientScreen> UiLoaderInstance_CreatePatientScreen (new CreatePatientScreen);
 
-        m_allInterface.insert(Global::InterfaceObjectName::WelcomeScreen_obj_name,
+        m_allInterface.insert(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
                               UiLoaderInstance_WelcomeScreen.get());
 
-        m_allInterface.insert(Global::InterfaceObjectName::SelectPatientScreen_obj_name,
+        m_allInterface.insert(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name,
                               UiLoaderInstance_SelectPatientScreen.get());
 
-        m_allInterface.insert(Global::InterfaceObjectName::CreatePatientScreen_obj_name,
+        m_allInterface.insert(SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name,
                               UiLoaderInstance_CreatePatientScreen.get());
 
     }

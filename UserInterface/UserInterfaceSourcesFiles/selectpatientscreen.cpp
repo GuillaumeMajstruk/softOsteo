@@ -6,10 +6,10 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
     qDebug() << "SelectPatientScreen::SelectPatientScreen()";
 
     // / Définition du nom visuel de l'interface
-    setInterfaceName(Global::InterfaceName::SelectPatientScreen_name);
+    setInterfaceName(SharedVar::InterfaceName::SelectPatientScreen_name);
 
     // / Déclaration du nom de l'objet d'interface
-    setInterfaceObjectName(Global::InterfaceObjectName::SelectPatientScreen_obj_name);
+    setInterfaceObjectName(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
 
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>(m_objectInterfaceName + ".ui");
 

@@ -77,8 +77,8 @@ private:
 
     // / Taille par défaut de l'interface utilisateur (-> mode fenêtré)
     QSize *m_windowSize = new QSize     (
-                                            Global::Screen::defaultScreenSizeWindowed().widht,
-                                            Global::Screen::defaultScreenSizeWindowed().height
+                                            SharedVar::Screen::defaultScreenSizeWindowed().widht,
+                                            SharedVar::Screen::defaultScreenSizeWindowed().height
                                         );
 
     // / interface utilisateur actuelle (utilisée en tant que widget dans la fenêtre principale)

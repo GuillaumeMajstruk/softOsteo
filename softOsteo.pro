@@ -1,4 +1,5 @@
 CONFIG += c++14
+CONFIG += console
 
 QT += widgets gui core uitools sql
 

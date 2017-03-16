@@ -4,7 +4,7 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
-using Global::Debug::log_d;
+using SharedVar::Debug::log_d;
 
 // ///////////////////////////////////////////////////////////////////////////////
 // /                       CONSTRUCTEUR/DESTRUCTEUR                             //
@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::changeWindowMode);
 
     // / initialisation de l'interface actuelle
-    setCurrentInterface("", Global::InterfaceObjectName::WelcomeScreen_obj_name);
+    setCurrentInterface("", SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
     connect(dynamic_cast<WelcomeScreen*> (m_currentInterface),
             &WelcomeScreen::managementButton_HasBeenClicked,
             this, &MainWindow::printMessage);
@@ -105,8 +105,8 @@ void MainWindow::quitValidating()
 void MainWindow::printMessage()
 {
     log_d(QVariant("Signal Received").toString());
-    setCurrentInterface(Global::InterfaceObjectName::WelcomeScreen_obj_name,
-                        Global::InterfaceObjectName::CreatePatientScreen_obj_name);
+    setCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
+                        SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name);
 }
 
 // ///////////////////////////////////////////////////////////////////////////////
