@@ -40,8 +40,9 @@ QString dataEncryptor::encrypt(const QString &strToEncrypt)
             else crypted = CharLimit::minChar + ((i->toLatin1() + CharLimit::charMove) - CharLimit::maxChar - 1);
         }
         // Si le char est un chiffre
-        else if (isnumber(i->toLatin1()))
+        else if (isdigit(i->toLatin1()))
         {
+
             if ( (i->toLatin1() + CharLimit::charMove) <= CharLimit::maxNum ) crypted = i->toLatin1() + CharLimit::charMove;
             else crypted = CharLimit::minNum + ((i->toLatin1() + CharLimit::charMove) - CharLimit::maxNum - 1);
         }
@@ -70,7 +71,7 @@ QString dataEncryptor::decrypt(const QString &strToDecrypt)
             else decrypted = CharLimit::maxChar + ((i->toLatin1() - CharLimit::charMove) - CharLimit::minChar  + 1);
         }
         // Si le char est un chiffre
-        else if (isnumber(i->toLatin1()))
+        else if (isdigit(i->toLatin1()))
         {
             if ( (i->toLatin1() - CharLimit::charMove) >= CharLimit::minNum ) decrypted = (char)(i->toLatin1() - CharLimit::charMove);
             else decrypted = CharLimit::maxNum + ((i->toLatin1() - CharLimit::charMove) - CharLimit::minNum  + 1);

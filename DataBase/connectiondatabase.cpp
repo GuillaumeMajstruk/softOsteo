@@ -13,9 +13,9 @@ connectionDataBase::connectionDataBase()
     m_db.setDatabaseName("/Users/Guillaume/softOsteo/ConnectionDataBase/connectionDB.db");
 <<<<<<< HEAD
 #endif
-=======
+
     m_db.setPassword("1234");
->>>>>>> efad34cc6f52708d0bcf675573eff274ec6b04ba
+
 
     // vérification que la connection à pue être établie
     checkConnectionToDatabase();
