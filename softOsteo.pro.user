@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.2.0, 2017-03-09T13:06:31. -->
 =======
 <!-- Written by QtCreator 4.2.1, 2017-02-23T19:32:14. -->
 >>>>>>> efad34cc6f52708d0bcf675573eff274ec6b04ba
+=======
+<!-- Written by QtCreator 4.2.1, 2017-03-16T12:04:57. -->
+>>>>>>> e3a0ac02f209c146436739a7075b39c320ace7b8
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -71,7 +75,10 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 5.8.0 clang 64bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 5.8.0 clang 64bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.58.clang_64_kit</value>
+<<<<<<< HEAD
 >>>>>>> efad34cc6f52708d0bcf675573eff274ec6b04ba
+=======
+>>>>>>> e3a0ac02f209c146436739a7075b39c320ace7b8
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -303,10 +310,14 @@
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default"></value>
 =======
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/Users/guillaume/softOsteo/Build/Debug/softOsteo.app/Contents/MacOS</value>
 >>>>>>> efad34cc6f52708d0bcf675573eff274ec6b04ba
+=======
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/Users/guillaume/softOsteo/Build/Debug/softOsteo.app/Contents/MacOS</value>
+>>>>>>> e3a0ac02f209c146436739a7075b39c320ace7b8
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

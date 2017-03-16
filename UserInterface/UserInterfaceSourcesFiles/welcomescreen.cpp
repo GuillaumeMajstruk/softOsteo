@@ -14,10 +14,10 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
     qDebug() << "WelcomeScreen::WelcomeScreen()";
 
     // / définition du nom de l'interface
-    setInterfaceName(Global::InterfaceName::WelcomeScreen_name);
+    setInterfaceName(SharedVar::InterfaceName::WelcomeScreen_name);
 
     // / définition du nom de l'objet interface
-    setInterfaceObjectName(Global::InterfaceObjectName::WelcomeScreen_obj_name);
+    setInterfaceObjectName(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
 
     // / chargement de l'interface graphique
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName + ".ui");

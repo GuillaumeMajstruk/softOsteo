@@ -4,18 +4,18 @@
 #include "UserInterface/ConnectionScreen/connectiondialog.h"
 #include "DataBase/database.h"
 
-#include <QPlainTextEdit>
-#include <QSettings>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
-    QApplication *app = new QApplication (argc, argv);
+    QApplication *app = new QApplication (argc, argv);    
 
     // Ajout des caractéristiques système
     app->setOrganizationName("MjkCorp");
     app->setOrganizationDomain("MjkCorp.fr");
     app->setApplicationName("softOsteo");
 
+    // Création puis gestion de la connection à l'application
     ConnectionDialog *d = new ConnectionDialog(NULL);
     d->exec();
 

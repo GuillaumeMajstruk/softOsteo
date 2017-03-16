@@ -22,7 +22,7 @@
 // /                             GLOBALES:                                  ///
 // / contient des namespaces pour déclarer/définir des variables globales   ///
 // ////////////////////////////////////////////////////////////////////////////
-namespace Global
+namespace SharedVar
 {
 
     // / Contient les chemins d'accés de certaines ressources

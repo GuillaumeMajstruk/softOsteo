@@ -1,6 +1,6 @@
 #include "database.h"
 
-using Global::Debug::log_d;
+using SharedVar::Debug::log_d;
 
 dataBase::dataBase() {}
 
