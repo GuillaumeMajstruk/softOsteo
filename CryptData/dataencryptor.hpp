@@ -1,3 +1,21 @@
+//    softOsteo is the name of the software.
+//    This software integrates many functionalities such as patient management, data records, data
+//    management, patient consultation, etc..., to help an osteopath in his professional life.
+//    Copyright (C) 2017  MAJSTRUK Guillaume.
+
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef DATAENCRYPTOR_HPP
 #define DATAENCRYPTOR_HPP
 
@@ -10,6 +28,7 @@
 
 class connectionDataBase;
 
+// Défini des "bornes" pour les fonctions de cryptage/décrytage
 enum CharLimit
 {
     charMove = 6,
@@ -33,13 +52,11 @@ public: // Constructeur
     explicit dataEncryptor();
 
 public: // Fonctions publiques
-    // une fonction pour crypter des chaines de caractères (tout en faisant en sorte qu'elles soient décryptables)
+    // une fonction pour crypter des chaines de caractères
     static QString encrypt (const QString& strToEncrypt);
 
-    // la fonction de décryptage de la fonction précédente
+    // fonction de décryptage de la fonction précédente
     static QString decrypt (const QString& strToDecrypt);
-
-    // ceci est un test pour voir si je peux streamer ou pas
 
 private: // fonctions privées
 #ifndef SALT_BEFORE
@@ -50,7 +67,7 @@ private: // fonctions privées
 #define SALT_AFTER  "12NLKU3jh!ça"
 #endif // SALT_AFTER
 
-    // Retourne le résultat du hashage avec la méthode sha256 de la chaine passée en paramètre
+    // Retourne le résultat du hash avec la méthode sha256 de la chaine passée en paramètre
     // sous la forme d'une chaine de caractères
     static QString hashIt_SHA256 (const QString& strToHash);
 

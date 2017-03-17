@@ -15,7 +15,8 @@ HEADERS += \
     UserInterface/ConnectionScreen/connectiondialog.h \
     UserInterface/UserInterfaceSourcesFiles/createpatientscreen.h \
     DataBase/connectiondatabase.hpp \
-    CryptData/dataencryptor.hpp
+    CryptData/dataencryptor.hpp \
+    typedefs.hpp
 
 SOURCES += \
     UserInterface/userinterfaceloader.cpp \
