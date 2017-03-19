@@ -19,8 +19,8 @@
 #ifndef CONNECTIONDIALOG_H
 #define CONNECTIONDIALOG_H
 
-#include <QDialog>
-#include <QMessageBox>
+//#include <QDialog>
+//#include <QMessageBox>
 #include <QString>
 #include <QInputEvent>
 #include <QDir>

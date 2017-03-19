@@ -102,17 +102,17 @@ void MainWindow::changeWindowMode()
 
 void MainWindow::quitValidating()
 {
-    int ret = QMessageBox::question  (
+    int ret = msgBox::question  (
                                             this,
                                             trUtf8(Message::MsgBoxTitle::title_Quit),
                                             trUtf8(Message::Question::msg_sureToQuit),
-                                            QMessageBox::Yes | QMessageBox::No,
-                                            QMessageBox::Yes
+                                            msgBox::Yes | msgBox::No,
+                                            msgBox::Yes
                                         );
 
     switch (ret)
     {
-        case QMessageBox::Yes:
+        case msgBox::Yes:
             qApp->quit();
         break;
         default:
@@ -133,15 +133,14 @@ void MainWindow::printMessage()
 // / demande à la fermeture de la fenêtre si l'utilisateur est sûr de vouloir quitter ?
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    int ret = QMessageBox::question(this,
+    int ret = msgBox::question(this,
                                     trUtf8(Message::MsgBoxTitle::title_Quit),
                                     trUtf8(Message::Question::msg_sureToQuit),
-                                    QMessageBox::Yes
-                                    | QMessageBox::No
+                                    msgBox::Yes | msgBox::No
                                     );
      switch (ret)
      {
-     case QMessageBox::Yes:
+     case msgBox::Yes:
          event->accept();
          break;
      default:

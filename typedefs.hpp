@@ -19,15 +19,31 @@
 #ifndef TYPEDEFS_H
 #define TYPEDEFS_H
 
+
+// Essaie d'utiliser les forward déclaration à la place des includes ...
+class QPushButton;
+class QLineEdit;
+class QMessageBox;
+class QPlainTextEdit;
+class QDialog;
+class QLabel;
+class QListWidget;
+class QComboBox;
+class QSpinBox;
+class QCheckBox;
+
 /// Ce fichier contient des typedefs qui m'évitent à avoir à taper les
 /// noms entiers des objets de type widgets de QT
 
-typedef QPushButton pushButton;
-typedef QLineEdit lineEdit;
-typedef QMessageBox msgBox;
-typedef QPlainTextEdit plainTextEdit;
-typedef QDialog dialog;
-typedef QLabel label;
-typedef QListWidget listWidget;
+typedef QPushButton         pushButton;
+typedef QLineEdit           lineEdit;
+typedef QMessageBox         msgBox;
+typedef QPlainTextEdit      plainTextEdit;
+typedef QDialog             dialog;
+typedef QLabel              label;
+typedef QListWidget         listWidget;
+typedef QComboBox           comboBox;
+typedef QSpinBox            spinBox;
+typedef QCheckBox           checkBox;
 
 #endif // TYPEDEFS_H

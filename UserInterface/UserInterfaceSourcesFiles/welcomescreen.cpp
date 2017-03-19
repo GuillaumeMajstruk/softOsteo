@@ -16,11 +16,8 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <QtGui>
 
 #include "welcomescreen.hpp"
-
-//#define DEBUG
 
 
 // ///////////////////////////////////////////////////////////////////////////////
@@ -40,34 +37,22 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
     // / chargement de l'interface graphique
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName + ".ui");
 
-#ifdef DEBUG
-    QPalette pal = palette();
-    pal.setColor(QPalette::Background, Qt::blue);
-    m_interface->setAutoFillBackground(true);
-    m_interface->setPalette(pal);
-#endif //DEBUG
-
     // / on cherche les boutons correspondants
-        m_billButton = m_interface->findChild<QPushButton*>("billButton");
-        m_managementButton = m_interface->findChild<QPushButton*> ("managementButton");
-        m_newConsultationButton = m_interface->findChild<QPushButton*> ("newConsultationButton");
-        m_newMeetingButton = m_interface->findChild<QPushButton*> ("newMeetingButton");
-        m_patientsFolderButton = m_interface->findChild<QPushButton*> ("patientsFolderButton");
-
-    // / sont-ils TOUS correctement initialisés ?
-    if (        !m_billButton
-            ||  !m_managementButton
-            ||  !m_newConsultationButton
-            ||  !m_newMeetingButton
-            ||  !m_patientsFolderButton ) throw std::exception {};
+        m_billButton = loadWidget<pushButton>("billButton");
+        m_managementButton = loadWidget<pushButton> ("managementButton");
+        m_newConsultationButton = loadWidget<pushButton> ("newConsultationButton");
+        m_newMeetingButton = loadWidget<pushButton> ("newMeetingButton");
+        m_patientsFolderButton = loadWidget<pushButton> ("patientsFolderButton");
 
 
     // / connection des signaux/slots des boutons de cette interface
-    connect (m_billButton, &QPushButton::clicked, this, &WelcomeScreen::billButton_clicked);
-    connect (m_managementButton, &QPushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
-    connect (m_newConsultationButton, &QPushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
-    connect (m_newMeetingButton, &QPushButton::clicked, this, &WelcomeScreen::newMeetingButton_clicked);
-    connect (m_patientsFolderButton, &QPushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
+    connect (m_billButton, &pushButton::clicked, this, &WelcomeScreen::billButton_clicked);
+    connect (m_managementButton, &pushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
+    connect (m_newConsultationButton, &pushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
+    connect (m_newMeetingButton, &pushButton::clicked, this, &WelcomeScreen::newMeetingButton_clicked);
+    connect (m_patientsFolderButton, &pushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
+
+    printNumOfElemts();
 
 }
 

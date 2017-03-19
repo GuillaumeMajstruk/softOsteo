@@ -43,7 +43,7 @@ bool dataBase::checkConnectionToDatabase()
     // / Impossibilité à se connecter à la base de donnée
     if (!m_db.open())
     {
-        QMessageBox::warning(NULL,
+        msgBox::warning(NULL,
                              Message::MsgBoxTitle::Error_Msg::title_Error,
                              Message::MsgBoxContent::content_DatabaseConnectionError,
                              QMessageBox::Ok);
@@ -52,7 +52,7 @@ bool dataBase::checkConnectionToDatabase()
     // / Connection à la base de donnée établie avec succés !
     else
     {
-        QMessageBox::information(NULL,
+        msgBox::information(NULL,
                                   Message::MsgBoxTitle::title_ConnectionToDataBase_Ok,
                                   Message::MsgBoxContent::content_DatabaseConnectionOk);
         isConnected = true;

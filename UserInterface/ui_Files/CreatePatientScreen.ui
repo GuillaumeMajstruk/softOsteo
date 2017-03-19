@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>776</width>
-    <height>513</height>
+    <width>902</width>
+    <height>622</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,12 +86,12 @@
             <string>Sexe du patient: </string>
            </property>
            <property name="buddy">
-            <cstring>patientHobbies_CB</cstring>
+            <cstring>patientSex_CB</cstring>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QComboBox" name="patientHobbies_CB">
+          <widget class="QComboBox" name="patientSex_CB">
            <property name="toolTip">
             <string>Choisissez le sexe du patient</string>
            </property>
@@ -331,8 +331,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>689</width>
-            <height>999</height>
+            <width>841</width>
+            <height>867</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
@@ -643,11 +643,14 @@
          </item>
          <item>
           <widget class="QPushButton" name="savePatientFolder_PB">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="toolTip">
             <string>Enregistrer le dossier dans la base de données</string>
            </property>
            <property name="text">
-            <string>Enregistrer le dossier de %1 %2</string>
+            <string>Enregistrer le dossier</string>
            </property>
           </widget>
          </item>

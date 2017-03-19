@@ -24,6 +24,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 
+#include <QList>
 #include <exception>
 
 #include "UserInterface/userinterfaceloader.hpp"
@@ -35,29 +36,58 @@ class CreatePatientScreen: public Screen
     Q_OBJECT
 public:
     explicit CreatePatientScreen(Screen *parent = 0);
-    virtual ~CreatePatientScreen() {}
+    virtual ~CreatePatientScreen();
 
 private: //Attributs privés
 
     // Eléments de l'interface
+    // QPushButton
     pushButton * m_savePatientFolder = nullptr;
     pushButton * m_returnButton = nullptr;
 
+    // QLineEdit
+    lineEdit * m_patientName = nullptr;
+    lineEdit * m_patientSurname = nullptr;
+    lineEdit * m_patientJob = nullptr;
     lineEdit * m_cityNameAdress = nullptr;
     lineEdit * m_postalCodeAdress = nullptr;
     lineEdit * m_streetAndNumAdress = nullptr;
     lineEdit * m_patientCurrentMedic = nullptr;
     lineEdit * m_patientEmail = nullptr;
-    lineEdit * m_patientName = nullptr;
     lineEdit * m_patientPhoneNumber = nullptr;
-    lineEdit * m_patientSurname = nullptr;
-    lineEdit * m_patientJob = nullptr;
     lineEdit * m_patientHobbies = nullptr;
+
+    // QComboBox
+    comboBox * m_patientSex = nullptr;
+    comboBox * m_patientFamilialStatus = nullptr;
+
+    // QSpinBox
+    spinBox * m_patientChildNumber = nullptr;
+
+    // QCheckBox
+    checkBox * m_patientIsSmoker = nullptr;
+
+    // QPlainTextEdit
+    plainTextEdit * m_cardioPneumo = nullptr;
+    plainTextEdit * m_uroGyneco = nullptr;
+    plainTextEdit * m_endocrino = nullptr;
+    plainTextEdit * m_digest = nullptr;
+    plainTextEdit * m_orl = nullptr;
+    plainTextEdit * m_neuro = nullptr;
+    plainTextEdit * m_psycho = nullptr;
+    plainTextEdit * m_allergoDermato = nullptr;
+    plainTextEdit * m_ophtalmo = nullptr;
+    plainTextEdit * m_occlusal = nullptr;
+    plainTextEdit * m_orthoTraumatoRhumato = nullptr;
+    plainTextEdit * m_currentMedCure = nullptr;
+    plainTextEdit * m_patientFamilialAntecedents = nullptr;
+    plainTextEdit * m_conclusion = nullptr;
+
 
 
 
 private slots:
-    void updateSaveInformationText(const QString&);
+    void updateSaveInformationText();
 };
 
 #endif // CREATEPATIENTSCREEN_H

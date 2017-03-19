@@ -26,8 +26,10 @@
 // ////////////////////////////////////////////////////////////////
 
 #include <QWidget>
-#include <QDebug>
+#include <QList>
 #include <QString>
+#include <exception>
+#include <QDebug>
 
 class Screen : public QWidget
 {
@@ -66,6 +68,34 @@ public:
         m_objectInterfaceName = uiName;
     }
 
+    // Fonction qui initialise un objet de type QWidget* en fonction
+    // de son type et du nom de l'objet trouvé dans le parent
+    template <typename T>
+    T* loadWidget (const char* widgetName)
+    {
+        // Trouve le widget correspondant dans le parent
+        T * tempWidget = m_interface->findChild<T*>(widgetName);
+
+        // Ajoute à la liste qui contient tous les widgets de cette
+        // interface
+        m_allWidgets.push_back(tempWidget);
+
+        // On vérifie que le widget est correctement chargé
+        if (!tempWidget)
+        {
+            qDebug() << "widget non initialisé -> " << widgetName;
+        }
+
+        // Retourne le widget chargé
+        return tempWidget;
+    }
+
+    // Affiche le nombre d'éléments actionnables dans l'interface
+    virtual void printNumOfElemts ()
+    {
+        qDebug() << "il y a " << m_allWidgets.size() << " éléments dans cette interface";
+    }
+
 protected:
 
     // / Widget -> interface
@@ -76,6 +106,10 @@ protected:
 
     // / Nom de l'objet interface
     QString m_objectInterfaceName;
+
+    // TEST
+    // Liste qui contient tous les widgets graphiques d'une interface
+    QList<QWidget*> m_allWidgets;
 };
 
 #endif // / SCREEN_HPP

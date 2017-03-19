@@ -32,28 +32,29 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>(m_objectInterfaceName + ".ui");
 
     // / Initialisation des Widgets de l'interfaces ////////////////////////////////////
-    m_newPatientButton = m_interface->findChild<QPushButton*>("newPatientButton");
-    m_returnButton = m_interface->findChild<QPushButton*>("returnButton");
-    m_validateSelectionButton = m_interface->findChild<QPushButton*>("validateSelectionButton");
-    m_searchButton = m_interface->findChild<QPushButton*>("searchButton");
+    m_newPatientButton = loadWidget<pushButton>("newPatientButton");
+    m_returnButton = loadWidget<pushButton>("returnButton");
+    m_validateSelectionButton = loadWidget<pushButton>("validateSelectionButton");
+    m_searchButton = loadWidget<pushButton>("searchButton");
 
-    m_searchPatientLineEdit = m_interface->findChild<QLineEdit*>("searchPatientLineEdit");
+    m_searchPatientLineEdit = loadWidget<lineEdit>("searchPatientLineEdit");
 
-    m_searchPatientLabel = m_interface->findChild<QLabel*>("searchPatientLabel");
-    m_searchPatientLabel->setBuddy(m_searchPatientLineEdit);
+    m_searchPatientLabel = loadWidget<label>("searchPatientLabel");
 
-    m_patientList = m_interface->findChild<QListWidget*>("patientList");
+    m_patientList = loadWidget<listWidget>("patientList");
     // //////////////////////////////////////////////////////////////////////////////////
 
     // / Connection signaux/slots ///////////////////////////////////////////////////////
-    connect (m_newPatientButton, &QPushButton::clicked, this, &SelectPatientScreen::newPatientButton_clicked);
-    connect (m_returnButton, &QPushButton::clicked, this, &SelectPatientScreen::returnButton_clicked);
-    connect (m_validateSelectionButton, &QPushButton::clicked, this, &SelectPatientScreen::validateSelectionButton_clicked);
-    connect (m_searchButton, &QPushButton::clicked, this, &SelectPatientScreen::searchButton_clicked);
+    connect (m_newPatientButton, &pushButton::clicked, this, &SelectPatientScreen::newPatientButton_clicked);
+    connect (m_returnButton, &pushButton::clicked, this, &SelectPatientScreen::returnButton_clicked);
+    connect (m_validateSelectionButton, &pushButton::clicked, this, &SelectPatientScreen::validateSelectionButton_clicked);
+    connect (m_searchButton, &pushButton::clicked, this, &SelectPatientScreen::searchButton_clicked);
 
     connect (m_searchPatientLineEdit, &QLineEdit::textChanged,
              this, &SelectPatientScreen::searchPatientLineEdit_textEdited);
     // //////////////////////////////////////////////////////////////////////////////////
+
+    printNumOfElemts();
 }
 
 SelectPatientScreen::~SelectPatientScreen()

@@ -20,7 +20,7 @@
 #include "ui_connectiondialog.h"
 
 ConnectionDialog::ConnectionDialog(QWidget *parent) :
-    QDialog(parent),
+    dialog(parent),
     ui(new Ui::ConnectionDialog)
 {
     // / Mise à jour de l'interface
@@ -39,11 +39,11 @@ ConnectionDialog::ConnectionDialog(QWidget *parent) :
 
     // / Connection des éléments de l'interface
     connect(ui->OkButton,
-            &QPushButton::clicked,
+            &pushButton::clicked,
             this,
             &ConnectionDialog::checkConnectionIds);
     connect(ui->QuitButton,
-            &QPushButton::clicked,
+            &pushButton::clicked,
             this,
             &ConnectionDialog::Quit);
 
@@ -67,7 +67,7 @@ void ConnectionDialog::updateEnteredIds()
 
     // Si au moins un des champs est vide, on le signal avec un message
     if (enteredUsername.isEmpty() || enteredPass.isEmpty())
-        QMessageBox::warning(NULL,
+        msgBox::warning(NULL,
                              Message::MsgBoxTitle::title_ConnectionRequestInformationLack,
                              Message::MsgBoxContent::content_ConnectionRequestInformationLack);
 
@@ -81,7 +81,7 @@ bool ConnectionDialog::compareEnteredIds()
 
     // Demande dans la table à accéder aux champs username et password
     if (!connectionQuery.exec("SELECT Username, password FROM users"))
-        QMessageBox::critical(NULL, "Error !", connectionQuery.lastError().text());
+        msgBox::critical(NULL, "Error !", connectionQuery.lastError().text());
 
     // Tant qu'il y a des données on les parcours ...
     while (connectionQuery.next())
@@ -100,7 +100,7 @@ bool ConnectionDialog::compareEnteredIds()
     }
 
     // Sinon si on a pas recontré d'éléments qui correspondent -> message d'erreur d'autentification
-    QMessageBox::critical(NULL,
+    msgBox::critical(NULL,
                           Message::MsgBoxTitle::Error_Msg::title_AuthentificationError,
                           Message::MsgBoxContent::content_AuthentificationError);
 
@@ -126,7 +126,7 @@ void ConnectionDialog::checkConnectionIds()
         qDebug() << enteredUsername;
         settings.setValue("connection/UserId", enteredUsername);
         // ////////////////////////////////////////////////
-        QMessageBox::information(NULL,
+        msgBox::information(NULL,
                                  Message::MsgBoxTitle::title_Connection_Ok,
                                  QString(Message::MsgBoxContent::content_Connection_Ok).arg(enteredUsername));
         isConnected = true;
@@ -151,7 +151,7 @@ void ConnectionDialog::keyPressEvent(QKeyEvent *event)
         break;
     }
 
-    QDialog::keyPressEvent(event);
+    dialog::keyPressEvent(event);
 }
 
 void ConnectionDialog::closeEvent(QCloseEvent *)

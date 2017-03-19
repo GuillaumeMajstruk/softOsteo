@@ -29,6 +29,7 @@
 
 #include "Messages/messages.hpp"
 #include "UserInterface/interfaceGlobal.hpp"
+#include "typedefs.hpp"
 
 class dataBase;
 class connectionDataBase;
