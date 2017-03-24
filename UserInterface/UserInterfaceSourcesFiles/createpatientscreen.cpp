@@ -34,53 +34,13 @@ CreatePatientScreen::CreatePatientScreen(Screen *parent):
 
 
     // Initialisation des éléments de l'interface
-    // QPushButton
-    m_savePatientFolder = loadWidget<pushButton>("savePatientFolder_PB");
-    m_returnButton = loadWidget<pushButton>("return_PB");
+    initWidgetList();
 
-    // QlineEdit
-    m_patientName = loadWidget<lineEdit>("patientName_LE");
-    m_patientSurname = loadWidget<lineEdit>("patientSurname_LE");
-    m_patientJob = loadWidget<lineEdit>("patientJob_LE");
-    m_cityNameAdress = loadWidget<lineEdit>("cityNameAdress_LE");
-    m_postalCodeAdress = loadWidget<lineEdit>("postalCodeAdress_LE");
-    m_streetAndNumAdress = loadWidget<lineEdit>("streetAndNumAdress_LE");
-    m_patientCurrentMedic = loadWidget<lineEdit>("patientCurrentMedic_LE");
-    m_patientEmail = loadWidget<lineEdit>("patientEmail_LE");
-    m_patientPhoneNumber = loadWidget<lineEdit>("patientPhoneNumber_LE");
-    m_patientHobbies = loadWidget<lineEdit>("patientHobbies_LE");
-
-    // QComboBox
-    m_patientSex = loadWidget<comboBox>("patientSex_CB");
-    m_patientFamilialStatus = loadWidget<comboBox>("patientFamilialStatus_CB");
-
-    // QSpinBox
-    m_patientChildNumber = loadWidget<spinBox>("patientChildNumber_SB");
-
-    // QCheckBox
-    m_patientIsSmoker = loadWidget<checkBox>("patientIsSmoker_CKB");
-
-    // QPlainTextEdit
-    m_cardioPneumo = loadWidget<plainTextEdit>("cardioPneumo_PTE");
-    m_uroGyneco = loadWidget<plainTextEdit>("uroGyneco_PTE");
-    m_endocrino = loadWidget<plainTextEdit>("endocrino_PTE");
-    m_digest = loadWidget<plainTextEdit>("digest_PTE");
-    m_orl = loadWidget<plainTextEdit>("orl_PTE");
-    m_neuro = loadWidget<plainTextEdit>("neuro_PTE");
-    m_psycho = loadWidget<plainTextEdit>("psycho_PTE");
-    m_allergoDermato = loadWidget<plainTextEdit>("allergoDermato_PTE");
-    m_ophtalmo = loadWidget<plainTextEdit>("ophtalmo_PTE");
-    m_occlusal = loadWidget<plainTextEdit>("occlusal_PTE");
-    m_orthoTraumatoRhumato = loadWidget<plainTextEdit>("orthoTraumatoRhumato_PTE");
-    m_currentMedCure = loadWidget<plainTextEdit>("currentMedCure_PTE");
-    m_patientFamilialAntecedents = loadWidget<plainTextEdit>("patientFamilialAntecedents_PTE");
-    m_conclusion = loadWidget<plainTextEdit>("conclusion_PTE");
-
-    connect (m_patientName, &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
-    connect (m_patientSurname, &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
+    connect (dynamic_cast<lineEdit*>(getWidget("patientName_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
+    connect (dynamic_cast<lineEdit*>(getWidget("patientSurname_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
 
     // debug
-    printNumOfElemts();
+    showThisInterfaceCaracteristics();
 }
 
 CreatePatientScreen::~CreatePatientScreen()
@@ -90,7 +50,10 @@ CreatePatientScreen::~CreatePatientScreen()
 
 void CreatePatientScreen::updateSaveInformationText()
 {
-    if (!m_savePatientFolder->isEnabled())
-        m_savePatientFolder->setEnabled(true);
-    m_savePatientFolder->setText("Enregistrer le dossier de " + m_patientName->text() + " " + m_patientSurname->text());
+    if (!dynamic_cast<pushButton*>(getWidget("savePatientFolder_PB"))->isEnabled())
+        dynamic_cast<pushButton*>(getWidget("savePatientFolder_PB"))->setEnabled(true);
+    dynamic_cast<pushButton*>(getWidget("savePatientFolder_PB"))->setText("Enregistrer le dossier de " +
+                                                                          dynamic_cast<lineEdit*>(getWidget("patientName_LE"))->text() +
+                                                                          " " +
+                                                                          dynamic_cast<lineEdit*>(getWidget("patientSurname_LE"))->text());
 }

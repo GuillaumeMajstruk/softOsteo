@@ -37,22 +37,19 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
     // / chargement de l'interface graphique
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName);
 
-    // / on cherche les boutons correspondants
-    m_billButton = loadWidget<pushButton>("billButton");
-    m_managementButton = loadWidget<pushButton> ("managementButton");
-    m_newConsultationButton = loadWidget<pushButton> ("newConsultationButton");
-    m_newMeetingButton = loadWidget<pushButton> ("newMeetingButton");
-    m_patientsFolderButton = loadWidget<pushButton> ("patientsFolderButton");
+    // Initialisation des éléments de l'interface
+    initWidgetList();
 
 
     // / connection des signaux/slots des boutons de cette interface
-    connect (m_billButton, &pushButton::clicked, this, &WelcomeScreen::billButton_clicked);
-    connect (m_managementButton, &pushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
-    connect (m_newConsultationButton, &pushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
-    connect (m_newMeetingButton, &pushButton::clicked, this, &WelcomeScreen::newMeetingButton_clicked);
-    connect (m_patientsFolderButton, &pushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("bills_PB")), &pushButton::clicked, this, &WelcomeScreen::billButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("management_PB")), &pushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("newConsultation_PB")), &pushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("newMeeting_PB")), &pushButton::clicked, this, &WelcomeScreen::newMeetingButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("patientsFolder_PB")), &pushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
 
-    printNumOfElemts();
+
+    showThisInterfaceCaracteristics();
 
 }
 

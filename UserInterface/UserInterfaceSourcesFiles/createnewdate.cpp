@@ -32,18 +32,10 @@ CreateNewDate::CreateNewDate(Screen *parent):
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<CreateNewDate>(m_objectInterfaceName);
 
     // Initialisation des éléments de l'interface
-    m_cancel = loadWidget<pushButton>("cancel_PB");
-    m_saveNewDate = loadWidget<pushButton>("saveNewDate_PB");
-    m_search = loadWidget<pushButton>("search_PB");
-
-    m_searchPatient = loadWidget<lineEdit>("searchPatient_LE");
-
-    m_patientList = loadWidget<listWidget>("patientList_LST");
-
-    m_calendar = loadWidget<calendar>("calendarWidget_CALENDAR");
+    initWidgetList();
 
     // debug
-    printNumOfElemts();
+    showThisInterfaceCaracteristics();
 }
 
 CreateNewDate::~CreateNewDate()

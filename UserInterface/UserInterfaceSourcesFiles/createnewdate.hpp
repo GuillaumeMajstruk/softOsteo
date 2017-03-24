@@ -33,16 +33,6 @@ public: // Constructeur et destructeur
     explicit CreateNewDate(Screen * parent = 0);
     virtual ~CreateNewDate();
 
-private: // Attributs privés
-    // Éléments de GUI
-    pushButton * m_cancel = nullptr;
-    pushButton * m_saveNewDate = nullptr;
-    pushButton * m_search = nullptr;
-
-    lineEdit * m_searchPatient = nullptr;
-
-    listWidget * m_patientList = nullptr;
-    calendar * m_calendar = nullptr;
 };
 
 #endif // CREATENEWDATE_HPP

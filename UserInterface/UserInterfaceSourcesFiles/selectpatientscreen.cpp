@@ -33,14 +33,7 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>(m_objectInterfaceName);
 
     // / Initialisation des Widgets de l'interfaces
-    m_newPatientButton = loadWidget<pushButton>("newPatientButton_PB");
-    m_returnButton = loadWidget<pushButton>("returnButton_PB");
-    m_validateSelectionButton = loadWidget<pushButton>("validateSelectionButton_PB");
-    m_searchButton = loadWidget<pushButton>("searchButton_PB");
-
-    m_searchPatientLineEdit = loadWidget<lineEdit>("searchPatientLineEdit_LE");
-
-    m_patientList = loadWidget<listWidget>("patientList_LST");
+    initWidgetList();
 
 
     // / Connection signaux/slots ///////////////////////////////////////////////////////
@@ -53,7 +46,7 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
              this, &SelectPatientScreen::searchPatientLineEdit_textEdited);
     // //////////////////////////////////////////////////////////////////////////////////
 
-    printNumOfElemts();
+    showThisInterfaceCaracteristics();
 }
 
 SelectPatientScreen::~SelectPatientScreen()

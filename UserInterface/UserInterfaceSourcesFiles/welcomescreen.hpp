@@ -24,6 +24,7 @@
 #include <QString>
 #include <QPalette>
 #include <QDebug>
+#include <assert.h>
 
 #include "UserInterface/userinterfaceloader.hpp"
 #include "UserInterface/screen.hpp"

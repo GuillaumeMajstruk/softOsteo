@@ -46,6 +46,9 @@ userInterfaceLoader::userInterfaceLoader(bool staticOrDynamic)
         static std::unique_ptr<CreateNewDate> UiLoaderInstance_CreateNewDate (new CreateNewDate);
         static std::unique_ptr<PatientMedicalFolderScreen> UiLoaderInstance_PatientMedicalFolderScreen (new PatientMedicalFolderScreen);
 
+        qDebug() << "adress: " << &*UiLoaderInstance_CreateNewDate.get();
+
+
         // Ajout à la banque d'interface du programme
         m_allInterface.insert(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
                               UiLoaderInstance_WelcomeScreen.get());

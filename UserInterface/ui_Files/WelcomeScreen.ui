@@ -26,7 +26,7 @@
       <enum>QLayout::SetNoConstraint</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QPushButton" name="patientsFolderButton">
+      <widget class="QPushButton" name="patientsFolder_PB">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -42,7 +42,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="newMeetingButton">
+      <widget class="QPushButton" name="newMeeting_PB">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -58,7 +58,7 @@
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QPushButton" name="billButton">
+      <widget class="QPushButton" name="bills_PB">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -74,7 +74,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="managementButton">
+      <widget class="QPushButton" name="management_PB">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -90,7 +90,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="newConsultationButton">
+      <widget class="QPushButton" name="newConsultation_PB">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -124,17 +124,17 @@
     </spacer>
    </item>
    <item>
-    <widget class="QCalendarWidget" name="calendarWidget"/>
+    <widget class="QCalendarWidget" name="calendarWidget_CALENDAR"/>
    </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>patientsFolderButton</tabstop>
-  <tabstop>newConsultationButton</tabstop>
-  <tabstop>managementButton</tabstop>
-  <tabstop>newMeetingButton</tabstop>
-  <tabstop>billButton</tabstop>
-  <tabstop>calendarWidget</tabstop>
+  <tabstop>patientsFolder_PB</tabstop>
+  <tabstop>newConsultation_PB</tabstop>
+  <tabstop>management_PB</tabstop>
+  <tabstop>newMeeting_PB</tabstop>
+  <tabstop>bills_PB</tabstop>
+  <tabstop>calendarWidget_CALENDAR</tabstop>
  </tabstops>
  <resources/>
  <connections/>

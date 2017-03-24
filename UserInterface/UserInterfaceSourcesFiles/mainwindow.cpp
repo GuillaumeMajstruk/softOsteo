@@ -120,11 +120,12 @@ void MainWindow::quitValidating()
     }
 }
 
+// Une fonction de test pour le changement d'interface
 void MainWindow::printMessage()
 {
     log_d(QVariant("Signal Received").toString());
     setCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
-                        SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name);
+                        SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name);
 }
 
 // ///////////////////////////////////////////////////////////////////////////////
@@ -167,6 +168,7 @@ void MainWindow::setCurrentInterface(const QString &currentInterface, const QStr
     // / l'interface actuelle devient l'interface qu'il y a dans la liste des interface
     m_currentInterface = m_uiLoader->m_allInterface [neededInterface];
 
+    qDebug() << "adress: " << &*m_currentInterface;
     // / l'interface devient l'objet central de la fenêtre principale
     setCentralWidget(m_currentInterface->getWidget());
 

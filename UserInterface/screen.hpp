@@ -33,9 +33,13 @@
 #include <exception>
 #include <QDebug>
 
+#include <assert.h>
+
 class Screen : public QWidget
 {
+
     Q_OBJECT
+
 public:
 
     Screen(QWidget *parent = 0):
@@ -70,32 +74,15 @@ public:
         m_objectInterfaceName = uiName;
     }
 
-    // Fonction qui initialise un objet de type QWidget* en fonction
-    // de son type et du nom de l'objet trouvé dans le parent
-    template <typename T>
-    T* loadWidget (const QString& widgetName)
-    {
-        // Trouve le widget correspondant dans le parent
-        T * tempWidget = m_interface->findChild<T*>(widgetName);
-
-        // Ajoute à la liste qui contient tous les widgets de cette
-        // interface
-        m_thisInterfaceWidgets.push_back(tempWidget);
-
-        // On vérifie que le widget est correctement chargé
-        if (!tempWidget)
-        {
-            qDebug() << "WIDGET NON INITIALISÉ -> " << widgetName;
-        }
-
-        // Retourne le widget chargé
-        return tempWidget;
-    }
-
     // Affiche le nombre d'éléments actionnables dans l'interface
-    virtual void printNumOfElemts ()
+    virtual void showThisInterfaceCaracteristics()
     {
-        qDebug() << "il y a " << m_thisInterfaceWidgets.size() << " éléments dans cette interface";
+        qDebug() << "il y a " << thisInterfaceWidgetContainer.size() << " éléments dans cette interface";
+        for (int i = 1; i < thisInterfaceWidgetContainer.size(); ++i)
+        {
+            qDebug() << "\télément: " << i << " " << thisInterfaceWidgetContainer[i]->objectName()
+                     << "\ttype de l'objet: " << thisInterfaceWidgetContainer[i]->metaObject()->className();
+        }
     }
 
 protected:
@@ -109,80 +96,80 @@ protected:
     // / Nom de l'objet interface
     QString m_objectInterfaceName;
 
-    // Liste qui contient tous les widgets graphiques d'une interface
+    // Liste qui contient tous les widgets graphiques et utilisables d'une interface
+    // C'est cette liste que je vais remplir avec les éléments utilisables
     QList<QWidget*> m_thisInterfaceWidgets;
 
     // Liste qui contient tous les noms des widgets d'une interface
     QStringList m_allWidgetNames;
 
 
-// TEST ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Contient les codes qui déterminent le type à charger, le code de chaque widget étant dans le nom de l'objet
-    // exemple: patientList_LST => "LST" est le code pour ListWidget
-//    const QStringList m_widgetCodes
-//    {
-//        "LST",          // ListWidget
-//        "LE",           // LineEdit
-//        "PB",           //PushButton
-//        "PTE",          //PlainTextEdit
-//        "INFO",         // Labels jouand le rôle de texte (ex: information générale -> nom du patient)
-//        "CB",           // ComboBox
-//        "SB",           // SpinBox
-//        "CKB",          // CheckBox
-//        "CALENDAR"      // CalendarWidget
-//    };
+// TESTS ////////////////////////////////////////////////////////////////////////////////////////
+private:
 
-//    // Retourne vrai si le nom contient un code
-//    // Retourn faux si non
-//    bool isCodedWidgetName (const QString& widgetName)
-//    {
-//        for (auto code: m_widgetCodes)
-//        {
-//            if (widgetName.contains(code))
-//                return true;
-//        }
-//        return false;
-//    }
+    const QStringList widgetCodes
+    {
+        "PB", // pushButton
+        "LE", // lineEdit
+        "PTE", // plainTextEdit
+        "INFO", // les labels qui représentent une information à afficher sous forme de texte
+        "LST", // listWidgets
+        "CB", // comboBox
+        "SB", // spinBox
+        "CKB", // checkBox
+        "CALENDAR" // calendarWidget
+    };
 
-//    // Retourne le code du widget pour savoir quel type d'initialisation
-//    // il faut utiliser
-//    QString getWidgetCode (const QString& widgetName)
-//    {
-//        for (auto code: m_widgetCodes)
-//        {
-//            if (widgetName.contains(code))
-//                return code;
-//        }
-//        return QString("code non trouvé");
-//    }
+    // Une fonction pour vérifier si le nom du widget
+    // passé en argument est "codé" ou non ?
+    // -> Return true si le nom est un nom "codé"
+    // -> Return false si le nom est un nom "non-codé"
+    bool isCodedWidgetName (const QWidget& aWidget)
+    {
+        // Itération à travers la liste des "codes"
+        for (auto actualWidgetCode: widgetCodes)
+        {
+            if (aWidget.objectName().contains(actualWidgetCode)) return true;
+        }
+        return false;
+    }
 
-//    // Ajoute les widgets utilisable à la liste de cette interface
-//    void addUsableWidgetToList ()
-//    {
-//        // Pour chaque widget de l'interface ...
-//        for (auto widget: m_interface->findChildren<QWidget*>())
-//        {
-//            // Si le nom du widget contient un code (widgetCodes) ...
-//            if (isCodedWidgetName(widget->objectName()))
-//            {
-//                // On l'ajoute à la liste des widgets utilisables
-//                m_thisInterfaceWidgets.append(widget);
-//                qDebug() << "added widget: " << widget->objectName();
-//            }
-//        }
-//        return;
-//    }
 
-//    virtual void initInterfaceWidgets(QWidget * an_interface)
-//    {
-//        addUsableWidgetToList();
-//        for (auto widget: m_thisInterfaceWidgets)
-//        {
+protected:
 
-//        }
-//    }
+    QVector<QWidget*> thisInterfaceWidgetContainer;
 
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Ajoute à la liste des éléments de l'interface les widgets "utilisables"
+    // par l'utilisateur dans le container de l'interface dont elle est appellée
+    virtual void initWidgetList ()
+    {
+        QList<QWidget*> widList = m_interface->findChildren<QWidget*>();
+        for (auto widget: widList)
+        {
+            if (isCodedWidgetName(*widget))
+            {
+                // Le widget est un widget "codé" ?
+                // Oui ? -> Ajoute le widget au container
+                thisInterfaceWidgetContainer.push_back(widget);
+            }
+        }
+    }
+
+    // Permet d'acceder à un widget de la liste des widget
+    // de l'interface depuis laquelle elle est appellée
+    virtual QWidget * getWidget (const QString& widgetName)
+    {
+        QWidget* tempWidget = new QWidget;
+        for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
+        {
+            if (thisInterfaceWidgetContainer[i]->objectName() == widgetName)
+                tempWidget = thisInterfaceWidgetContainer[i];
+        }
+        assert(tempWidget);
+        return tempWidget;
+    }
+
+// //////////////////////////////////////////////////////////////////////////////////////
 };
 
 #endif // / SCREEN_HPP
