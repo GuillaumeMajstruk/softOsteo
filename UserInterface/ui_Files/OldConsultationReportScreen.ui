@@ -27,7 +27,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="reportList_LBL">
      <property name="text">
-      <string>Comptes rendus de %1 %2:</string>
+      <string>Comptes rendus:</string>
      </property>
      <property name="buddy">
       <cstring>reportList_CB</cstring>

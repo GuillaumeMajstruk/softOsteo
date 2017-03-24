@@ -20,7 +20,6 @@
 #define SELECTPATIENTSCREEN_HPP
 
 #include <QWidget>
-#include <QtGui>
 #include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
@@ -46,8 +45,6 @@ private:
     pushButton * m_returnButton = nullptr;
     pushButton * m_validateSelectionButton = nullptr;
     pushButton * m_searchButton = nullptr;
-
-    label * m_searchPatientLabel = nullptr;
 
     lineEdit * m_searchPatientLineEdit = nullptr;
 

@@ -52,17 +52,21 @@ namespace SharedVar
     // / Contient les noms des différentes objets interfaces
     namespace InterfaceObjectName
     {
-        static const char* WelcomeScreen_obj_name       = "WelcomeScreen";
-        static const char* SelectPatientScreen_obj_name = "SelectPatientScreen";
-        static const char* CreatePatientScreen_obj_name = "CreatePatientScreen";
+        static const char* WelcomeScreen_obj_name           = "WelcomeScreen";
+        static const char* SelectPatientScreen_obj_name     = "SelectPatientScreen";
+        static const char* CreatePatientScreen_obj_name     = "CreatePatientScreen";
+        static const char* CreateNewDate_obj_name           = "CreateNewDateScreen";
+        static const char* PatientMedicalFolder_obj_name    = "PatientMedicalFolderScreen";
     }
 
     // /  Contient les noms d'interfaces utilisateurs
     namespace InterfaceName
     {
-        static const char * WelcomeScreen_name = "Écran d'accueil";
-        static const char * SelectPatientScreen_name = "Séléction d'un patient";
-        static const char * CreatePatientScreen_name = "Enregistrement d'un nouveau patient";
+        static const char * WelcomeScreen_name          = "Écran d'accueil";
+        static const char * SelectPatientScreen_name    = "Séléction d'un patient";
+        static const char * CreatePatientScreen_name    = "Enregistrement d'un nouveau patient";
+        static const char * CreateNewDate_name          = "Créer un nouveau rendez-vous";
+        static const char * PatientMedicalFolder_name   = "Consultation d'un dossier médical";
     }
 
     // /  Contient des éléments utiles au débogage

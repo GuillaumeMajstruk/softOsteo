@@ -29,20 +29,19 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
     // / Déclaration du nom de l'objet d'interface
     setInterfaceObjectName(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
 
-    m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>(m_objectInterfaceName + ".ui");
+    // Chargement de l'interface suivant le fichier de configuration
+    m_interface = userInterfaceLoader(DYNAMIC).loadUi<SelectPatientScreen>(m_objectInterfaceName);
 
-    // / Initialisation des Widgets de l'interfaces ////////////////////////////////////
-    m_newPatientButton = loadWidget<pushButton>("newPatientButton");
-    m_returnButton = loadWidget<pushButton>("returnButton");
-    m_validateSelectionButton = loadWidget<pushButton>("validateSelectionButton");
-    m_searchButton = loadWidget<pushButton>("searchButton");
+    // / Initialisation des Widgets de l'interfaces
+    m_newPatientButton = loadWidget<pushButton>("newPatientButton_PB");
+    m_returnButton = loadWidget<pushButton>("returnButton_PB");
+    m_validateSelectionButton = loadWidget<pushButton>("validateSelectionButton_PB");
+    m_searchButton = loadWidget<pushButton>("searchButton_PB");
 
-    m_searchPatientLineEdit = loadWidget<lineEdit>("searchPatientLineEdit");
+    m_searchPatientLineEdit = loadWidget<lineEdit>("searchPatientLineEdit_LE");
 
-    m_searchPatientLabel = loadWidget<label>("searchPatientLabel");
+    m_patientList = loadWidget<listWidget>("patientList_LST");
 
-    m_patientList = loadWidget<listWidget>("patientList");
-    // //////////////////////////////////////////////////////////////////////////////////
 
     // / Connection signaux/slots ///////////////////////////////////////////////////////
     connect (m_newPatientButton, &pushButton::clicked, this, &SelectPatientScreen::newPatientButton_clicked);

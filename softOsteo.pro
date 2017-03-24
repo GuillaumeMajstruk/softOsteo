@@ -16,7 +16,9 @@ HEADERS += \
     UserInterface/UserInterfaceSourcesFiles/createpatientscreen.h \
     DataBase/connectiondatabase.hpp \
     CryptData/dataencryptor.hpp \
-    typedefs.hpp
+    typedefs.hpp \
+    UserInterface/UserInterfaceSourcesFiles/createnewdate.hpp \
+    UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.hpp
 
 SOURCES += \
     UserInterface/userinterfaceloader.cpp \
@@ -28,7 +30,9 @@ SOURCES += \
     UserInterface/ConnectionScreen/connectiondialog.cpp \
     UserInterface/UserInterfaceSourcesFiles/createpatientscreen.cpp \
     DataBase/connectiondatabase.cpp \
-    CryptData/dataencryptor.cpp
+    CryptData/dataencryptor.cpp \
+    UserInterface/UserInterfaceSourcesFiles/createnewdate.cpp \
+    UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.cpp
 
 FORMS += \
     UserInterface/ui_Files/mainwindow.ui \

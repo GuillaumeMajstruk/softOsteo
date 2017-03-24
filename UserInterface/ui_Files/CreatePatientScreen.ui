@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="informationTabs">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
@@ -331,15 +331,15 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>841</width>
-            <height>867</height>
+            <width>815</width>
+            <height>999</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="1">
             <layout class="QGridLayout" name="gridLayout">
              <item row="0" column="0">
-              <widget class="QCheckBox" name="patientIsSmoker">
+              <widget class="QCheckBox" name="patientIsSmoker_CKB">
                <property name="toolTip">
                 <string>Le patient est-il fumeur ? coché -&gt; oui</string>
                </property>
@@ -678,7 +678,7 @@
   <tabstop>patientHobbies_LE</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>cardioPneumo_PTE</tabstop>
-  <tabstop>patientIsSmoker</tabstop>
+  <tabstop>patientIsSmoker_CKB</tabstop>
   <tabstop>uroGyneco_PTE</tabstop>
   <tabstop>endocrino_PTE</tabstop>
   <tabstop>digest_PTE</tabstop>

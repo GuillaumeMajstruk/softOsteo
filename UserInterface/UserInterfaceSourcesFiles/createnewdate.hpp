@@ -16,37 +16,33 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef TYPEDEFS_H
-#define TYPEDEFS_H
+#ifndef CREATENEWDATE_HPP
+#define CREATENEWDATE_HPP
 
+#include <QWidget>
+#include <QDebug>
 
-// Essaie d'utiliser les forward déclaration à la place des includes ...
-class QPushButton;
-class QLineEdit;
-class QMessageBox;
-class QPlainTextEdit;
-class QDialog;
-class QLabel;
-class QListWidget;
-class QComboBox;
-class QSpinBox;
-class QCheckBox;
-class QCalendarWidget;
+#include "UserInterface/userinterfaceloader.hpp"
+#include "typedefs.hpp"
 
-/// Ce fichier contient des typedefs qui m'évitent à avoir à taper les
-/// noms entiers des objets de type widgets de QT
+class CreateNewDate: public Screen
+{
+    Q_OBJECT
 
-typedef QPushButton         pushButton;
-typedef QLineEdit           lineEdit;
-typedef QPlainTextEdit      plainTextEdit;
-typedef QLabel              label;
-typedef QListWidget         listWidget;
-typedef QComboBox           comboBox;
-typedef QSpinBox            spinBox;
-typedef QCheckBox           checkBox;
-typedef QCalendarWidget     calendar;
+public: // Constructeur et destructeur
+    explicit CreateNewDate(Screen * parent = 0);
+    virtual ~CreateNewDate();
 
-typedef QDialog             dialog;
-typedef QMessageBox         msgBox;
+private: // Attributs privés
+    // Éléments de GUI
+    pushButton * m_cancel = nullptr;
+    pushButton * m_saveNewDate = nullptr;
+    pushButton * m_search = nullptr;
 
-#endif // TYPEDEFS_H
+    lineEdit * m_searchPatient = nullptr;
+
+    listWidget * m_patientList = nullptr;
+    calendar * m_calendar = nullptr;
+};
+
+#endif // CREATENEWDATE_HPP

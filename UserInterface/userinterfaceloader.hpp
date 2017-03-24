@@ -32,6 +32,8 @@
 #include "UserInterface/UserInterfaceSourcesFiles/welcomescreen.hpp"
 #include "UserInterface/UserInterfaceSourcesFiles/selectpatientscreen.hpp"
 #include "UserInterface/UserInterfaceSourcesFiles/createpatientscreen.h"
+#include "userinterface/UserInterfaceSourcesFiles/createnewdate.hpp"
+#include "UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.hpp"
 
 
 
@@ -48,7 +50,7 @@ public:
     T * loadUi(const QString& uiToLoadName)
     {
         // / Est-ce que le nom d'interface correspond bien à un fichier d'interface .ui ?
-            QFile _interface (SharedVar::Path::resourcesUiFilesRoot + uiToLoadName);
+            QFile _interface (SharedVar::Path::resourcesUiFilesRoot + uiToLoadName + ".ui");
 
             // / peut-on ouvrir le fichier en lecture ?
             if (!_interface.open(QFile::ReadOnly)) qDebug() << "erreur à l'ouverture du fichier de configuration"

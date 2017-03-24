@@ -30,11 +30,10 @@ CreatePatientScreen::CreatePatientScreen(Screen *parent):
 
 
     // Charge l'interface depuis le fichier .ui grâce à userInterfaceLoader
-    m_interface = userInterfaceLoader(DYNAMIC).loadUi<CreatePatientScreen>(m_objectInterfaceName += ".ui");
+    m_interface = userInterfaceLoader(DYNAMIC).loadUi<CreatePatientScreen>(m_objectInterfaceName);
 
 
     // Initialisation des éléments de l'interface
-
     // QPushButton
     m_savePatientFolder = loadWidget<pushButton>("savePatientFolder_PB");
     m_returnButton = loadWidget<pushButton>("return_PB");
@@ -58,6 +57,9 @@ CreatePatientScreen::CreatePatientScreen(Screen *parent):
     // QSpinBox
     m_patientChildNumber = loadWidget<spinBox>("patientChildNumber_SB");
 
+    // QCheckBox
+    m_patientIsSmoker = loadWidget<checkBox>("patientIsSmoker_CKB");
+
     // QPlainTextEdit
     m_cardioPneumo = loadWidget<plainTextEdit>("cardioPneumo_PTE");
     m_uroGyneco = loadWidget<plainTextEdit>("uroGyneco_PTE");
@@ -73,7 +75,6 @@ CreatePatientScreen::CreatePatientScreen(Screen *parent):
     m_currentMedCure = loadWidget<plainTextEdit>("currentMedCure_PTE");
     m_patientFamilialAntecedents = loadWidget<plainTextEdit>("patientFamilialAntecedents_PTE");
     m_conclusion = loadWidget<plainTextEdit>("conclusion_PTE");
-
 
     connect (m_patientName, &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
     connect (m_patientSurname, &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);

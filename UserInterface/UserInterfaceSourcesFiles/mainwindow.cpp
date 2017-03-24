@@ -124,7 +124,7 @@ void MainWindow::printMessage()
 {
     log_d(QVariant("Signal Received").toString());
     setCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
-                        SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name);
+                        SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name);
 }
 
 // ///////////////////////////////////////////////////////////////////////////////

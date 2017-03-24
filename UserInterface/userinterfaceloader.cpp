@@ -16,7 +16,6 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <QtGui>
 #include "userinterfaceloader.hpp"
 
 // /
@@ -44,7 +43,10 @@ userInterfaceLoader::userInterfaceLoader(bool staticOrDynamic)
         static std::unique_ptr<WelcomeScreen> UiLoaderInstance_WelcomeScreen (new WelcomeScreen);
         static std::unique_ptr<SelectPatientScreen> UiLoaderInstance_SelectPatientScreen (new SelectPatientScreen);
         static std::unique_ptr<CreatePatientScreen> UiLoaderInstance_CreatePatientScreen (new CreatePatientScreen);
+        static std::unique_ptr<CreateNewDate> UiLoaderInstance_CreateNewDate (new CreateNewDate);
+        static std::unique_ptr<PatientMedicalFolderScreen> UiLoaderInstance_PatientMedicalFolderScreen (new PatientMedicalFolderScreen);
 
+        // Ajout à la banque d'interface du programme
         m_allInterface.insert(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
                               UiLoaderInstance_WelcomeScreen.get());
 
@@ -53,6 +55,12 @@ userInterfaceLoader::userInterfaceLoader(bool staticOrDynamic)
 
         m_allInterface.insert(SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name,
                               UiLoaderInstance_CreatePatientScreen.get());
+
+        m_allInterface.insert(SharedVar::InterfaceObjectName::CreateNewDate_obj_name,
+                              UiLoaderInstance_CreateNewDate.get());
+
+        m_allInterface.insert(SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name,
+                              UiLoaderInstance_PatientMedicalFolderScreen.get());
 
     }
     qDebug() << "userInterfaceLoader::userInterfaceLoader(DYNAMIC)";

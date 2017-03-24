@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="2">
-    <widget class="QCalendarWidget" name="calendarWidget"/>
+    <widget class="QCalendarWidget" name="calendarWidget_CALENDAR"/>
    </item>
    <item row="0" column="0">
     <widget class="QGroupBox" name="searchAPatient">
@@ -24,7 +24,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="2" column="0">
-       <widget class="QListWidget" name="patientList_LW"/>
+       <widget class="QListWidget" name="patientList_LST"/>
       </item>
       <item row="1" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -89,8 +89,8 @@
  <tabstops>
   <tabstop>searchPatient_LE</tabstop>
   <tabstop>search_PB</tabstop>
-  <tabstop>patientList_LW</tabstop>
-  <tabstop>calendarWidget</tabstop>
+  <tabstop>patientList_LST</tabstop>
+  <tabstop>calendarWidget_CALENDAR</tabstop>
   <tabstop>saveNewDate_PB</tabstop>
   <tabstop>cancel_PB</tabstop>
  </tabstops>

@@ -35,14 +35,14 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
     setInterfaceObjectName(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
 
     // / chargement de l'interface graphique
-    m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName + ".ui");
+    m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName);
 
     // / on cherche les boutons correspondants
-        m_billButton = loadWidget<pushButton>("billButton");
-        m_managementButton = loadWidget<pushButton> ("managementButton");
-        m_newConsultationButton = loadWidget<pushButton> ("newConsultationButton");
-        m_newMeetingButton = loadWidget<pushButton> ("newMeetingButton");
-        m_patientsFolderButton = loadWidget<pushButton> ("patientsFolderButton");
+    m_billButton = loadWidget<pushButton>("billButton");
+    m_managementButton = loadWidget<pushButton> ("managementButton");
+    m_newConsultationButton = loadWidget<pushButton> ("newConsultationButton");
+    m_newMeetingButton = loadWidget<pushButton> ("newMeetingButton");
+    m_patientsFolderButton = loadWidget<pushButton> ("patientsFolderButton");
 
 
     // / connection des signaux/slots des boutons de cette interface

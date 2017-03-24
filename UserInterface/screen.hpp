@@ -28,6 +28,8 @@
 #include <QWidget>
 #include <QList>
 #include <QString>
+#include <QStringList>
+#include <QMap>
 #include <exception>
 #include <QDebug>
 
@@ -71,19 +73,19 @@ public:
     // Fonction qui initialise un objet de type QWidget* en fonction
     // de son type et du nom de l'objet trouvé dans le parent
     template <typename T>
-    T* loadWidget (const char* widgetName)
+    T* loadWidget (const QString& widgetName)
     {
         // Trouve le widget correspondant dans le parent
         T * tempWidget = m_interface->findChild<T*>(widgetName);
 
         // Ajoute à la liste qui contient tous les widgets de cette
         // interface
-        m_allWidgets.push_back(tempWidget);
+        m_thisInterfaceWidgets.push_back(tempWidget);
 
         // On vérifie que le widget est correctement chargé
         if (!tempWidget)
         {
-            qDebug() << "widget non initialisé -> " << widgetName;
+            qDebug() << "WIDGET NON INITIALISÉ -> " << widgetName;
         }
 
         // Retourne le widget chargé
@@ -93,7 +95,7 @@ public:
     // Affiche le nombre d'éléments actionnables dans l'interface
     virtual void printNumOfElemts ()
     {
-        qDebug() << "il y a " << m_allWidgets.size() << " éléments dans cette interface";
+        qDebug() << "il y a " << m_thisInterfaceWidgets.size() << " éléments dans cette interface";
     }
 
 protected:
@@ -107,9 +109,80 @@ protected:
     // / Nom de l'objet interface
     QString m_objectInterfaceName;
 
-    // TEST
     // Liste qui contient tous les widgets graphiques d'une interface
-    QList<QWidget*> m_allWidgets;
+    QList<QWidget*> m_thisInterfaceWidgets;
+
+    // Liste qui contient tous les noms des widgets d'une interface
+    QStringList m_allWidgetNames;
+
+
+// TEST ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Contient les codes qui déterminent le type à charger, le code de chaque widget étant dans le nom de l'objet
+    // exemple: patientList_LST => "LST" est le code pour ListWidget
+//    const QStringList m_widgetCodes
+//    {
+//        "LST",          // ListWidget
+//        "LE",           // LineEdit
+//        "PB",           //PushButton
+//        "PTE",          //PlainTextEdit
+//        "INFO",         // Labels jouand le rôle de texte (ex: information générale -> nom du patient)
+//        "CB",           // ComboBox
+//        "SB",           // SpinBox
+//        "CKB",          // CheckBox
+//        "CALENDAR"      // CalendarWidget
+//    };
+
+//    // Retourne vrai si le nom contient un code
+//    // Retourn faux si non
+//    bool isCodedWidgetName (const QString& widgetName)
+//    {
+//        for (auto code: m_widgetCodes)
+//        {
+//            if (widgetName.contains(code))
+//                return true;
+//        }
+//        return false;
+//    }
+
+//    // Retourne le code du widget pour savoir quel type d'initialisation
+//    // il faut utiliser
+//    QString getWidgetCode (const QString& widgetName)
+//    {
+//        for (auto code: m_widgetCodes)
+//        {
+//            if (widgetName.contains(code))
+//                return code;
+//        }
+//        return QString("code non trouvé");
+//    }
+
+//    // Ajoute les widgets utilisable à la liste de cette interface
+//    void addUsableWidgetToList ()
+//    {
+//        // Pour chaque widget de l'interface ...
+//        for (auto widget: m_interface->findChildren<QWidget*>())
+//        {
+//            // Si le nom du widget contient un code (widgetCodes) ...
+//            if (isCodedWidgetName(widget->objectName()))
+//            {
+//                // On l'ajoute à la liste des widgets utilisables
+//                m_thisInterfaceWidgets.append(widget);
+//                qDebug() << "added widget: " << widget->objectName();
+//            }
+//        }
+//        return;
+//    }
+
+//    virtual void initInterfaceWidgets(QWidget * an_interface)
+//    {
+//        addUsableWidgetToList();
+//        for (auto widget: m_thisInterfaceWidgets)
+//        {
+
+//        }
+//    }
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };
 
 #endif // / SCREEN_HPP
