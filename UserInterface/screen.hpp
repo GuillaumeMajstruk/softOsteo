@@ -33,6 +33,7 @@
 #include <exception>
 #include <QDebug>
 
+#include <iomanip>
 #include <assert.h>
 
 class Screen : public QWidget
@@ -77,10 +78,10 @@ public:
     // Affiche le nombre d'éléments actionnables dans l'interface
     virtual void showThisInterfaceCaracteristics()
     {
-        qDebug() << "il y a " << thisInterfaceWidgetContainer.size() << " éléments dans cette interface";
-        for (int i = 1; i < thisInterfaceWidgetContainer.size(); ++i)
+        qDebug() <<  "il y a " << thisInterfaceWidgetContainer.size() << " éléments dans cette interface";
+        for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
         {
-            qDebug() << "\télément: " << i << " " << thisInterfaceWidgetContainer[i]->objectName()
+            qDebug() <<"\télément: " << i+1 << " " << thisInterfaceWidgetContainer.at(i)->objectName()
                      << "\ttype de l'objet: " << thisInterfaceWidgetContainer[i]->metaObject()->className();
         }
     }
@@ -95,13 +96,6 @@ protected:
 
     // / Nom de l'objet interface
     QString m_objectInterfaceName;
-
-    // Liste qui contient tous les widgets graphiques et utilisables d'une interface
-    // C'est cette liste que je vais remplir avec les éléments utilisables
-    QList<QWidget*> m_thisInterfaceWidgets;
-
-    // Liste qui contient tous les noms des widgets d'une interface
-    QStringList m_allWidgetNames;
 
 
 // TESTS ////////////////////////////////////////////////////////////////////////////////////////

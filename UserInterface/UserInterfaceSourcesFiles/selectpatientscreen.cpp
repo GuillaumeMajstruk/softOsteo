@@ -37,12 +37,12 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
 
 
     // / Connection signaux/slots ///////////////////////////////////////////////////////
-    connect (m_newPatientButton, &pushButton::clicked, this, &SelectPatientScreen::newPatientButton_clicked);
-    connect (m_returnButton, &pushButton::clicked, this, &SelectPatientScreen::returnButton_clicked);
-    connect (m_validateSelectionButton, &pushButton::clicked, this, &SelectPatientScreen::validateSelectionButton_clicked);
-    connect (m_searchButton, &pushButton::clicked, this, &SelectPatientScreen::searchButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("newPatientButton_PB")), &pushButton::clicked, this, &SelectPatientScreen::newPatientButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("returnButton_PB")), &pushButton::clicked, this, &SelectPatientScreen::returnButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("validateSelectionButton_PB")), &pushButton::clicked, this, &SelectPatientScreen::validateSelectionButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("searchButton_PB")), &pushButton::clicked, this, &SelectPatientScreen::searchButton_clicked);
 
-    connect (m_searchPatientLineEdit, &QLineEdit::textChanged,
+    connect (dynamic_cast<lineEdit*>(getWidget("searchPatientLineEdit_LE")), &QLineEdit::textChanged,
              this, &SelectPatientScreen::searchPatientLineEdit_textEdited);
     // //////////////////////////////////////////////////////////////////////////////////
 
