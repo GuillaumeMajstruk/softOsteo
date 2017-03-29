@@ -19,8 +19,6 @@
 #ifndef CONNECTIONDIALOG_H
 #define CONNECTIONDIALOG_H
 
-//#include <QDialog>
-//#include <QMessageBox>
 #include <QString>
 #include <QInputEvent>
 #include <QDir>
@@ -43,55 +41,56 @@ class ConnectionDialog;
 class ConnectionDialog : public QDialog
 {
     Q_OBJECT
-public: // / Constructeur et destructeur
+public: // Constructeur et destructeur ***************************************
 
     explicit ConnectionDialog(QWidget *parent = 0);
     ~ConnectionDialog();
 
-private: // / Attributs
+private: // Attributs privés *************************************************
     Ui::ConnectionDialog *ui;
 
     // Provisoire: base de donnée de connection
     connectionDataBase *connection_db = Q_NULLPTR;
 
-    // / Correspond à ce qu'il y a dans UsernameTexte.
+    // Correspond à ce qu'il y a dans UsernameTexte.
     QString enteredUsername;
-    // /Correspond à ce qu'il y a dans PasswordTexte.
+    // Correspond à ce qu'il y a dans PasswordTexte.
     QString enteredPass;
 
 
-    // / Si la fonction 'compareEnteredIds' revoie vrai => isConnected = true.
+    // Si la fonction 'compareEnteredIds' revoie vrai => isConnected = true.
     bool isConnected = false;
 
-private: ///functions
-    // / Quand l'utilisateur clique sur le bouton Ok de la page de connection
-    // / les variables enteredUsername et enteredPass sont mises à jour en fonction
-    // / de ce qui est dans les lineEdits correpondant.
+private: // Fonctions privées ***********************************************
+
+    // Quand l'utilisateur clique sur le bouton Ok de la page de connection
+    // les variables enteredUsername et enteredPass sont mises à jour en fonction
+    // de ce qui est dans les lineEdits correpondant.
     void updateEnteredIds();
 
 
-    // / Compare les identifiants entrés à ceux stockés pour l'instant dans une variable
-    // / TODO: pouvoir comparer les identifiants rentrés à des identifiants stockés.
-    // / dans une base de donnée !
+    // Compare les identifiants entrés à ceux stockés pour l'instant dans une variable
     bool compareEnteredIds();
 
-protected:
-    // / Surchargé pour ignorer un appuie sur les touches échape et entrer
-    //  De base pour un QDialog, 'entrer' et 'échape' ferment la fenêtre.
+protected: // Fonctions protégées ***************************************
+
+    // Surchargé pour ignorer un appuie sur les touches échape et entrer
+    // De base pour un QDialog, 'entrer' et 'échape' ferment la fenêtre.
     void keyPressEvent(QKeyEvent *);
 
-    // / Surchargé pour éviter d'accéder à l'application sans avoir à entrer
-    // / les identifiants de connexion et quitte l'application entièrement
-    // / si besoin est.
+    // Surchargé pour éviter d'accéder à l'application sans avoir à entrer
+    // les identifiants de connexion et quitte l'application entièrement
+    // si besoin est.
     void closeEvent(QCloseEvent *);
 
-private slots:
-    // / Appelle les fonctions membres 'updateEnteredIds' et 'compareEnteredIds'
-    // / puis met à jour le status de l'application en fonction du résultat de
-    // / la connection
+private slots: // Slots privés *******************************************
+
+    // Appelle les fonctions membres 'updateEnteredIds' et 'compareEnteredIds'
+    // puis met à jour le status de l'application en fonction du résultat de
+    // la connection
     void checkConnectionIds ();
 
-    // / Quitte l'application entièrement.
+    // Quitte l'application entièrement.
     void Quit();
 };
 

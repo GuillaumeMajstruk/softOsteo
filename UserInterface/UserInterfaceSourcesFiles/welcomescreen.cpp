@@ -20,35 +20,33 @@
 #include "welcomescreen.hpp"
 
 
-// ///////////////////////////////////////////////////////////////////////////////
-// /                       CONSTRUCTEUR/DESTRUCTEUR                             //
-// ///////////////////////////////////////////////////////////////////////////////
+// Constructeur / destructeur *********************************************************************
 WelcomeScreen::WelcomeScreen(Screen *parent):
     Screen(parent)
 {
     qDebug() << "WelcomeScreen::WelcomeScreen()";
 
-    // / définition du nom de l'interface
+    // définition du nom de l'interface
     setInterfaceName(SharedVar::InterfaceName::WelcomeScreen_name);
 
-    // / définition du nom de l'objet interface
+    // définition du nom de l'objet interface
     setInterfaceObjectName(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
 
-    // / chargement de l'interface graphique
+    // chargement de l'interface graphique
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<WelcomeScreen>(m_objectInterfaceName);
 
     // Initialisation des éléments de l'interface
     initWidgetList();
 
 
-    // / connection des signaux/slots des boutons de cette interface
+    // connection des signaux/slots des boutons de cette interface
     connect (dynamic_cast<pushButton*>(getWidget("bills_PB")), &pushButton::clicked, this, &WelcomeScreen::billButton_clicked);
     connect (dynamic_cast<pushButton*>(getWidget("management_PB")), &pushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
     connect (dynamic_cast<pushButton*>(getWidget("newConsultation_PB")), &pushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
-    connect (dynamic_cast<pushButton*>(getWidget("newMeeting_PB")), &pushButton::clicked, this, &WelcomeScreen::newMeetingButton_clicked);
+    connect (dynamic_cast<pushButton*>(getWidget("newDate_PB")), &pushButton::clicked, this, &WelcomeScreen::newDateButton_clicked);
     connect (dynamic_cast<pushButton*>(getWidget("patientsFolder_PB")), &pushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
 
-
+    // debug
     showThisInterfaceCaracteristics();
 
 }
@@ -58,12 +56,7 @@ WelcomeScreen::~WelcomeScreen()
     qDebug() << "WelcomeScreen::~WelcomeScreen()";
 }
 
-// ///////////////////////////////////////////////////////////////////////////////
-
-
-// ///////////////////////////////////////////////////////////////////////////////
-// /                              SLOTS                                         //
-// ///////////////////////////////////////////////////////////////////////////////
+// Slots privés ********************************************************
 
 void WelcomeScreen::billButton_clicked()
 {
@@ -83,10 +76,10 @@ void WelcomeScreen::newConsultationButton_clicked()
     emit newConsultationButton_HasBeenClicked();
 }
 
-void WelcomeScreen::newMeetingButton_clicked()
+void WelcomeScreen::newDateButton_clicked()
 {
-    qDebug() << "newMeetingButton_clicked";
-    emit newMeetingButton_HasBeenClicked();
+    qDebug() << "newDateButton_clicked";
+    emit newDateButton_HasBeenClicked();
 }
 
 void WelcomeScreen::patientsFolderButton_clicked()
@@ -94,5 +87,3 @@ void WelcomeScreen::patientsFolderButton_clicked()
     qDebug() << "patientsFolderButton_clicked";
     emit patientsFolderButton_HasBeenClicked();
 }
-
-// ///////////////////////////////////////////////////////////////////////////////

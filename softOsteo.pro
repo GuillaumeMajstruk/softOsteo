@@ -32,7 +32,8 @@ SOURCES += \
     DataBase/connectiondatabase.cpp \
     CryptData/dataencryptor.cpp \
     UserInterface/UserInterfaceSourcesFiles/createnewdate.cpp \
-    UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.cpp
+    UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.cpp \
+    UserInterface/screen.cpp
 
 FORMS += \
     UserInterface/ui_Files/mainwindow.ui \

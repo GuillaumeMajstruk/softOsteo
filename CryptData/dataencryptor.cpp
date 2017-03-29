@@ -18,29 +18,11 @@
 
 #include "dataencryptor.hpp"
 
+// Constructeur *****************************************************************
+
 dataEncryptor::dataEncryptor() {}
 
-bool dataEncryptor::strToCryptNotEmpty(const QString &strToCrypt)
-{
-    int charNumerator = 0;
-    for (int it = 0; it < strToCrypt.size(); ++it)
-    {
-        if (!strToCrypt[it].isSpace()) charNumerator++;
-        else continue;
-    }
-    return charNumerator;
-}
-
-QString dataEncryptor::hashIt_SHA256(const QString& strToHash)
-{
-    return QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Sha256).toHex();
-}
-
-QString dataEncryptor::hashIt_MD5(const QString &strToHash)
-{
-    return QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Md5).toHex();
-}
-
+// Fonctions publiques **********************************************************
 
 QString dataEncryptor::encrypt(const QString &strToEncrypt)
 {
@@ -102,4 +84,26 @@ QString dataEncryptor::decrypt(const QString &strToDecrypt)
 
     if (strToCryptNotEmpty(decryptedStr)) return decryptedStr;
     else return QString("erreur la chaine est vide !");
+}
+// Fonctions privées ************************************************************
+
+QString dataEncryptor::hashIt_SHA256(const QString& strToHash)
+{
+    return QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Sha256).toHex();
+}
+
+QString dataEncryptor::hashIt_MD5(const QString &strToHash)
+{
+    return QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Md5).toHex();
+}
+
+bool dataEncryptor::strToCryptNotEmpty(const QString &strToCrypt)
+{
+    int charNumerator = 0;
+    for (int it = 0; it < strToCrypt.size(); ++it)
+    {
+        if (!strToCrypt[it].isSpace()) charNumerator++;
+        else continue;
+    }
+    return charNumerator;
 }

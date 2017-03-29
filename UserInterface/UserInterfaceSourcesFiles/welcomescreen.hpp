@@ -35,57 +35,27 @@
 class WelcomeScreen : public Screen
 {
     Q_OBJECT
-public:
-
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                       CONSTRUCTEUR/DESTRUCTEUR                             //
-    // ///////////////////////////////////////////////////////////////////////////////
+public: // Constructeur / destructeur ***********************************************
 
     WelcomeScreen(Screen * parent = 0);
     virtual ~WelcomeScreen();
 
-    // ///////////////////////////////////////////////////////////////////////////////
+signals: // Signals *****************************************************************
 
-private:
-
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                    METHODES/ACCESSEURS/ATTRIBUTS                           //
-    // ///////////////////////////////////////////////////////////////////////////////
-
-
-
-    pushButton *m_billButton = nullptr;
-    pushButton *m_managementButton = nullptr;
-    pushButton *m_newConsultationButton = nullptr;
-    pushButton *m_newMeetingButton = nullptr;
-    pushButton *m_patientsFolderButton = nullptr;
-
-    // ///////////////////////////////////////////////////////////////////////////////
-
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              SIGNALS                                       //
-    // ///////////////////////////////////////////////////////////////////////////////
-signals:
     void billButton_HasBeenClicked();
     void managementButton_HasBeenClicked();
     void newConsultationButton_HasBeenClicked();
-    void newMeetingButton_HasBeenClicked();
+    void newDateButton_HasBeenClicked();
     void patientsFolderButton_HasBeenClicked();
 
-    // ///////////////////////////////////////////////////////////////////////////////
+private slots: // Slots privés ******************************************************
 
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              SLOTS                                         //
-    // ///////////////////////////////////////////////////////////////////////////////
-
-private slots:
     void billButton_clicked();
     void managementButton_clicked();
     void newConsultationButton_clicked();
-    void newMeetingButton_clicked();
+    void newDateButton_clicked();
     void patientsFolderButton_clicked();
 
-    // ///////////////////////////////////////////////////////////////////////////////
 };
 
 #endif // / WELCOMESCREEN_HPP

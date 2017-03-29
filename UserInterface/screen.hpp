@@ -36,134 +36,93 @@
 #include <iomanip>
 #include <assert.h>
 
+
+class MainWindow;
+
+
 class Screen : public QWidget
 {
 
     Q_OBJECT
 
-public:
+    friend class MainWindow;
 
-    Screen(QWidget *parent = 0):
-        QWidget(parent)
-    {
-        qDebug() << "Screen::Screen()";
-    }
+public: // Constructeur / Destructeur *********************************************
 
-    virtual ~Screen ()
-    {
-        qDebug() << "Screen::~Screen()";
-    }
+    Screen(QWidget *parent = 0);
 
-    // / Retourne le widget qui correspond à l'interface
-    virtual QWidget* getWidget() const { return m_interface; }
+    virtual ~Screen ();
 
-    // / Retourne le nom de l'interface
+public: // Fonction publiques *****************************************************
+
+    // Retourne le widget qui correspond à l'interface
+    virtual QWidget* getInterfaceWidget() const { return m_interface; }
+
+    // Retourne le nom de l'interface
     virtual QString  getInterfaceName() const { return m_interfaceName; }
 
-    // / Retourne le nom de l'objet interface
+    // Retourne le nom de l'objet interface
     virtual QString getInterfaceObjectName() const { return m_objectInterfaceName; }
 
-    // / Défini le nom de l'interface
-    virtual void setInterfaceName (const char* name) {
-        tr(name);
-        m_interfaceName = QString::fromUtf8(name);
-    }
+    // Défini le nom de l'interface
+    virtual void setInterfaceName (const char* name);
 
-    // /  Défini le nom de l'objet interface
-    virtual void setInterfaceObjectName (const char* uiName)
-    {
-        m_objectInterfaceName = uiName;
-    }
+    // Défini le nom de l'objet interface
+    virtual void setInterfaceObjectName (const char* uiName);
 
     // Affiche le nombre d'éléments actionnables dans l'interface
-    virtual void showThisInterfaceCaracteristics()
-    {
-        qDebug() <<  "il y a " << thisInterfaceWidgetContainer.size() << " éléments dans cette interface";
-        for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
-        {
-            qDebug() <<"\télément: " << i+1 << " " << thisInterfaceWidgetContainer.at(i)->objectName()
-                     << "\ttype de l'objet: " << thisInterfaceWidgetContainer[i]->metaObject()->className();
-        }
-    }
+    virtual void showThisInterfaceCaracteristics();
 
-protected:
+protected: // Attributs protégés ***************************************************
 
-    // / Widget -> interface
+    // L'interface à proprement parlé interprétée en tant que pointeur sur QWidget
     QWidget * m_interface = nullptr;
 
-    // / Nom de l'interface
+    // Nom de l'interface
     QString m_interfaceName;
 
-    // / Nom de l'objet interface
+    // Nom de l'objet interface
     QString m_objectInterfaceName;
 
+    // Le conteneur de tous mes éléments graphiques
+    // actionnable par l'utilisateur (ex: QPushButton ...)
+    QVector<QWidget*> thisInterfaceWidgetContainer;
 
-// TESTS ////////////////////////////////////////////////////////////////////////////////////////
-private:
+protected: // Fonctions protégées ***********************************************
+
+    // Ajoute à la liste des éléments de l'interface les widgets "utilisables"
+    // par l'utilisateur dans le container de l'interface dont elle est appellée
+    virtual void initWidgetList ();
+
+    // Permet d'acceder à un widget de la liste des widget
+    // de l'interface depuis laquelle elle est appellée
+    virtual QWidget * getWidget (const QString& widgetName);
+
+    // Fonction pour vérifier que cette interface contient un bouton "retour"
+    bool hasReturnButton ();
+
+private: // Attributs privés *****************************************************************
 
     const QStringList widgetCodes
     {
-        "PB", // pushButton
-        "LE", // lineEdit
-        "PTE", // plainTextEdit
-        "INFO", // les labels qui représentent une information à afficher sous forme de texte
-        "LST", // listWidgets
-        "CB", // comboBox
-        "SB", // spinBox
-        "CKB", // checkBox
-        "CALENDAR" // calendarWidget
+        "PB",           // pushButton
+        "LE",           // lineEdit
+        "PTE",          // plainTextEdit
+        "INFO",         // les labels qui représentent une information à afficher sous forme de texte
+        "LST",          // listWidgets
+        "CB",           // comboBox
+        "SB",           // spinBox
+        "CKB",          // checkBox
+        "CALENDAR"      // calendarWidget
     };
+
+private: // Fonction privées *****************************************************************
 
     // Une fonction pour vérifier si le nom du widget
     // passé en argument est "codé" ou non ?
     // -> Return true si le nom est un nom "codé"
     // -> Return false si le nom est un nom "non-codé"
-    bool isCodedWidgetName (const QWidget& aWidget)
-    {
-        // Itération à travers la liste des "codes"
-        for (auto actualWidgetCode: widgetCodes)
-        {
-            if (aWidget.objectName().contains(actualWidgetCode)) return true;
-        }
-        return false;
-    }
-
-
-protected:
-
-    QVector<QWidget*> thisInterfaceWidgetContainer;
-
-    // Ajoute à la liste des éléments de l'interface les widgets "utilisables"
-    // par l'utilisateur dans le container de l'interface dont elle est appellée
-    virtual void initWidgetList ()
-    {
-        QList<QWidget*> widList = m_interface->findChildren<QWidget*>();
-        for (auto widget: widList)
-        {
-            if (isCodedWidgetName(*widget))
-            {
-                // Le widget est un widget "codé" ?
-                // Oui ? -> Ajoute le widget au container
-                thisInterfaceWidgetContainer.push_back(widget);
-            }
-        }
-    }
-
-    // Permet d'acceder à un widget de la liste des widget
-    // de l'interface depuis laquelle elle est appellée
-    virtual QWidget * getWidget (const QString& widgetName)
-    {
-        QWidget* tempWidget = new QWidget;
-        for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
-        {
-            if (thisInterfaceWidgetContainer[i]->objectName() == widgetName)
-                tempWidget = thisInterfaceWidgetContainer[i];
-        }
-        assert(tempWidget);
-        return tempWidget;
-    }
-
-// //////////////////////////////////////////////////////////////////////////////////////
+    bool isCodedWidgetName (const QWidget& aWidget);
 };
 
 #endif // / SCREEN_HPP

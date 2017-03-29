@@ -32,43 +32,21 @@
 class SelectPatientScreen : public Screen
 {
     Q_OBJECT
-public:
+public: // Constructeur / destructeur **********************************************
+
     explicit SelectPatientScreen(Screen *parent = 0);
     virtual ~SelectPatientScreen();
 
-private:
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                    METHODES/ACCESSEURS/ATTRIBUTS                           //
-    // ///////////////////////////////////////////////////////////////////////////////
+signals: // Signals ****************************************************************
 
-    pushButton * m_newPatientButton = nullptr;
-    pushButton * m_returnButton = nullptr;
-    pushButton * m_validateSelectionButton = nullptr;
-    pushButton * m_searchButton = nullptr;
-
-    lineEdit * m_searchPatientLineEdit = nullptr;
-
-    listWidget * m_patientList = nullptr;
-
-    // ///////////////////////////////////////////////////////////////////////////////
-
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              SIGNALS                                       //
-    // ///////////////////////////////////////////////////////////////////////////////
-signals:
     void newPatientButton_hasBeenClicked();
     void returnButton_hasBeenClicked();
     void validateSelectionButton_hasBeenClicked();
     void searchButton_hasBeenClicked();
-
     void searchPatientLineEdit_textHasBeenEdited(const QString&);
 
-    // ///////////////////////////////////////////////////////////////////////////////
+private slots: // Slots privés *****************************************************
 
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              SLOTS                                         //
-    // ///////////////////////////////////////////////////////////////////////////////
-private slots:
     void newPatientButton_clicked()
     {
         qDebug() << "newPatientButton_clicked()";
@@ -95,11 +73,10 @@ private slots:
 
     void searchPatientLineEdit_textEdited(const QString&)
     {
-        qDebug() << "searchPatientLineEdit_clicked()";
-        emit searchPatientLineEdit_textHasBeenEdited(m_searchPatientLineEdit->text());
+        qDebug() << "searchPatientLineEdit_textedited()";
+        emit searchPatientLineEdit_textHasBeenEdited(dynamic_cast<lineEdit*>(getWidget("searchPatient_LE"))->text());
     }
 
-    // ///////////////////////////////////////////////////////////////////////////////
 };
 
 #endif // / SELECTPATIENTSCREEN_HPP

@@ -48,17 +48,21 @@ class dataEncryptor
     // de dataEncryptor
     friend class connectionDataBase;
 
-public: // Constructeur
+public: // Constructeur *****************************************************************
+
     explicit dataEncryptor();
 
-public: // Fonctions publiques
+public: // Fonctions publiques **********************************************************
+
     // une fonction pour crypter des chaines de caractères
     static QString encrypt (const QString& strToEncrypt);
 
     // fonction de décryptage de la fonction précédente
     static QString decrypt (const QString& strToDecrypt);
 
-private: // fonctions privées
+private: // fonctions privées ***********************************************************
+
+// Définitions des sels de chiffrage ***********
 #ifndef SALT_BEFORE
 #define SALT_BEFORE "sjkdfnqAH12J"
 #endif // SALT_BEFORE
@@ -66,6 +70,7 @@ private: // fonctions privées
 #ifndef SALT_AFTER
 #define SALT_AFTER  "12NLKU3jh!ça"
 #endif // SALT_AFTER
+// *********************************************
 
     // Retourne le résultat du hash avec la méthode sha256 de la chaine passée en paramètre
     // sous la forme d'une chaine de caractères

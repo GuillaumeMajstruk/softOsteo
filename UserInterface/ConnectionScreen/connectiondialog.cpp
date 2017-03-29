@@ -120,7 +120,6 @@ void ConnectionDialog::checkConnectionIds()
     // Si l'autentification réussie -> on affiche un message pour le signaler
     if (compareEnteredIds())
     {
-        // TODO test des settings !!!!
         // Enregistrement du dernier utilisateur connecté
         QSettings settings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), qApp->applicationName());
         qDebug() << enteredUsername;

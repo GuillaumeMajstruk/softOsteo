@@ -22,7 +22,6 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-
 #include <QString>
 #include <QMessageBox>
 #include <QTextStream>
@@ -70,21 +69,21 @@ class dataBase
     friend struct dataBaseConnectionOptions;
     friend class connectionDataBase;
 
-public:
+public: // Constructeur / destructeur ***************************************************************************
     // constructeur par défaut
     dataBase();
 
     // Constructeurs surchargé
     dataBase (const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword = "");
 
-    // Destructeur
     ~dataBase() { m_db.close(); }
 
-private: // FUNCTIONS
+private: // Fonctions privées ************************************************************************************
     bool checkConnectionToDatabase();
 
 
-private: // ATRIBUTES
+private: // Attributs privés *************************************************************************************
+
     // Connection à une base de donnée.
     QSqlDatabase m_db;
 

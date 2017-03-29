@@ -21,7 +21,9 @@
 CreateNewDate::CreateNewDate(Screen *parent):
     Screen(parent)
 {
+    // debug
     qDebug() << "CreateNewDate::CreateNewDate()";
+
     // Mise à jour du nom de l'interface visuelle
     setInterfaceName(SharedVar::InterfaceName::CreateNewDate_name);
 

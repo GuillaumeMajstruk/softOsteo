@@ -16,17 +16,14 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <QtGui>
-
 
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
 using SharedVar::Debug::log_d;
 
-// ///////////////////////////////////////////////////////////////////////////////
-// /                       CONSTRUCTEUR/DESTRUCTEUR                             //
-// ///////////////////////////////////////////////////////////////////////////////
+// Constructeur / Destructeur *********************************************************
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -34,30 +31,39 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    // / instanciation du userInterfaceLoader
+    // / instanciation du chargeur d'interface
     m_uiLoader = new userInterfaceLoader(STATIC);
 
-    ///  défini la taille minimum de 800x600 (px)
+    //   défini la taille minimum de 800x600 (px)
     setMinimumSize(*m_windowSize);
 
-    // / connecte les éléments activables de la fenêtre principale à leurs slots respectifs
+    // / connexion les actions de la barre de menu
     connect(ui->actionQuitter, &QAction::triggered, this, &MainWindow::quitValidating);
     connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::changeWindowMode);
 
-    // / initialisation de l'interface actuelle
-    setCurrentInterface("", SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
-    connect(dynamic_cast<WelcomeScreen*> (m_currentInterface),
-            &WelcomeScreen::managementButton_HasBeenClicked,
-            this, &MainWindow::printMessage);
 
-    // Récupération du nom de l'utilisateur actuel
-    // TODO: test des settings !!!!
+    // TODO REVOIR IMPLEMENTATION ***********************************************************************
+    allInterfaces = new QStackedWidget();
+    for (int i = 0; i < m_uiLoader->m_allInterfaceVector.size(); ++i)
+    {
+        allInterfaces->addWidget(m_uiLoader->m_allInterfaceVector[i]->getInterfaceWidget());
+    }
+
+    setCentralWidget(allInterfaces);
+    // Connections des éléments utilisables de l'interface
+    connect(dynamic_cast<WelcomeScreen*>(m_uiLoader->m_allInterfaceVector[allInterfaces->currentIndex()]),
+            &WelcomeScreen::newDateButton_HasBeenClicked,
+            this, &MainWindow::on_newDateClick);
+    // ***************************************************************************************************
+
+    // Définition du nom de l'utilisateur actuel
     QSettings settings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), qApp->applicationName());
     m_currentUserName = settings.value("connection/UserId").toString();
 
-
-    ui->statusbar->showMessage(QString("Bienvenue " + m_currentUserName + ", "
-                                       "nous sommes le %1").arg(QDate::currentDate().toString(Qt::SystemLocaleLongDate)), 5000);
+    // Affiche le message de bienvenue pendant 5 secondes
+    showStatusBarMessage(QString(Message::StatusBar::statusBarWelcome).arg(m_currentUserName,
+                                                                           QDate::currentDate().toString(Qt::SystemLocaleLongDate)),
+                         5000 );
 }
 
 MainWindow::~MainWindow()
@@ -67,12 +73,14 @@ MainWindow::~MainWindow()
     delete m_currentInterface;
     delete ui;
 }
-// ///////////////////////////////////////////////////////////////////////////////
 
+// Fonctions privés *******************************************************************************
 
-// ///////////////////////////////////////////////////////////////////////////////
-// /                              SLOTS                                         //
-// ///////////////////////////////////////////////////////////////////////////////
+// TODO modification complète => QStackedWidget
+void MainWindow::setCurrentInterface(const QString &currentInterface, const QString &neededInterface)
+{
+    return;
+}
 
 void MainWindow::changeWindowModeText()
 {
@@ -83,58 +91,17 @@ void MainWindow::changeWindowModeText()
     return;
 }
 
-void MainWindow::changeWindowMode()
+void MainWindow::showStatusBarMessage(const QString &message, int duration)
 {
-    switch(windowState())
-    {
-    case Qt::WindowMaximized:
-        changeWindowModeText();
-        setWindowState(Qt::WindowNoState);
-        break;
-    case Qt::WindowNoState:
-        changeWindowModeText();
-        setWindowState(Qt::WindowMaximized);
-        break;
-    }
-    return;
-
+    this->ui->statusbar->showMessage(message, duration);
 }
 
-void MainWindow::quitValidating()
-{
-    int ret = msgBox::question  (
-                                            this,
-                                            trUtf8(Message::MsgBoxTitle::title_Quit),
-                                            trUtf8(Message::Question::msg_sureToQuit),
-                                            msgBox::Yes | msgBox::No,
-                                            msgBox::Yes
-                                        );
+// Fonctions protégées ****************************************************************************
 
-    switch (ret)
-    {
-        case msgBox::Yes:
-            qApp->quit();
-        break;
-        default:
-        break;
-    }
-}
-
-// Une fonction de test pour le changement d'interface
-void MainWindow::printMessage()
-{
-    log_d(QVariant("Signal Received").toString());
-    setCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
-                        SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name);
-}
-
-// ///////////////////////////////////////////////////////////////////////////////
-
-
-// / demande à la fermeture de la fenêtre si l'utilisateur est sûr de vouloir quitter ?
+//Demande à la fermeture de la fenêtre si l'utilisateur est sûr de vouloir quitter ?
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    int ret = msgBox::question(this,
+    int ret = msgBox::question(     this,
                                     trUtf8(Message::MsgBoxTitle::title_Quit),
                                     trUtf8(Message::Question::msg_sureToQuit),
                                     msgBox::Yes | msgBox::No
@@ -150,31 +117,80 @@ void MainWindow::closeEvent(QCloseEvent *event)
      }
 }
 
-void MainWindow::setCurrentInterface(const QString &currentInterface, const QString &neededInterface)
+// Slots privés ***********************************************************************************
+
+void MainWindow::changeWindowMode()
 {
-    if (neededInterface.isEmpty())
-
-    if (!m_uiLoader->m_allInterface.contains(neededInterface))
-        qDebug() << "nullWidget";
-
-    // / Si currentInterface == empty -> il n'y a pas d'interface précédente
-    if (!currentInterface.isEmpty())
+    switch(windowState())
     {
-        // / l'interface précédente prend la valeur de l'interface actuelle
-        m_previousInterface = m_uiLoader->m_allInterface [currentInterface];
-        qDebug() << "previous interface: " << m_previousInterface->getInterfaceName();
+    case Qt::WindowMaximized:
+        changeWindowModeText();
+        setWindowState(Qt::WindowNoState);
+        break;
+    case Qt::WindowNoState:
+        changeWindowModeText();
+        setWindowState(Qt::WindowMaximized);
+        break;
     }
-
-    // / l'interface actuelle devient l'interface qu'il y a dans la liste des interface
-    m_currentInterface = m_uiLoader->m_allInterface [neededInterface];
-
-    qDebug() << "adress: " << &*m_currentInterface;
-    // / l'interface devient l'objet central de la fenêtre principale
-    setCentralWidget(m_currentInterface->getWidget());
-
-    // / met à jour le nom de l'interface actuelle
-    setWindowTitle(getActualInterfaceName());
-
-    qDebug() << "current interface: " << m_currentInterface->getInterfaceName();
     return;
+}
+
+void MainWindow::quitValidating()
+{
+    int ret = msgBox::question  (
+                                    this,
+                                    trUtf8(Message::MsgBoxTitle::title_Quit),
+                                    trUtf8(Message::Question::msg_sureToQuit)
+                                );
+    switch (ret)
+    {
+        case msgBox::Yes:
+            qApp->quit();
+        break;
+        default:
+        break;
+    }
+}
+
+// Slots d'interaction avec l'utilisateur ****************************************
+
+// clique sur 'patientsFolder_PB'
+void MainWindow::on_patientsFolderClick()
+{
+    // Changement de l'interface
+    setCurrentInterface(getActualInterfaceObjectName(),
+                        SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
+}
+
+// Clique sur 'newConsultation_PB'
+void MainWindow::on_newConsultationClick()
+{
+    // Changement de l'interface
+    setCurrentInterface(getActualInterfaceObjectName(),
+                        SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
+}
+
+// Clique sur 'newDate_PB'
+void MainWindow::on_newDateClick()
+{
+    qDebug() << "signal signal";
+    allInterfaces->setCurrentIndex(1);
+    connect(dynamic_cast<SelectPatientScreen*>(m_uiLoader->m_allInterfaceVector[allInterfaces->currentIndex()]),
+            &SelectPatientScreen::returnButton_hasBeenClicked,
+            this, &MainWindow::goBack);
+}
+
+// Clique sur 'returnButton'
+void MainWindow::on_returnButtonClick()
+{
+    // on change l'interface
+    setCurrentInterface(getActualInterfaceObjectName(),
+                        SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
+
+}
+
+// test
+void MainWindow::goBack()
+{
+    allInterfaces->setCurrentIndex(0);
 }

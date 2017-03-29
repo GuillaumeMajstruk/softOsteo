@@ -19,7 +19,7 @@
 #include "connectiondatabase.hpp"
 
 
-// Appelle automatiquement le constructeur de dataBase()
+// Constructeur / destructeur ********************************************************************************
 connectionDataBase::connectionDataBase()
 {
     // Connection à la base de donnée de connection
@@ -46,18 +46,7 @@ connectionDataBase::connectionDataBase()
     insert("Tatiana", "jesuistata");
 }
 
-QString connectionDataBase::hashWithoutSalt(const QString &strToHash)
-{
-    return dataEncryptor::hashIt_SHA256(strToHash);
-}
-
-QString connectionDataBase::hashWithSalt(const QString &strToHash)
-{
-    return QString ( dataEncryptor::hashIt_MD5(SALT_BEFORE) +
-                     dataEncryptor::hashIt_SHA256(strToHash) +
-                     dataEncryptor::hashIt_MD5(SALT_AFTER));
-}
-
+// Fonctions privées ********************************************************************************
 
 void connectionDataBase::insert(const QString &userName, const QString &password)
 {
@@ -71,4 +60,16 @@ void connectionDataBase::insert(const QString &userName, const QString &password
                             " '" + hashWithSalt(password) + "'"
                                 ")"))
         QMessageBox::warning(NULL, "error", query.lastError().text());
+}
+
+QString connectionDataBase::hashWithoutSalt(const QString &strToHash)
+{
+    return dataEncryptor::hashIt_SHA256(strToHash);
+}
+
+QString connectionDataBase::hashWithSalt(const QString &strToHash)
+{
+    return QString ( dataEncryptor::hashIt_MD5(SALT_BEFORE) +
+                     dataEncryptor::hashIt_SHA256(strToHash) +
+                     dataEncryptor::hashIt_MD5(SALT_AFTER));
 }

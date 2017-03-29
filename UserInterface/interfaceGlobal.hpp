@@ -25,31 +25,28 @@
 
 #include <memory>
 
-
-// /////////////
-// / DEFINES ///
-// /////////////
-
+// Defines *************
 #define STATIC true
 #define DYNAMIC false
-
-// /////////////
+// *********************
 
 
 // ////////////////////////////////////////////////////////////////////////////
 // /                             GLOBALES:                                  ///
 // / contient des namespaces pour déclarer/définir des variables globales   ///
 // ////////////////////////////////////////////////////////////////////////////
+
+
 namespace SharedVar
 {
 
-    // / Contient les chemins d'accés de certaines ressources
+    // Contient les chemins d'accés de certaines ressources
     namespace Path
     {
         static const QString resourcesUiFilesRoot = ":/form/UserInterface/ui_Files/";
     }
 
-    // / Contient les noms des différentes objets interfaces
+    // Contient les noms des différentes objets interfaces
     namespace InterfaceObjectName
     {
         static const char* WelcomeScreen_obj_name           = "WelcomeScreen";
@@ -59,7 +56,7 @@ namespace SharedVar
         static const char* PatientMedicalFolder_obj_name    = "PatientMedicalFolderScreen";
     }
 
-    // /  Contient les noms d'interfaces utilisateurs
+    // Contient les noms d'interfaces utilisateurs
     namespace InterfaceName
     {
         static const char * WelcomeScreen_name          = "Écran d'accueil";
@@ -69,7 +66,7 @@ namespace SharedVar
         static const char * PatientMedicalFolder_name   = "Consultation d'un dossier médical";
     }
 
-    // /  Contient des éléments utiles au débogage
+    // Contient des éléments utiles au débogage
     namespace Debug
     {
 
@@ -80,7 +77,7 @@ namespace SharedVar
 
     }
 
-    // / Contient les éléments relatifs à l'écran
+    // Contient les éléments relatifs à l'écran
     namespace Screen {
 
         struct defaultScreenSizeWindowed
@@ -90,5 +87,5 @@ namespace SharedVar
         };
     }
 }
-// ////////////////////////////////////////////////////////////////////////////
-#endif // / INTERFACEGLOBAL_HPP
+
+#endif // INTERFACEGLOBAL_HPP

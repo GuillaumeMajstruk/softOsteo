@@ -63,17 +63,17 @@
    <item row="1" column="2">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="saveNewDate_PB">
+      <widget class="QPushButton" name="return_PB">
        <property name="toolTip">
         <string>Retour à la page précédente</string>
        </property>
        <property name="text">
-        <string>Annuler</string>
+        <string>Annuler/retour</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancel_PB">
+      <widget class="QPushButton" name="saveNewDate_PB">
        <property name="toolTip">
         <string>Enregistrer le rendez-vous dans le planning</string>
        </property>
@@ -91,8 +91,8 @@
   <tabstop>search_PB</tabstop>
   <tabstop>patientList_LST</tabstop>
   <tabstop>calendarWidget_CALENDAR</tabstop>
+  <tabstop>return_PB</tabstop>
   <tabstop>saveNewDate_PB</tabstop>
-  <tabstop>cancel_PB</tabstop>
  </tabstops>
  <resources/>
  <connections/>

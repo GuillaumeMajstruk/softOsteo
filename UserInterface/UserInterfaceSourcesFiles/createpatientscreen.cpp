@@ -18,24 +18,27 @@
 
 #include "createpatientscreen.h"
 
+
+// Constructeur / destructeur ******************************************************************
+
 CreatePatientScreen::CreatePatientScreen(Screen *parent):
     Screen(parent)
 {
     qDebug() << "CreatePatientScreen::CreatePatientScreen()";
+
     // Met à jour le nom de l'interface
     setInterfaceName(SharedVar::InterfaceName::CreatePatientScreen_name);
 
     // Met à jour le nom d'objet de l'interface
     setInterfaceObjectName(SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name);
 
-
     // Charge l'interface depuis le fichier .ui grâce à userInterfaceLoader
     m_interface = userInterfaceLoader(DYNAMIC).loadUi<CreatePatientScreen>(m_objectInterfaceName);
-
 
     // Initialisation des éléments de l'interface
     initWidgetList();
 
+    // Connection des éléments de l'interface
     connect (dynamic_cast<lineEdit*>(getWidget("patientName_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
     connect (dynamic_cast<lineEdit*>(getWidget("patientSurname_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
 
@@ -47,6 +50,9 @@ CreatePatientScreen::~CreatePatientScreen()
 {
     qDebug() << "CreatePatientScreen::~CreatePatientScreen()";
 }
+
+
+// Slots privés ***************************************************************************************************
 
 void CreatePatientScreen::updateSaveInformationText()
 {

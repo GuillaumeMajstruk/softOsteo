@@ -33,8 +33,8 @@ class QSpinBox;
 class QCheckBox;
 class QCalendarWidget;
 
-/// Ce fichier contient des typedefs qui m'évitent à avoir à taper les
-/// noms entiers des objets de type widgets de QT
+// Ce fichier contient des typedefs qui m'évitent à avoir à taper les
+// noms entiers des objets de type widgets de QT
 
 typedef QPushButton         pushButton;
 typedef QLineEdit           lineEdit;

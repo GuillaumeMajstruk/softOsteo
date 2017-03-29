@@ -20,126 +20,125 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include <memory>
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QString>
 #include <QWidget>
 #include <QSize>
 #include <QSettings>
+#include <QStackedWidget>
 
+#include <memory>
 
 #include "UserInterface/UserInterfaceSourcesFiles/selectpatientscreen.hpp"
 #include "UserInterface/interfaceGlobal.hpp"
 #include "UserInterface/UserInterfaceSourcesFiles/welcomescreen.hpp"
 #include "UserInterface/userinterfaceloader.hpp"
 #include "UserInterface/screen.hpp"
-
 #include "Messages/messages.hpp"
 
 namespace Ui {
 class MainWindow;
 }
 
-
-
-// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// / la classe MainWindow est la fenêtre qui contiendra les interfaces (QWidget) représentants les différentes fenêtres du programme ///
-// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 class  MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                       CONSTRUCTEUR/DESTRUCTEUR                             //
-    // ///////////////////////////////////////////////////////////////////////////////
-    // / constructeur
+public: // Constructeur / destructeur ***********************************************
     explicit MainWindow(QWidget *parent = 0);
 
-    // / destructeur
     virtual ~MainWindow();
 
-    // ///////////////////////////////////////////////////////////////////////////////
+    // Fonctions publiques **********************************************************
 
+    // retourne le nom de l'interface actuelle
+    QString getActualInterfaceName() const { return m_currentInterface->getInterfaceName(); }
 
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              METHODES/ACCESSEURS                           //
-    // ///////////////////////////////////////////////////////////////////////////////
-    // / retourne le nom de l'interface actuelle
-    QString getActualInterfaceName() const
-    {
-        return { m_currentInterface->getInterfaceName() };
-    }
+    // retourne le nom de l'objet interface actuel
+    QString getActualInterfaceObjectName() const { return m_currentInterface->getInterfaceObjectName(); }
 
     //  retourne l'objet interface acuelle (m_currentInterface)
-    QWidget* getActualInterface() const { return m_currentInterface->getWidget(); }
+    QWidget* getActualInterface() const { return m_currentInterface->getInterfaceWidget(); }
 
-    /////////////////////////////////////////////////////////////////////////////////
+private: // Attributs privées ***************************************************************************
 
-private:
-
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              METHODES:ATTRIBUTS                            //
-    // ///////////////////////////////////////////////////////////////////////////////
-    // / interface utilisateur
+    // Interface utilisateur
     Ui::MainWindow *ui;
 
-    // / Utilisateur actuel du programme
+    // Utilisateur actuel du programme
     QString m_currentUserName;
 
-    // / Chargeur d'interface
+    // Chargeur d'interface
     userInterfaceLoader * m_uiLoader = nullptr;
 
-    // / Taille par défaut de l'interface utilisateur (-> mode fenêtré)
+    // Taille par défaut de l'interface utilisateur (-> mode fenêtré)
     QSize *m_windowSize = new QSize     (
                                             SharedVar::Screen::defaultScreenSizeWindowed().widht,
                                             SharedVar::Screen::defaultScreenSizeWindowed().height
                                         );
 
-    // / interface utilisateur actuelle (utilisée en tant que widget dans la fenêtre principale)
-    // /appelle le constructeur de Qwidget->Screen->WelcomeScreen
+    // Interface utilisateur actuelle (utilisée en tant que widget dans la fenêtre principale)
+    // appelle le constructeur de Qwidget->Screen->WelcomeScreen
     Screen * m_currentInterface = nullptr;
 
-    // / quand l'interface change, on garde en mémoire l'interface précédente pour pouvoir faire un
-    // / retour
+    // quand l'interface change, on garde en mémoire l'interface précédente pour pouvoir faire un
+    // retour
     Screen * m_previousInterface = nullptr;
 
-    // ///////////////////////////////////////////////////////////////////////////////
+    // Toutes les interfaces sont dans un stacked widget de telle sorte que l'on puisse changer
+    // d'interface directement depuis cet objet
+    QStackedWidget * allInterfaces = nullptr;
 
-    // / Défini l'interface utilisateur actuellement utilisée
+private: // Fonctions privées *****************************************************************
+
+    // Défini l'interface utilisateur actuellement utilisée
     void setCurrentInterface (const QString& currentInterface, const QString& neededInterface);
 
-    // / change le message de l'action de mode de fenêtre
+    // change le message de l'action de mode de fenêtre
     void changeWindowModeText();
 
-protected:
+    void showStatusBarMessage (const QString& message, int duration);
+
+protected: // Fonctions protégées ************************************************************
+
+    // Redéfinition de l'évenement "closeEvent" pour qu'il convienne au contexte du programme
     void closeEvent(QCloseEvent * event);
 
+private slots: // Slots privés ***************************************************************
 
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              SLOTS                                         //
-    // ///////////////////////////////////////////////////////////////////////////////
-private slots:
-
-    // / Gère la mise à l'échelle de l'écran (plein écran / fenêtré)
+    // Gère la mise à l'échelle de l'écran (plein écran / fenêtré)
     void changeWindowMode();
 
-    // / demande à l'utilisateur s'il veut vraiment quitter ?
+    // demande à l'utilisateur s'il veut vraiment quitter ?
     void quitValidating ();
 
-    // / test pour le slot
-    void printMessage ();
+private slots: // Slots de dialogue entre cette classe (MainWindow) et les autres interfaces
 
-    // ///////////////////////////////////////////////////////////////////////////////
+    // Redirige vers l'interface "dossiers des patients"
+    void on_patientsFolderClick();
 
-    // ///////////////////////////////////////////////////////////////////////////////
-    // /                              SIGNALS                                       //
-    // ///////////////////////////////////////////////////////////////////////////////
-signals:
-    // /...
+    // Redirige vers l'interface "Nouvelle consultation"
+    void on_newConsultationClick();
+
+#pragma warning (fonction de test)
+    // Fonction de test
+    void goBack();
+
+//      TODO: a créer ************************
+//    void on_managementClick();
+//    void on_billClick();
+// *******************************************
+
+    // Redirige vers  l'interface "Nouveau rendez-vous"
+    void on_newDateClick();
+
+    // Fonction de retour valable pour toutes les interfaces
+    // qui ont un bouton "retour" -> fonction (hasReturnButton())f
+    void on_returnButtonClick();
+
+signals: // Signaux *********************************************************
+    // ...
 };
 
 #endif // / MAINWINDOW_HPP

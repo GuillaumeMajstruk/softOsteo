@@ -20,6 +20,8 @@
 
 using SharedVar::Debug::log_d;
 
+// Constructeur / destructeur ***************************************************************************
+
 dataBase::dataBase() {}
 
 dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword)
@@ -37,6 +39,7 @@ dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName,
     checkConnectionToDatabase();
 }
 
+// Fonctions privées ************************************************************************************
 
 bool dataBase::checkConnectionToDatabase()
 {
@@ -60,6 +63,9 @@ bool dataBase::checkConnectionToDatabase()
     log_d(static_cast<int>(isConnected));
     return isConnected;
 }
+
+
+// databaseConnectionOptions struct function definition *************************************************
 
 void dataBaseConnectionOptions::setConnectionOptionsToDataBase(dataBase *a_dataBase)
 {

@@ -32,39 +32,28 @@ userInterfaceLoader::userInterfaceLoader(bool staticOrDynamic)
     {
         qDebug() << "userInterfaceLoader::userInterfaceLoader(STATIC)";
 
-        // / CRÉATION D'UNE INSTANCE DU CONTENEUR D'INTERFACES
-        // / -> à l'initialisation d'une instance "statique" de
-        // / la classe userInterfaceLoader on définie un conteneur
-        // / de type (QMAP) qui contiendra une instance "unique" de
-        // / chaque interface (unique_ptr)
-        m_allInterface = QMap<QString, Screen*>();
+        // CRÉATION D'UNE INSTANCE DU CONTENEUR D'INTERFACES
+        // -> à l'initialisation d'une instance "statique" de
+        // la classe userInterfaceLoader on définie un conteneur
+        // de type (QVector) qui contiendra une instance "unique" de
+        // chaque interface (unique_ptr)
+        m_allInterfaceVector = QVector<Screen*>();
 
-        // / Création d'instances unique de toutes les interfaces du programme
+        // Création d'instances unique de toutes les interfaces du programme
         static std::unique_ptr<WelcomeScreen> UiLoaderInstance_WelcomeScreen (new WelcomeScreen);
         static std::unique_ptr<SelectPatientScreen> UiLoaderInstance_SelectPatientScreen (new SelectPatientScreen);
         static std::unique_ptr<CreatePatientScreen> UiLoaderInstance_CreatePatientScreen (new CreatePatientScreen);
         static std::unique_ptr<CreateNewDate> UiLoaderInstance_CreateNewDate (new CreateNewDate);
         static std::unique_ptr<PatientMedicalFolderScreen> UiLoaderInstance_PatientMedicalFolderScreen (new PatientMedicalFolderScreen);
 
-        qDebug() << "adress: " << &*UiLoaderInstance_CreateNewDate.get();
-
-
-        // Ajout à la banque d'interface du programme
-        m_allInterface.insert(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name,
-                              UiLoaderInstance_WelcomeScreen.get());
-
-        m_allInterface.insert(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name,
-                              UiLoaderInstance_SelectPatientScreen.get());
-
-        m_allInterface.insert(SharedVar::InterfaceObjectName::CreatePatientScreen_obj_name,
-                              UiLoaderInstance_CreatePatientScreen.get());
-
-        m_allInterface.insert(SharedVar::InterfaceObjectName::CreateNewDate_obj_name,
-                              UiLoaderInstance_CreateNewDate.get());
-
-        m_allInterface.insert(SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name,
-                              UiLoaderInstance_PatientMedicalFolderScreen.get());
+        // On place les instances dans le conteneur d'interfaces
+        m_allInterfaceVector.push_back(UiLoaderInstance_WelcomeScreen.get());
+        m_allInterfaceVector.push_back(UiLoaderInstance_SelectPatientScreen.get());
+        m_allInterfaceVector.push_back(UiLoaderInstance_CreatePatientScreen.get());
+        m_allInterfaceVector.push_back(UiLoaderInstance_CreateNewDate.get());
+        m_allInterfaceVector.push_back(UiLoaderInstance_PatientMedicalFolderScreen.get());
 
     }
+
     qDebug() << "userInterfaceLoader::userInterfaceLoader(DYNAMIC)";
 }

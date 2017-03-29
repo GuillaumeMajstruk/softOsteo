@@ -42,7 +42,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="newMeeting_PB">
+      <widget class="QPushButton" name="newDate_PB">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -59,6 +59,9 @@
      </item>
      <item row="2" column="0">
       <widget class="QPushButton" name="bills_PB">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -75,6 +78,9 @@
      </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="management_PB">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
          <horstretch>0</horstretch>
@@ -132,7 +138,7 @@
   <tabstop>patientsFolder_PB</tabstop>
   <tabstop>newConsultation_PB</tabstop>
   <tabstop>management_PB</tabstop>
-  <tabstop>newMeeting_PB</tabstop>
+  <tabstop>newDate_PB</tabstop>
   <tabstop>bills_PB</tabstop>
   <tabstop>calendarWidget_CALENDAR</tabstop>
  </tabstops>

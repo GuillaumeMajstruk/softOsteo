@@ -18,6 +18,8 @@
 
 #include "patientmedicalfolderscreen.hpp"
 
+// Constructeur / destructeur *********************************************************************
+
 PatientMedicalFolderScreen::PatientMedicalFolderScreen(Screen *parent):
     Screen(parent)
 {

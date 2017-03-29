@@ -68,5 +68,10 @@ typedef const char* Msg;
             static Msg tt_Connection_UserName = "Entrez ici votre nom d'utilisateur pour pouvoir vous connecter.";
             static Msg tt_Connection_Password = "Entrez ici votre mot de passe pour pouvoir vous connecter.";
         }
+
+        namespace StatusBar
+        {
+            static Msg statusBarWelcome = "Bienvenue %1, nous sommes le %2";
+        }
     }
 #endif /// MESSAGES_HPP

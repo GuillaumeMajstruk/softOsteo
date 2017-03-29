@@ -26,14 +26,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="searchPatientLineEdit_LE">
+        <widget class="QLineEdit" name="searchPatient_LE">
          <property name="text">
           <string>Entrez le nom d'un patient à rechercher dans ce champs</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="searchButton_PB">
+        <widget class="QPushButton" name="search_PB">
          <property name="text">
           <string>Rechercher</string>
          </property>
@@ -52,7 +52,7 @@
       <enum>QLayout::SetNoConstraint</enum>
      </property>
      <item>
-      <widget class="QPushButton" name="validateSelectionButton_PB">
+      <widget class="QPushButton" name="validateSelection_PB">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -62,14 +62,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="newPatientButton_PB">
+      <widget class="QPushButton" name="newPatient_PB">
        <property name="text">
         <string>Nouveau Patient</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="returnButton_PB">
+      <widget class="QPushButton" name="return_PB">
        <property name="text">
         <string>Retour</string>
        </property>

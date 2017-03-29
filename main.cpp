@@ -17,12 +17,13 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QApplication>
+#include <QDebug>
 
 #include "UserInterface/UserInterfaceSourcesFiles/mainwindow.hpp"
 #include "UserInterface/ConnectionScreen/connectiondialog.h"
 #include "DataBase/database.h"
 
-#include <QDebug>
+#include <memory>
 
 int main(int argc, char *argv[])
 {
@@ -34,7 +35,6 @@ int main(int argc, char *argv[])
     app->setApplicationName("softOsteo");
 
     // Création puis gestion de la connection à l'application
-
 #pragma warning(SANS CONNECTION)
 //    ConnectionDialog *d = new ConnectionDialog(NULL);
 //    d->exec();

@@ -20,11 +20,8 @@
 #define CONNECTIONDATABASE_HPP
 
 #include <QSqlQuery>
-
 #include <QString>
-
 #include <QByteArray>
-// #include <QCryptographicHash>
 
 #include "database.h"
 #include "CryptData/dataencryptor.hpp"
@@ -36,15 +33,24 @@ class connectionDataBase: public dataBase
     // Autorise la classe ConnectionDialog à utiliser les fonctions privées de connectionDataBase
    friend class ConnectionDialog;
 
-public:
+public: // Constructeur / destructeur *************************************************************************
+
     connectionDataBase();
+
+public: // Fonctions publiques ********************************************************************************
+
+    // Retourne la connection à la base de données
     QSqlDatabase getDataBaseConnection () const { return m_db; }
 
-private:
+private: // Fonctions privées *********************************************************************************
+
     // Une fonction pour insérer dans la base de données de connection un nouvel utilisateur et son mot de passe
     void insert (const QString& userName, const QString& password);
 
+    // Fonction de hashage sans sel
     static QString hashWithoutSalt(const QString& strToHash);
+
+    // Fonction de hashage avec sel
     static QString hashWithSalt(const QString& strToHash);
 };
 

@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QMap>
+#include <QVector>
 
 #include "interfaceGlobal.hpp"
 #include "screen.hpp"
@@ -41,40 +42,40 @@
 class userInterfaceLoader: public QUiLoader
 {
 
-public:
-    // / Constructeur par défaut
+public: // Constructeur / destructeur ************************************************************************
+
     userInterfaceLoader(bool /* true: static, false: dynamic*/);
 
+public: // Fonctions publiques *******************************************************************************
 
     template <typename T>
     T * loadUi(const QString& uiToLoadName)
     {
-        // / Est-ce que le nom d'interface correspond bien à un fichier d'interface .ui ?
+        // Est-ce que le nom d'interface correspond bien à un fichier d'interface .ui ?
             QFile _interface (SharedVar::Path::resourcesUiFilesRoot + uiToLoadName + ".ui");
 
-            // / peut-on ouvrir le fichier en lecture ?
+            // peut-on ouvrir le fichier en lecture ?
             if (!_interface.open(QFile::ReadOnly)) qDebug() << "erreur à l'ouverture du fichier de configuration"
                                                            << uiToLoadName;
 
-            // / création du widget interface "ui" en fonction du fichier *.ui
+            // création du widget interface "ui" en fonction du fichier *.ui
             QWidget * loadedInterface = load(&_interface);
             T * castedInterface = static_cast<T*>(loadedInterface);
 
-            // / le fichier est-il chargé correctement ?
+            // le fichier est-il chargé correctement ?
             if (!castedInterface)
             {
                 qDebug() << "le fichier d'interface n'est pas chargé ";
                 return NULL;
             }
 
-            // / retourne l'interface qui a été chargée depuis le fichier *.ui
+            // retourne l'interface qui a été chargée depuis le fichier *.ui
             return castedInterface;
     }
 
-    // / Contient toutes les interfaces du programme
-    // / !!! DÉFINIE UNIQUEMENT SI INSTANCE STATIQUE DÉCLARÉE !!!
-    QMap<QString, Screen*> m_allInterface;
+    // Contient un "unique_ptr" vers chaque interface du logiciel
+    QVector<Screen*> m_allInterfaceVector;
 
 };
 
-#endif // / USERINTERFACELOADER_HPP
+#endif // USERINTERFACELOADER_HPP
