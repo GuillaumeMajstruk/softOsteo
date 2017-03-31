@@ -34,10 +34,10 @@ int main(int argc, char *argv[])
     app->setOrganizationDomain("MjkCorp.fr");
     app->setApplicationName("softOsteo");
 
+// WARNING SANS CONNECTION
     // Création puis gestion de la connection à l'application
-#pragma warning(SANS CONNECTION)
-//    ConnectionDialog *d = new ConnectionDialog(NULL);
-//    d->exec();
+    //ConnectionDialog *d = new ConnectionDialog(NULL);
+    //d->exec();
 
     MainWindow *mainWindow =  new MainWindow;
     mainWindow ->show();

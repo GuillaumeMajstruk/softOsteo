@@ -92,12 +92,16 @@ private: // Attributs privées *************************************************
 
 private: // Fonctions privées *****************************************************************
 
+    // Initialisation des interfaces dans le QStackedWidget
+    void initStackedInterfaces ();
+
     // Défini l'interface utilisateur actuellement utilisée
     void setCurrentInterface (const QString& currentInterface, const QString& neededInterface);
 
     // change le message de l'action de mode de fenêtre
     void changeWindowModeText();
 
+    // affiche un message dans la barre de status ('message', pendant 'duration')
     void showStatusBarMessage (const QString& message, int duration);
 
 protected: // Fonctions protégées ************************************************************

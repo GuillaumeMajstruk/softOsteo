@@ -42,12 +42,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::changeWindowMode);
 
 
-    // TODO REVOIR IMPLEMENTATION ***********************************************************************
-    allInterfaces = new QStackedWidget();
-    for (int i = 0; i < m_uiLoader->m_allInterfaceVector.size(); ++i)
-    {
-        allInterfaces->addWidget(m_uiLoader->m_allInterfaceVector[i]->getInterfaceWidget());
-    }
+    // FIXME REVOIR IMPLEMENTATION ***********************************************************************
+    // Initialisation du StackedWidget
+    initStackedInterfaces();
 
     setCentralWidget(allInterfaces);
     // Connections des éléments utilisables de l'interface
@@ -76,7 +73,19 @@ MainWindow::~MainWindow()
 
 // Fonctions privés *******************************************************************************
 
-// TODO modification complète => QStackedWidget
+void MainWindow::initStackedInterfaces()
+{
+    // définition de allInterfaces
+    allInterfaces = new QStackedWidget();
+
+    // Remplissage d
+    for (auto widget: m_uiLoader->m_allInterfaceVector)
+    {
+        allInterfaces->addWidget(static_cast<Screen*>(widget)->getInterfaceWidget());
+    }
+}
+
+// FIXME modification complète => QStackedWidget
 void MainWindow::setCurrentInterface(const QString &currentInterface, const QString &neededInterface)
 {
     return;
