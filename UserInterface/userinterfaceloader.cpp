@@ -26,6 +26,8 @@
 // / Si staticOrDynamic = "false" on instancie dynamiquement l'objet
 // / sans initialiser la QMap, ceci ayant pour but d'uniquement accéder à une fonction de la classe
 
+
+// Constructeur / destructeur *******************************************************************************
 userInterfaceLoader::userInterfaceLoader(bool staticOrDynamic)
 {
     if (staticOrDynamic)

@@ -37,6 +37,10 @@ PatientMedicalFolderScreen::PatientMedicalFolderScreen(Screen *parent):
     // Initialisation des éléments de cette interface
     initWidgetList();
 
+    // Connection du bouton "retour"
+    if (hasReturnButton())
+        connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
+
     showThisInterfaceCaracteristics();
 
 }

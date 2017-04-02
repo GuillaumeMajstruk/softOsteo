@@ -31,13 +31,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    // / instanciation du chargeur d'interface
+    // instanciation du chargeur d'interface
     m_uiLoader = new userInterfaceLoader(STATIC);
 
     //   défini la taille minimum de 800x600 (px)
     setMinimumSize(*m_windowSize);
 
-    // / connexion les actions de la barre de menu
+    // connexion les actions de la barre de menu
     connect(ui->actionQuitter, &QAction::triggered, this, &MainWindow::quitValidating);
     connect(ui->actionPlein_cran, &QAction::triggered, this, &MainWindow::changeWindowMode);
 
@@ -46,11 +46,19 @@ MainWindow::MainWindow(QWidget *parent) :
     // Initialisation du StackedWidget
     initStackedInterfaces();
 
-    setCentralWidget(allInterfaces);
+    // Mise à jour de l'interface actuelle
+    updateCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
+
     // Connections des éléments utilisables de l'interface
-    connect(dynamic_cast<WelcomeScreen*>(m_uiLoader->m_allInterfaceVector[allInterfaces->currentIndex()]),
+    connect(m_uiLoader->getCurrentStackedScreen<WelcomeScreen>(allInterfaces->currentIndex()),
             &WelcomeScreen::newDateButton_HasBeenClicked,
             this, &MainWindow::on_newDateClick);
+    connect (m_uiLoader->getCurrentStackedScreen<WelcomeScreen>(allInterfaces->currentIndex()),
+             &WelcomeScreen::newConsultationButton_HasBeenClicked,
+             this, &MainWindow::on_newConsultationClick);
+    connect (m_uiLoader->getCurrentStackedScreen<WelcomeScreen>(allInterfaces->currentIndex()),
+             &WelcomeScreen::patientsFolderButton_HasBeenClicked,
+             this, &MainWindow::on_patientsFolderClick);
     // ***************************************************************************************************
 
     // Définition du nom de l'utilisateur actuel
@@ -76,7 +84,7 @@ MainWindow::~MainWindow()
 void MainWindow::initStackedInterfaces()
 {
     // définition de allInterfaces
-    allInterfaces = new QStackedWidget();
+    allInterfaces = new QStackedWidget(this);
 
     // Remplissage d
     for (auto widget: m_uiLoader->m_allInterfaceVector)
@@ -86,9 +94,31 @@ void MainWindow::initStackedInterfaces()
 }
 
 // FIXME modification complète => QStackedWidget
-void MainWindow::setCurrentInterface(const QString &currentInterface, const QString &neededInterface)
+// Met à jour l'interface actuelle et connecte ses éléments
+// Enregistre l'interface précédente et déconnecte ses éléments
+void MainWindow::updateCurrentInterface(const QString& requiredInterfaceName)
 {
-    return;
+    // S'il n'y a pas de widget central, on met à jour
+    // le widget central en utilisant "allInterfaces" (QStackedWidget)
+    setCentralWidget(allInterfaces);
+
+    // On cherche à obtenir l'index de l'interface demandée
+    int index = getInterfaceIndex(requiredInterfaceName);
+
+    // Connection du bouton "retour" de l'interface
+    if (m_uiLoader->getCurrentStackedScreen<Screen>(index)->hasReturnButton())
+        connect (m_uiLoader->getCurrentStackedScreen<Screen>(index),
+                 &Screen::returnButtonClicked,
+                 this, &MainWindow::on_returnButtonClick);
+
+    if (index == -1) // L'index retourné est -1 => l'interface n'est pas trouvée
+        throw std::exception("erreur de chargement d'interface", 9);
+
+    // Mise à jour de l'index actuel dans le QStackedWidget
+    allInterfaces->setCurrentIndex(index);
+
+    // Mise à jour du nom de l'interface actuelle
+    setWindowTitle(m_uiLoader->getCurrentStackedScreen<Screen>(allInterfaces->currentIndex())->getInterfaceName());
 }
 
 void MainWindow::changeWindowModeText()
@@ -104,6 +134,21 @@ void MainWindow::showStatusBarMessage(const QString &message, int duration)
 {
     this->ui->statusbar->showMessage(message, duration);
 }
+
+// Retourne l'index du widget en fonction de son nom
+// Ou retourne -1 si le widget n'est pas trouvé
+int MainWindow::getInterfaceIndex(const QString &queriedInterfaceName)
+{
+    // On parcours le stackedWidget
+    for (int i = 0; i < allInterfaces->count(); ++i)
+    {
+        // Si le nom du widget actuel correspond, on retourne son index
+        if (allInterfaces->widget(i)->objectName() == queriedInterfaceName)
+            return i;
+    }
+    return -1;
+}
+
 
 // Fonctions protégées ****************************************************************************
 
@@ -167,35 +212,28 @@ void MainWindow::quitValidating()
 void MainWindow::on_patientsFolderClick()
 {
     // Changement de l'interface
-    setCurrentInterface(getActualInterfaceObjectName(),
-                        SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
+    updateCurrentInterface(SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name);
 }
 
 // Clique sur 'newConsultation_PB'
 void MainWindow::on_newConsultationClick()
 {
     // Changement de l'interface
-    setCurrentInterface(getActualInterfaceObjectName(),
-                        SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
+    updateCurrentInterface(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
 }
 
 // Clique sur 'newDate_PB'
 void MainWindow::on_newDateClick()
 {
     qDebug() << "signal signal";
-    allInterfaces->setCurrentIndex(1);
-    connect(dynamic_cast<SelectPatientScreen*>(m_uiLoader->m_allInterfaceVector[allInterfaces->currentIndex()]),
-            &SelectPatientScreen::returnButton_hasBeenClicked,
-            this, &MainWindow::goBack);
+    updateCurrentInterface(SharedVar::InterfaceObjectName::CreateNewDate_obj_name);
 }
 
 // Clique sur 'returnButton'
 void MainWindow::on_returnButtonClick()
 {
     // on change l'interface
-    setCurrentInterface(getActualInterfaceObjectName(),
-                        SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
-
+    updateCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
 }
 
 // test

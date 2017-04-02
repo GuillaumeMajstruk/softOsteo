@@ -73,6 +73,17 @@ public: // Fonctions publiques *************************************************
             return castedInterface;
     }
 
+
+    // Retourne l'interface actuelle (descendante de Screen)
+    // castée dans le type voulue
+    template <typename T>
+    T * getCurrentStackedScreen (const int& currentIndex)
+    {
+        return dynamic_cast<T*>(m_allInterfaceVector[currentIndex]);
+    }
+
+public: // Attributs publiques *******************************************************************************
+
     // Contient un "unique_ptr" vers chaque interface du logiciel
     QVector<Screen*> m_allInterfaceVector;
 

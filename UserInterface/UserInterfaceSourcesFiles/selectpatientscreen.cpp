@@ -37,15 +37,17 @@ SelectPatientScreen::SelectPatientScreen(Screen *parent) :
     // Initialisation des Widgets de l'interfaces
     initWidgetList();
 
-
     // Connections
     connect (dynamic_cast<pushButton*>(getWidget("newPatient_PB")), &pushButton::clicked, this, &SelectPatientScreen::newPatientButton_clicked);
-    connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &SelectPatientScreen::returnButton_clicked);
     connect (dynamic_cast<pushButton*>(getWidget("validateSelection_PB")), &pushButton::clicked, this, &SelectPatientScreen::validateSelectionButton_clicked);
     connect (dynamic_cast<pushButton*>(getWidget("search_PB")), &pushButton::clicked, this, &SelectPatientScreen::searchButton_clicked);
 
     connect (dynamic_cast<lineEdit*>(getWidget("searchPatient_LE")), &QLineEdit::textChanged,
              this, &SelectPatientScreen::searchPatientLineEdit_textEdited);
+
+    // Connection du bouton "retour"
+    if (hasReturnButton())
+        connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
 
     // Debug
     showThisInterfaceCaracteristics();

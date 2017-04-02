@@ -96,13 +96,16 @@ private: // Fonctions privées *************************************************
     void initStackedInterfaces ();
 
     // Défini l'interface utilisateur actuellement utilisée
-    void setCurrentInterface (const QString& currentInterface, const QString& neededInterface);
+    void updateCurrentInterface (const QString& requiredInterfaceName);
 
     // change le message de l'action de mode de fenêtre
     void changeWindowModeText();
 
     // affiche un message dans la barre de status ('message', pendant 'duration')
     void showStatusBarMessage (const QString& message, int duration);
+
+    // Retourne l'index d'une interface en fonction de son nom
+    int getInterfaceIndex (const QString& interfaceName);
 
 protected: // Fonctions protégées ************************************************************
 
@@ -125,7 +128,7 @@ private slots: // Slots de dialogue entre cette classe (MainWindow) et les autre
     // Redirige vers l'interface "Nouvelle consultation"
     void on_newConsultationClick();
 
-#pragma warning (fonction de test)
+// WARNING (fonction de test)
     // Fonction de test
     void goBack();
 

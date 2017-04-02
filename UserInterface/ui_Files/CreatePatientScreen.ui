@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>CreatePatientScreen</class>
+ <widget class="QWidget" name="CreatePatientScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -331,8 +331,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>815</width>
-            <height>999</height>
+            <width>846</width>
+            <height>856</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">

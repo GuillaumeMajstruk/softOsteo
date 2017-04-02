@@ -42,6 +42,10 @@ CreatePatientScreen::CreatePatientScreen(Screen *parent):
     connect (dynamic_cast<lineEdit*>(getWidget("patientName_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
     connect (dynamic_cast<lineEdit*>(getWidget("patientSurname_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
 
+    // Connection du bouton "retour"
+    if (hasReturnButton())
+        connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
+
     // debug
     showThisInterfaceCaracteristics();
 }

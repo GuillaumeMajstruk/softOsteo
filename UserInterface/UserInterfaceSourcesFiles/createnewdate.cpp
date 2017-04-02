@@ -36,6 +36,10 @@ CreateNewDate::CreateNewDate(Screen *parent):
     // Initialisation des éléments de l'interface
     initWidgetList();
 
+    // Connection du bouton "retour"
+    if (hasReturnButton())
+        connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
+
     // debug
     showThisInterfaceCaracteristics();
 }

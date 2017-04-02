@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>PatientMedicalFolderScreen</class>
+ <widget class="QWidget" name="PatientMedicalFolderScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -236,19 +236,18 @@
          </item>
          <item row="6" column="1">
           <layout class="QGridLayout" name="familialStatusLayout">
-           <item row="0" column="2">
-            <widget class="QLabel" name="patientChildNumber">
-             <property name="text">
-              <string>Nombre d'enfants:</string>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QSpinBox" name="patientChildNumber_SB">
-             <property name="maximum">
-              <number>20</number>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
            </item>
            <item row="0" column="0">
             <widget class="QComboBox" name="patientFamilialStatus_CB">
@@ -278,18 +277,19 @@
              </item>
             </widget>
            </item>
-           <item row="0" column="1">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+           <item row="0" column="2">
+            <widget class="QLabel" name="patientChildNumber">
+             <property name="text">
+              <string>Nombre d'enfants:</string>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="patientChildNumber_INFO">
+             <property name="text">
+              <string/>
              </property>
-            </spacer>
+            </widget>
            </item>
           </layout>
          </item>
@@ -426,8 +426,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>645</width>
-            <height>403</height>
+            <width>643</width>
+            <height>402</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">

@@ -123,6 +123,9 @@ private: // Fonction privées **************************************************
     // -> Return true si le nom est un nom "codé"
     // -> Return false si le nom est un nom "non-codé"
     bool isCodedWidgetName (const QWidget& aWidget);
+
+signals:
+    void returnButtonClicked();
 };
 
 #endif // / SCREEN_HPP
