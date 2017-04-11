@@ -87,8 +87,7 @@
         for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
         {
             if (thisInterfaceWidgetContainer[i]->objectName() == "return_PB")
-            {
-                qDebug() << "TRUE TRUE TRUE";
+            {                
                 return true;
             }
         }

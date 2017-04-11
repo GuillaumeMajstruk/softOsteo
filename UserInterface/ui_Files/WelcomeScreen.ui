@@ -130,7 +130,11 @@
     </spacer>
    </item>
    <item>
-    <widget class="QCalendarWidget" name="calendarWidget_CALENDAR"/>
+    <widget class="QCalendarWidget" name="calendarWidget_CALENDAR">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

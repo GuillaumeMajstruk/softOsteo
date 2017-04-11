@@ -57,7 +57,7 @@ typedef const char* Msg;
         namespace MsgBoxContent
         {
             static Msg content_DatabaseConnectionError = "Impossible d'établir la connection à la base de donnée !";
-            static Msg content_DatabaseConnectionOk = "Connection à la base de donnée établie avec succés.";
+            static Msg content_DatabaseConnectionOk = "Connection à la base de donnée: %1 établie avec succés.";
             static Msg content_ConnectionRequestInformationLack = "Tous les champs doivent être remplis.";
             static Msg content_AuthentificationError = "Les identifiants rentrés sont invalides !";
             static Msg content_Connection_Ok = "Connection réussie !\nBienvenue %1";

@@ -46,20 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Initialisation du StackedWidget
     initStackedInterfaces();
 
-    // Mise à jour de l'interface actuelle
-    updateCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
-
-    // Connections des éléments utilisables de l'interface
-    connect(m_uiLoader->getCurrentStackedScreen<WelcomeScreen>(allInterfaces->currentIndex()),
-            &WelcomeScreen::newDateButton_HasBeenClicked,
-            this, &MainWindow::on_newDateClick);
-    connect (m_uiLoader->getCurrentStackedScreen<WelcomeScreen>(allInterfaces->currentIndex()),
-             &WelcomeScreen::newConsultationButton_HasBeenClicked,
-             this, &MainWindow::on_newConsultationClick);
-    connect (m_uiLoader->getCurrentStackedScreen<WelcomeScreen>(allInterfaces->currentIndex()),
-             &WelcomeScreen::patientsFolderButton_HasBeenClicked,
-             this, &MainWindow::on_patientsFolderClick);
-    // ***************************************************************************************************
+    // Mise à jour de l'interface actuelle et gestion de la connection / déconnexion des widgets des interfaces
+    setNewtInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
 
     // Définition du nom de l'utilisateur actuel
     QSettings settings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), qApp->applicationName());
@@ -75,7 +63,7 @@ MainWindow::~MainWindow()
 {
     delete m_uiLoader;
     delete m_windowSize;
-    delete m_currentInterface;
+    delete allInterfaces;
     delete ui;
 }
 
@@ -93,32 +81,34 @@ void MainWindow::initStackedInterfaces()
     }
 }
 
-// FIXME modification complète => QStackedWidget
+// FIXME modification complète => utilisation d'un QStackedWidget
 // Met à jour l'interface actuelle et connecte ses éléments
 // Enregistre l'interface précédente et déconnecte ses éléments
-void MainWindow::updateCurrentInterface(const QString& requiredInterfaceName)
+void MainWindow::setNewtInterface(const QString& requiredInterfaceName)
 {
     // S'il n'y a pas de widget central, on met à jour
     // le widget central en utilisant "allInterfaces" (QStackedWidget)
     setCentralWidget(allInterfaces);
 
+    // Déconnection de l'ancienne interface
+
+    disconnectCurrentInterface(getActualInterfaceObjectName());
+
     // On cherche à obtenir l'index de l'interface demandée
     int index = getInterfaceIndex(requiredInterfaceName);
 
-    // Connection du bouton "retour" de l'interface
-    if (m_uiLoader->getCurrentStackedScreen<Screen>(index)->hasReturnButton())
-        connect (m_uiLoader->getCurrentStackedScreen<Screen>(index),
-                 &Screen::returnButtonClicked,
-                 this, &MainWindow::on_returnButtonClick);
-
     if (index == -1) // L'index retourné est -1 => l'interface n'est pas trouvée
         throw std::exception("erreur de chargement d'interface", 9);
+
 
     // Mise à jour de l'index actuel dans le QStackedWidget
     allInterfaces->setCurrentIndex(index);
 
     // Mise à jour du nom de l'interface actuelle
-    setWindowTitle(m_uiLoader->getCurrentStackedScreen<Screen>(allInterfaces->currentIndex())->getInterfaceName());
+    setWindowTitle(getActualInterfaceName());
+
+    // Connection des éléments de l'interface actuelle
+    connectCurrentInterface(requiredInterfaceName);
 }
 
 void MainWindow::changeWindowModeText()
@@ -149,6 +139,57 @@ int MainWindow::getInterfaceIndex(const QString &queriedInterfaceName)
     return -1;
 }
 
+void MainWindow::connectCurrentInterface(const QString &interfaceName)
+{
+    qDebug() << "calling Connection for " << interfaceName;
+    if (interfaceName == SharedVar::InterfaceObjectName::WelcomeScreen_obj_name)
+    {
+        connect (getActualInterface_Screen<WelcomeScreen>(),
+                &WelcomeScreen::newDateButton_HasBeenClicked,
+                this, &MainWindow::on_newDateClick);
+        connect (getActualInterface_Screen<WelcomeScreen>(),
+                 &WelcomeScreen::newConsultationButton_HasBeenClicked,
+                 this, &MainWindow::on_newConsultationClick);
+        connect (getActualInterface_Screen<WelcomeScreen>(),
+                 &WelcomeScreen::patientsFolderButton_HasBeenClicked,
+                 this, &MainWindow::on_patientsFolderClick);
+    }
+
+    // Connection du bouton "retour" de l'interface
+    if (getActualInterface_Screen<Screen>()->hasReturnButton())
+    {
+        qDebug() << "Connection of return button because this interface has one";
+        connect (getActualInterface_Screen<Screen>(),
+                 &Screen::returnButtonClicked,
+                 this, &MainWindow::on_returnButtonClick);
+    }
+    return;
+}
+
+void MainWindow::disconnectCurrentInterface(const QString &interfaceName)
+{
+    qDebug() << "calling Disconnection of " << interfaceName;
+    if (interfaceName == SharedVar::InterfaceObjectName::WelcomeScreen_obj_name)
+    {
+        disconnect (getActualInterface_Screen<WelcomeScreen>(),
+                &WelcomeScreen::newDateButton_HasBeenClicked,
+                this, &MainWindow::on_newDateClick);
+        disconnect (getActualInterface_Screen<WelcomeScreen>(),
+                 &WelcomeScreen::newConsultationButton_HasBeenClicked,
+                 this, &MainWindow::on_newConsultationClick);
+        disconnect (getActualInterface_Screen<WelcomeScreen>(),
+                 &WelcomeScreen::patientsFolderButton_HasBeenClicked,
+                 this, &MainWindow::on_patientsFolderClick);
+    }
+    // Connection du bouton "retour" de l'interface
+    if (getActualInterface_Screen<Screen>()->hasReturnButton())
+    {
+        qDebug() << "Disonnection of return button because this interface HAD one";
+        disconnect (getActualInterface_Screen<Screen>(),
+                 &Screen::returnButtonClicked,
+                 this, &MainWindow::on_returnButtonClick);
+    }
+}
 
 // Fonctions protégées ****************************************************************************
 
@@ -206,38 +247,31 @@ void MainWindow::quitValidating()
     }
 }
 
-// Slots d'interaction avec l'utilisateur ****************************************
+// Slots d'interraction avec l'utilisateur ****************************************
 
 // clique sur 'patientsFolder_PB'
 void MainWindow::on_patientsFolderClick()
 {
     // Changement de l'interface
-    updateCurrentInterface(SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name);
+    setNewtInterface(SharedVar::InterfaceObjectName::PatientMedicalFolder_obj_name);
 }
 
 // Clique sur 'newConsultation_PB'
 void MainWindow::on_newConsultationClick()
 {
     // Changement de l'interface
-    updateCurrentInterface(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
+    setNewtInterface(SharedVar::InterfaceObjectName::SelectPatientScreen_obj_name);
 }
 
 // Clique sur 'newDate_PB'
 void MainWindow::on_newDateClick()
 {
-    qDebug() << "signal signal";
-    updateCurrentInterface(SharedVar::InterfaceObjectName::CreateNewDate_obj_name);
+    setNewtInterface(SharedVar::InterfaceObjectName::CreateNewDate_obj_name);
 }
 
 // Clique sur 'returnButton'
 void MainWindow::on_returnButtonClick()
 {
     // on change l'interface
-    updateCurrentInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
-}
-
-// test
-void MainWindow::goBack()
-{
-    allInterfaces->setCurrentIndex(0);
+    setNewtInterface(SharedVar::InterfaceObjectName::WelcomeScreen_obj_name);
 }

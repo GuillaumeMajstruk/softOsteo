@@ -22,22 +22,7 @@ using SharedVar::Debug::log_d;
 
 // Constructeur / destructeur ***************************************************************************
 
-dataBase::dataBase() {}
-
-dataBase::dataBase(const QString &dataBaseName, const QString &dataBaseUserName, const QString &dataBasePassword)
-{
-    m_db = QSqlDatabase::addDatabase("QSQLITE");
-    m_dbConnectionOptions = dbConnectionOptions();
-    m_dbConnectionOptions.m_dbUserName = dataBaseUserName;
-    m_dbConnectionOptions.m_dbName =  dataBaseName;
-    m_dbConnectionOptions.m_dbPass = dataBasePassword;
-
-    m_dbConnectionOptions.setConnectionOptionsToDataBase(this);
-
-    log_d (m_dbConnectionOptions.getConnectionInformations());
-
-    checkConnectionToDatabase();
-}
+dataBase::dataBase() {  m_db = QSqlDatabase::addDatabase("QSQLITE"); }
 
 // Fonctions privées ************************************************************************************
 
@@ -57,19 +42,9 @@ bool dataBase::checkConnectionToDatabase()
     {
         msgBox::information(NULL,
                                   Message::MsgBoxTitle::title_ConnectionToDataBase_Ok,
-                                  Message::MsgBoxContent::content_DatabaseConnectionOk);
+                                 QString(Message::MsgBoxContent::content_DatabaseConnectionOk).arg(m_db.databaseName()));
         isConnected = true;
     }
     log_d(static_cast<int>(isConnected));
     return isConnected;
-}
-
-
-// databaseConnectionOptions struct function definition *************************************************
-
-void dataBaseConnectionOptions::setConnectionOptionsToDataBase(dataBase *a_dataBase)
-{
-    a_dataBase->m_db.setDatabaseName(m_dbName);
-    a_dataBase->m_db.setUserName(m_dbUserName);
-    a_dataBase->m_db.setPassword(m_dbPass);
 }

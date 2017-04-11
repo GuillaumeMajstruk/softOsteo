@@ -53,13 +53,17 @@ public: // Constructeur / destructeur ******************************************
     // Fonctions publiques **********************************************************
 
     // retourne le nom de l'interface actuelle
-    QString getActualInterfaceName() const { return m_currentInterface->getInterfaceName(); }
+    QString getActualInterfaceName() const { return m_uiLoader->getCurrentStackedScreen<Screen>(allInterfaces->currentIndex())->getInterfaceName(); }
 
     // retourne le nom de l'objet interface actuel
-    QString getActualInterfaceObjectName() const { return m_currentInterface->getInterfaceObjectName(); }
+    QString getActualInterfaceObjectName() const { return m_uiLoader->getCurrentStackedScreen<Screen>(allInterfaces->currentIndex())->getInterfaceObjectName(); }
 
     //  retourne l'objet interface acuelle (m_currentInterface)
-    QWidget* getActualInterface() const { return m_currentInterface->getInterfaceWidget(); }
+    QWidget* getActualInterface_Widget() const { return m_uiLoader->getCurrentStackedScreen<Screen>(allInterfaces->currentIndex())->getInterfaceWidget(); }
+
+    // retourne l'objet de type "screen"
+    template <class T>
+    T* getActualInterface_Screen() const { return m_uiLoader->getCurrentStackedScreen<T>(allInterfaces->currentIndex()); }
 
 private: // Attributs privées ***************************************************************************
 
@@ -78,14 +82,6 @@ private: // Attributs privées *************************************************
                                             SharedVar::Screen::defaultScreenSizeWindowed().height
                                         );
 
-    // Interface utilisateur actuelle (utilisée en tant que widget dans la fenêtre principale)
-    // appelle le constructeur de Qwidget->Screen->WelcomeScreen
-    Screen * m_currentInterface = nullptr;
-
-    // quand l'interface change, on garde en mémoire l'interface précédente pour pouvoir faire un
-    // retour
-    Screen * m_previousInterface = nullptr;
-
     // Toutes les interfaces sont dans un stacked widget de telle sorte que l'on puisse changer
     // d'interface directement depuis cet objet
     QStackedWidget * allInterfaces = nullptr;
@@ -96,7 +92,7 @@ private: // Fonctions privées *************************************************
     void initStackedInterfaces ();
 
     // Défini l'interface utilisateur actuellement utilisée
-    void updateCurrentInterface (const QString& requiredInterfaceName);
+    void setNewtInterface (const QString& requiredInterfaceName);
 
     // change le message de l'action de mode de fenêtre
     void changeWindowModeText();
@@ -106,6 +102,13 @@ private: // Fonctions privées *************************************************
 
     // Retourne l'index d'une interface en fonction de son nom
     int getInterfaceIndex (const QString& interfaceName);
+
+    // Connecte les éléments de l'interface graphique voulue
+    // en fonction de son nom
+    void connectCurrentInterface (const QString& interfaceName);
+
+    // Déconnecte les éléments de l'interface précédente
+    void disconnectCurrentInterface (const QString& interfaceName);
 
 protected: // Fonctions protégées ************************************************************
 
@@ -122,15 +125,12 @@ private slots: // Slots privés ************************************************
 
 private slots: // Slots de dialogue entre cette classe (MainWindow) et les autres interfaces
 
+
     // Redirige vers l'interface "dossiers des patients"
     void on_patientsFolderClick();
 
     // Redirige vers l'interface "Nouvelle consultation"
     void on_newConsultationClick();
-
-// WARNING (fonction de test)
-    // Fonction de test
-    void goBack();
 
 //      TODO: a créer ************************
 //    void on_managementClick();

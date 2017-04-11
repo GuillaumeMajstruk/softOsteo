@@ -55,7 +55,7 @@ ConnectionDialog::ConnectionDialog(QWidget *parent) :
 ConnectionDialog::~ConnectionDialog()
 {
     delete ui;
-    connection_db->getDataBaseConnection().close();
+    connection_db->getDatabaseConnection().close();
 }
 
 
@@ -77,7 +77,7 @@ void ConnectionDialog::updateEnteredIds()
 bool ConnectionDialog::compareEnteredIds()
 {
     // Création du la requête de connection de la base de données qui contient les identifiants de connection
-    QSqlQuery connectionQuery (connection_db->getDataBaseConnection());
+    QSqlQuery connectionQuery (connection_db->getDatabaseConnection());
 
     // Demande dans la table à accéder aux champs username et password
     if (!connectionQuery.exec("SELECT Username, password FROM users"))
@@ -124,7 +124,7 @@ void ConnectionDialog::checkConnectionIds()
         QSettings settings(QSettings::IniFormat, QSettings::UserScope, qApp->organizationName(), qApp->applicationName());
         qDebug() << enteredUsername;
         settings.setValue("connection/UserId", enteredUsername);
-        // ////////////////////////////////////////////////
+        // *****************************************************
         msgBox::information(NULL,
                                  Message::MsgBoxTitle::title_Connection_Ok,
                                  QString(Message::MsgBoxContent::content_Connection_Ok).arg(enteredUsername));

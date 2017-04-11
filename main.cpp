@@ -21,26 +21,28 @@
 
 #include "UserInterface/UserInterfaceSourcesFiles/mainwindow.hpp"
 #include "UserInterface/ConnectionScreen/connectiondialog.h"
-#include "DataBase/database.h"
+#include "DataBase/patientdatabase.hpp"
 
 #include <memory>
 
 int main(int argc, char *argv[])
 {
-    QApplication *app = new QApplication (argc, argv);    
+    QApplication app (argc, argv);
 
     // Ajout des caractéristiques système
-    app->setOrganizationName("MjkCorp");
-    app->setOrganizationDomain("MjkCorp.fr");
-    app->setApplicationName("softOsteo");
+    app.setOrganizationName("MjkCorp");
+    app.setOrganizationDomain("MjkCorp.fr");
+    app.setApplicationName("softOsteo");
 
 // WARNING SANS CONNECTION
     // Création puis gestion de la connection à l'application
-    //ConnectionDialog *d = new ConnectionDialog(NULL);
-    //d->exec();
+//    ConnectionDialog *d = new ConnectionDialog(NULL);
+//    d->exec();
+
+    patientDatabase *pdb = new patientDatabase;
 
     MainWindow *mainWindow =  new MainWindow;
     mainWindow ->show();
 
-    return app->exec();
+    return app.exec();
 }

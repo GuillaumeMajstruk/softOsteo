@@ -22,24 +22,25 @@
 // Constructeur / destructeur ********************************************************************************
 connectionDataBase::connectionDataBase()
 {
+
     // Connection à la base de donnée de connection
-    m_db = QSqlDatabase::addDatabase("QSQLITE");
+    //m_db = QSqlDatabase::addDatabase("QSQLITE");
 
 #ifdef Q_OS_WIN
-    m_db.setDatabaseName("F:/Programmes/Programme_Alisson/ConnectionDataBase/connectionDB.db");
+    getDatabaseConnection().setDatabaseName("F:/Programmes/Programme_Alisson/ConnectionDataBase/connectionDB.db");
 #else
     m_db.setDatabaseName("/Users/Guillaume/softOsteo/ConnectionDataBase/connectionDB.db");
 #endif
 
-    m_db.setPassword("1234");
+    getDatabaseConnection().setPassword("1234");
 
 
     // vérification que la connection à pue être établie
     checkConnectionToDatabase();
 
-    QSqlQuery query(m_db);
+    QSqlQuery query(getDatabaseConnection());
 
-    if (!query.exec("CREATE TABLE IF NOT EXISTS 'users' ('Username' TEXT PRIMARY KEY, 'Password' TEXT )"))
+    if (!query.exec("CREATE TABLE IF NOT EXISTS users (Username TEXT PRIMARY KEY, Password TEXT )"))
         QMessageBox::warning(NULL, "error", query.lastError().text());
 
     insert("Guillaume", "030893Guigui");
@@ -50,7 +51,7 @@ connectionDataBase::connectionDataBase()
 
 void connectionDataBase::insert(const QString &userName, const QString &password)
 {
-    QSqlQuery query (m_db);
+    QSqlQuery query (getDatabaseConnection());
 
 
     // Insère dans la base de donnée ce qui à été hashé pour les stocker

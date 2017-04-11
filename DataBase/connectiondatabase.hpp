@@ -19,8 +19,6 @@
 #ifndef CONNECTIONDATABASE_HPP
 #define CONNECTIONDATABASE_HPP
 
-#include <QSqlQuery>
-#include <QString>
 #include <QByteArray>
 
 #include "database.h"
@@ -36,11 +34,6 @@ class connectionDataBase: public dataBase
 public: // Constructeur / destructeur *************************************************************************
 
     connectionDataBase();
-
-public: // Fonctions publiques ********************************************************************************
-
-    // Retourne la connection à la base de données
-    QSqlDatabase getDataBaseConnection () const { return m_db; }
 
 private: // Fonctions privées *********************************************************************************
 

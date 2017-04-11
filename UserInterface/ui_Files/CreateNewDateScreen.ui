@@ -68,7 +68,7 @@
         <string>Retour à la page précédente</string>
        </property>
        <property name="text">
-        <string>Annuler/retour</string>
+        <string>Retour</string>
        </property>
       </widget>
      </item>
