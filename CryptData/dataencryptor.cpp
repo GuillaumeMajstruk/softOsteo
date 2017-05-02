@@ -24,11 +24,11 @@ dataEncryptor::dataEncryptor() {}
 
 // Fonctions publiques **********************************************************
 
-QString dataEncryptor::encrypt(const QString &strToEncrypt)
+string dataEncryptor::encrypt(const string &strToEncrypt)
 {
-    QString minimizedStr = strToEncrypt.toLower();
-    QString cryptedStr;
-    for (QString::const_iterator i = minimizedStr.begin(); i != minimizedStr.end(); ++i)
+    string minimizedStr = strToEncrypt.toLower();
+    string cryptedStr;
+    for (string::const_iterator i = minimizedStr.begin(); i != minimizedStr.end(); ++i)
     {
         QChar crypted;
 
@@ -55,13 +55,13 @@ QString dataEncryptor::encrypt(const QString &strToEncrypt)
 
 
     if (strToCryptNotEmpty(cryptedStr)) return cryptedStr;
-    else return QString("erreur la chaine est vide !");
+    else return string("erreur la chaine est vide !");
 }
 
-QString dataEncryptor::decrypt(const QString &strToDecrypt)
+string dataEncryptor::decrypt(const string &strToDecrypt)
 {
-    QString decryptedStr;
-    for (QString::const_iterator i = strToDecrypt.begin(); i != strToDecrypt.end(); ++i)
+    string decryptedStr;
+    for (string::const_iterator i = strToDecrypt.begin(); i != strToDecrypt.end(); ++i)
     {
         QChar decrypted;
         // Si le char est une lettre
@@ -83,21 +83,21 @@ QString dataEncryptor::decrypt(const QString &strToDecrypt)
     }
 
     if (strToCryptNotEmpty(decryptedStr)) return decryptedStr;
-    else return QString("erreur la chaine est vide !");
+    else return string("erreur la chaine est vide !");
 }
 // Fonctions privées ************************************************************
 
-QString dataEncryptor::hashIt_SHA256(const QString& strToHash)
+string dataEncryptor::hashIt_SHA256(const string& strToHash)
 {
     return QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Sha256).toHex();
 }
 
-QString dataEncryptor::hashIt_MD5(const QString &strToHash)
+string dataEncryptor::hashIt_MD5(const string &strToHash)
 {
     return QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Md5).toHex();
 }
 
-bool dataEncryptor::strToCryptNotEmpty(const QString &strToCrypt)
+bool dataEncryptor::strToCryptNotEmpty(const string &strToCrypt)
 {
     int charNumerator = 0;
     for (int it = 0; it < strToCrypt.size(); ++it)

@@ -39,11 +39,11 @@ WelcomeScreen::WelcomeScreen(Screen *parent):
     initWidgetList();
 
     // connection des signaux/slots des boutons de cette interface
-    connect (dynamic_cast<pushButton*>(getWidget("bills_PB")), &pushButton::clicked, this, &WelcomeScreen::billButton_clicked);
-    connect (dynamic_cast<pushButton*>(getWidget("management_PB")), &pushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
-    connect (dynamic_cast<pushButton*>(getWidget("newConsultation_PB")), &pushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
-    connect (dynamic_cast<pushButton*>(getWidget("newDate_PB")), &pushButton::clicked, this, &WelcomeScreen::newDateButton_clicked);
-    connect (dynamic_cast<pushButton*>(getWidget("patientsFolder_PB")), &pushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
+    connect (as<pushButton*>(getWidget("bills_PB")), &pushButton::clicked, this, &WelcomeScreen::billButton_clicked);
+    connect (as<pushButton*>(getWidget("management_PB")), &pushButton::clicked, this, &WelcomeScreen::managementButton_clicked);
+    connect (as<pushButton*>(getWidget("newConsultation_PB")), &pushButton::clicked, this, &WelcomeScreen::newConsultationButton_clicked);
+    connect (as<pushButton*>(getWidget("newDate_PB")), &pushButton::clicked, this, &WelcomeScreen::newDateButton_clicked);
+    connect (as<pushButton*>(getWidget("patientsFolder_PB")), &pushButton::clicked, this, &WelcomeScreen::patientsFolderButton_clicked);
 
 
     // debug

@@ -39,7 +39,7 @@ PatientMedicalFolderScreen::PatientMedicalFolderScreen(Screen *parent):
 
     // Connection du bouton "retour"
     if (hasReturnButton())
-        connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
+        connect (as<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
 
     showThisInterfaceCaracteristics();
 

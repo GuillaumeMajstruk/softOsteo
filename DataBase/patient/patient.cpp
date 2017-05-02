@@ -16,24 +16,28 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef PATIENTMEDICALFOLDERSCREEN_HPP
-#define PATIENTMEDICALFOLDERSCREEN_HPP
+#include "patient.hpp"
 
-#include "UserInterface/userinterfaceloader.hpp"
-#include "typedefs.hpp"
-
-// Dans cette interface, les informations d'un patient sont chargés depuis la base de donnée
-// et sont interprétés en tant que labels
-
-class PatientMedicalFolderScreen : public Screen
+Patient::Patient(string name, string surname, string job, string phone, string email, string currentMedic, string hobbies, string postalCode, string cityName, string streetAndNum, string socialSecurityNum,
+                 Familial_Status fStatus, Patient_Sex sex, int childNum):
+    p_Name(name),
+    p_Surname (surname),
+    p_Job (job),
+    p_Email (email),
+    p_CurrentMedic (currentMedic),
+    p_Hobbies (hobbies),
+    p_PostalCodeAddr (postalCode),
+    p_CityNameAddr (cityName),
+    p_StreetAndNumAddr (streetAndNum),
+    p_SocialSecurityNumber (socialSecurityNum),
+    p_FamilialStatus (fStatus),
+    p_Sex (sex),
+    p_ChildrenNumber (childNum)
 {
-    Q_OBJECT
 
-public: // Constructeur / destructeur ***********************
+}
 
-    explicit PatientMedicalFolderScreen(Screen * parent = 0);
-    virtual ~PatientMedicalFolderScreen();
-
-};
-
-#endif // PATIENTMEDICALFOLDERSCREEN_HPP
+bool Patient::checkInput()
+{
+    return false;
+}

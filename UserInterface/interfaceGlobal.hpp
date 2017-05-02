@@ -20,8 +20,9 @@
 #define INTERFACEGLOBAL_HPP
 
 #include <QtGui>
-#include <QString>
 #include <QSize>
+
+#include "typedefs.hpp"
 
 #include <memory>
 
@@ -43,7 +44,7 @@ namespace SharedVar
     // Contient les chemins d'accés de certaines ressources
     namespace Path
     {
-        static const QString resourcesUiFilesRoot = ":/form/UserInterface/ui_Files/";
+        static const string resourcesUiFilesRoot = ":/form/UserInterface/ui_Files/";
     }
 
     // Contient les noms des différentes objets interfaces
@@ -74,7 +75,6 @@ namespace SharedVar
         {
             qDebug() << dataToDebugStream;
         }
-
     }
 
     // Contient les éléments relatifs à l'écran

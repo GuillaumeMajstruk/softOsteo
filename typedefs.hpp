@@ -28,10 +28,16 @@ class QPlainTextEdit;
 class QDialog;
 class QLabel;
 class QListWidget;
+class QListWidgetItem;
 class QComboBox;
 class QSpinBox;
 class QCheckBox;
 class QCalendarWidget;
+class QWidget;
+
+class QString;
+class QStringList;
+
 
 // Ce fichier contient des typedefs qui m'évitent à avoir à taper les
 // noms entiers des objets de type widgets de QT
@@ -41,12 +47,17 @@ typedef QLineEdit           lineEdit;
 typedef QPlainTextEdit      plainTextEdit;
 typedef QLabel              label;
 typedef QListWidget         listWidget;
+typedef QListWidgetItem     listItem;
 typedef QComboBox           comboBox;
 typedef QSpinBox            spinBox;
 typedef QCheckBox           checkBox;
 typedef QCalendarWidget     calendar;
+typedef QWidget             Widget;
 
 typedef QDialog             dialog;
 typedef QMessageBox         msgBox;
+
+typedef QString             string;
+typedef QStringList         stringList;
 
 #endif // TYPEDEFS_H

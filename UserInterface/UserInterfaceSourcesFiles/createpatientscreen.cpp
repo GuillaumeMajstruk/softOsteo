@@ -39,12 +39,13 @@ CreatePatientScreen::CreatePatientScreen(Screen *parent):
     initWidgetList();
 
     // Connection des éléments de l'interface
-    connect (dynamic_cast<lineEdit*>(getWidget("patientName_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
-    connect (dynamic_cast<lineEdit*>(getWidget("patientSurname_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
+    connect (as<lineEdit*>(getWidget("patientName_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
+    connect (as<lineEdit*>(getWidget("patientSurname_LE")), &lineEdit::textEdited, this, &CreatePatientScreen::updateSaveInformationText);
+    connect (as<pushButton*>(getWidget("savePatientFolder_PB")), &pushButton::clicked, this, &CreatePatientScreen::on_savePatientFolder_click);
 
-    // Connection du bouton "retour"
     if (hasReturnButton())
-        connect (dynamic_cast<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
+        connect (as<pushButton*>(getWidget("return_PB")), &pushButton::clicked, this, &Screen::returnButtonClicked);
+
 
     // debug
     showThisInterfaceCaracteristics();
@@ -60,10 +61,16 @@ CreatePatientScreen::~CreatePatientScreen()
 
 void CreatePatientScreen::updateSaveInformationText()
 {
-    if (!dynamic_cast<pushButton*>(getWidget("savePatientFolder_PB"))->isEnabled())
-        dynamic_cast<pushButton*>(getWidget("savePatientFolder_PB"))->setEnabled(true);
-    dynamic_cast<pushButton*>(getWidget("savePatientFolder_PB"))->setText("Enregistrer le dossier de " +
-                                                                          dynamic_cast<lineEdit*>(getWidget("patientName_LE"))->text() +
+    if (!as<pushButton*>(getWidget("savePatientFolder_PB"))->isEnabled())
+        as<pushButton*>(getWidget("savePatientFolder_PB"))->setEnabled(true);
+    as<pushButton*>(getWidget("savePatientFolder_PB"))->setText("Enregistrer le dossier de " +
+                                                                          as<lineEdit*>(getWidget("patientName_LE"))->text() +
                                                                           " " +
-                                                                          dynamic_cast<lineEdit*>(getWidget("patientSurname_LE"))->text());
+                                                                          as<lineEdit*>(getWidget("patientSurname_LE"))->text());
+}
+
+void CreatePatientScreen::on_savePatientFolder_click()
+{
+    qDebug() << "savepatientFolder clicked";
+    emit savePatientFolder_hasBeenClicked();
 }

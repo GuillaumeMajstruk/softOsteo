@@ -19,14 +19,6 @@
 #ifndef CREATEPATIENTSCREEN_H
 #define CREATEPATIENTSCREEN_H
 
-#include <QWidget>
-#include <QTabWidget>
-#include <QPushButton>
-#include <QLineEdit>
-
-#include <QList>
-#include <exception>
-
 #include "UserInterface/userinterfaceloader.hpp"
 #include "typedefs.hpp"
 
@@ -40,10 +32,17 @@ public: // Constructeur / destructeur **********************
     explicit CreatePatientScreen(Screen *parent = 0);
     virtual ~CreatePatientScreen();
 
+signals:
+
+    void savePatientFolder_hasBeenClicked();
+
 private slots: // Slots privés *****************************
 
     // Mise à jour du texte du bouton "enregistrer le dossier"
     void updateSaveInformationText();
+
+    // Clique sur 'enregistrer le dossier patient'
+    void on_savePatientFolder_click();
 };
 
 #endif // CREATEPATIENTSCREEN_H

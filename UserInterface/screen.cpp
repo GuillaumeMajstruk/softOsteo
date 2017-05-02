@@ -36,7 +36,7 @@
     void Screen::setInterfaceName(const char *name)
     {
            tr(name);
-           m_interfaceName = QString::fromUtf8(name);
+           m_interfaceName = string::fromUtf8(name);
     }
 
     void Screen::setInterfaceObjectName(const char *uiName)
@@ -70,7 +70,7 @@
         }
     }
 
-    QWidget* Screen::getWidget(const QString &widgetName)
+    QWidget* Screen::getWidget(const string &widgetName)
     {
         QWidget* tempWidget = new QWidget;
         for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
@@ -88,6 +88,18 @@
         {
             if (thisInterfaceWidgetContainer[i]->objectName() == "return_PB")
             {                
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool Screen::hasListWidget()
+    {
+        for (int i = 0; i < thisInterfaceWidgetContainer.size(); ++i)
+        {
+            if (thisInterfaceWidgetContainer[i]->objectName().contains("patientList_LST"))
+            {
                 return true;
             }
         }

@@ -49,7 +49,7 @@ public: // Constructeur / destructeur ******************************************
 public: // Fonctions publiques *******************************************************************************
 
     template <typename T>
-    T * loadUi(const QString& uiToLoadName)
+    T * loadUi(const string& uiToLoadName)
     {
         // Est-ce que le nom d'interface correspond bien à un fichier d'interface .ui ?
             QFile _interface (SharedVar::Path::resourcesUiFilesRoot + uiToLoadName + ".ui");
@@ -60,7 +60,7 @@ public: // Fonctions publiques *************************************************
 
             // création du widget interface "ui" en fonction du fichier *.ui
             QWidget * loadedInterface = load(&_interface);
-            T * castedInterface = static_cast<T*>(loadedInterface);
+            T * castedInterface = as<T*>(loadedInterface);
 
             // le fichier est-il chargé correctement ?
             if (!castedInterface)
@@ -79,7 +79,7 @@ public: // Fonctions publiques *************************************************
     template <typename T>
     T * getCurrentStackedScreen (const int& currentIndex)
     {
-        return dynamic_cast<T*>(m_allInterfaceVector[currentIndex]);
+        return as<T*>(m_allInterfaceVector[currentIndex]);
     }
 
 public: // Attributs publiques *******************************************************************************

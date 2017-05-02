@@ -87,8 +87,8 @@ bool ConnectionDialog::compareEnteredIds()
     while (connectionQuery.next())
     {
         // Pour chaque ligne on stock les informations recontrées
-        QString usrNme = connectionQuery.value(0).toString();
-        QString pwd = connectionQuery.value(1).toString();
+        string usrNme = connectionQuery.value(0).toString();
+        string pwd = connectionQuery.value(1).toString();
 
         // Puis on compare la valeur hashé de ce qui est entré avec ce qui est stocké dans la base de données
         if (usrNme == connectionDataBase::hashWithoutSalt(enteredUsername)
@@ -127,7 +127,7 @@ void ConnectionDialog::checkConnectionIds()
         // *****************************************************
         msgBox::information(NULL,
                                  Message::MsgBoxTitle::title_Connection_Ok,
-                                 QString(Message::MsgBoxContent::content_Connection_Ok).arg(enteredUsername));
+                                 string(Message::MsgBoxContent::content_Connection_Ok).arg(enteredUsername));
         isConnected = true;
 
         close();

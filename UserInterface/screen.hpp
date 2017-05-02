@@ -26,16 +26,23 @@
 // ////////////////////////////////////////////////////////////////
 
 #include <QWidget>
-#include <QList>
-#include <QString>
-#include <QStringList>
-#include <QMap>
-#include <exception>
-#include <QDebug>
+#include <QTabWidget>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
+#include <QListWidget>
+#include <QPalette>
 
+#include <QList>
+#include <QMap>
+
+#include <exception>
 #include <iomanip>
 #include <assert.h>
 
+#include "typedefs.hpp"
+
+#include <QDebug>
 
 class MainWindow;
 
@@ -59,10 +66,10 @@ public: // Fonction publiques **************************************************
     virtual QWidget* getInterfaceWidget() const { return m_interface; }
 
     // Retourne le nom de l'interface
-    virtual QString  getInterfaceName() const { return m_interfaceName; }
+    virtual string  getInterfaceName() const { return m_interfaceName; }
 
     // Retourne le nom de l'objet interface
-    virtual QString getInterfaceObjectName() const { return m_objectInterfaceName; }
+    virtual string getInterfaceObjectName() const { return m_objectInterfaceName; }
 
     // Défini le nom de l'interface
     virtual void setInterfaceName (const char* name);
@@ -79,10 +86,10 @@ protected: // Attributs protégés *********************************************
     QWidget * m_interface = nullptr;
 
     // Nom de l'interface
-    QString m_interfaceName;
+    string m_interfaceName;
 
     // Nom de l'objet interface
-    QString m_objectInterfaceName;
+    string m_objectInterfaceName;
 
     // Le conteneur de tous mes éléments graphiques
     // actionnable par l'utilisateur (ex: QPushButton ...)
@@ -96,14 +103,18 @@ protected: // Fonctions protégées ********************************************
 
     // Permet d'acceder à un widget de la liste des widget
     // de l'interface depuis laquelle elle est appellée
-    virtual QWidget * getWidget (const QString& widgetName);
+    virtual QWidget * getWidget (const string& widgetName);
 
     // Fonction pour vérifier que cette interface contient un bouton "retour"
     bool hasReturnButton ();
 
+    // Fonction pour vérifier que cette interface contient une liste des
+    // patients à charger depuis la base de données patient
+    bool hasListWidget();
+
 private: // Attributs privés *****************************************************************
 
-    const QStringList widgetCodes
+    const stringList widgetCodes
     {
         "PB",           // pushButton
         "LE",           // lineEdit

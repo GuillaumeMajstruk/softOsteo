@@ -19,9 +19,6 @@
 #ifndef CREATENEWDATE_HPP
 #define CREATENEWDATE_HPP
 
-#include <QWidget>
-#include <QDebug>
-
 #include "UserInterface/userinterfaceloader.hpp"
 #include "typedefs.hpp"
 

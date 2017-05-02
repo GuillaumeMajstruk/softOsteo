@@ -19,7 +19,7 @@
 #ifndef CONNECTIONDIALOG_H
 #define CONNECTIONDIALOG_H
 
-#include <QString>
+#include <string>
 #include <QInputEvent>
 #include <QDir>
 #include <QSettings>
@@ -53,9 +53,9 @@ private: // Attributs privés *************************************************
     connectionDataBase *connection_db = Q_NULLPTR;
 
     // Correspond à ce qu'il y a dans UsernameTexte.
-    QString enteredUsername;
+    string enteredUsername;
     // Correspond à ce qu'il y a dans PasswordTexte.
-    QString enteredPass;
+    string enteredPass;
 
 
     // Si la fonction 'compareEnteredIds' revoie vrai => isConnected = true.

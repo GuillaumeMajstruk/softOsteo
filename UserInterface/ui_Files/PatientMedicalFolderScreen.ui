@@ -141,7 +141,7 @@
    <item row="2" column="0">
     <widget class="QTabWidget" name="informationTabs">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
@@ -150,6 +150,27 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
         <layout class="QGridLayout" name="generalTabLayout">
+         <item row="8" column="1">
+          <widget class="QLabel" name="patientCurrentMedic_INFO">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLabel" name="patientHobbies_INFO">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="patientSurname">
+           <property name="text">
+            <string>Prénom du patient:</string>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="1">
           <widget class="QLabel" name="patientSurname_INFO">
            <property name="text">
@@ -164,24 +185,13 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="patientSurname">
+         <item row="6" column="0">
+          <widget class="QLabel" name="patientFamilialStatus">
            <property name="text">
-            <string>Prénom du patient:</string>
+            <string>Situation Familiale:</string>
            </property>
-          </widget>
-         </item>
-         <item row="9" column="1">
-          <widget class="QLabel" name="patientHobbies_INFO">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <widget class="QLabel" name="patientCurrentMedic_INFO">
-           <property name="text">
-            <string/>
+           <property name="buddy">
+            <cstring>patientFamilialStatus_CB</cstring>
            </property>
           </widget>
          </item>
@@ -206,20 +216,6 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="patientFamilialStatus">
-           <property name="text">
-            <string>Situation Familiale:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="patientName">
-           <property name="text">
-            <string>Nom de famille du patient:</string>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="0">
           <widget class="QLabel" name="patientPhoneNumber">
            <property name="text">
@@ -233,6 +229,40 @@
             <string>Adresse du patient:</string>
            </property>
           </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="patientName">
+           <property name="text">
+            <string>Nom de famille du patient:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="patientEmail">
+           <property name="text">
+            <string>Adresse Email du patient:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="patientHobbies">
+           <property name="text">
+            <string>Loisir(s) pratiqué(s): </string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="1">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item row="6" column="1">
           <layout class="QGridLayout" name="familialStatusLayout">
@@ -293,37 +323,17 @@
            </item>
           </layout>
          </item>
-         <item row="10" column="1">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="patientEmail">
-           <property name="text">
-            <string>Adresse Email du patient:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="0">
-          <widget class="QLabel" name="patientHobbies">
-           <property name="text">
-            <string>Loisir(s) pratiqué(s): </string>
-           </property>
-          </widget>
-         </item>
          <item row="8" column="0">
           <widget class="QLabel" name="patientCurrentMedic">
            <property name="text">
             <string>Médecin traitant:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLabel" name="patientJob_INFO">
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -373,17 +383,13 @@
            </item>
           </layout>
          </item>
-         <item row="7" column="1">
-          <widget class="QLabel" name="patientJob_INFO">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="patientSex">
            <property name="text">
             <string>Sexe du patient: </string>
+           </property>
+           <property name="buddy">
+            <cstring>patientSex_CB</cstring>
            </property>
           </widget>
          </item>
@@ -405,6 +411,20 @@
              <string>Femme</string>
             </property>
            </item>
+          </widget>
+         </item>
+         <item row="10" column="0">
+          <widget class="QLabel" name="patientSocialSecurityNumber">
+           <property name="text">
+            <string>Numéro de sécurité sociale:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="1">
+          <widget class="QLabel" name="patientSocialSecurityNumber_INFO">
+           <property name="text">
+            <string/>
+           </property>
           </widget>
          </item>
         </layout>
@@ -470,9 +490,6 @@
             <widget class="QLabel" name="orthoTraumatoRhumato">
              <property name="text">
               <string>Ortholo-traumatologie / Rhumatologie: </string>
-             </property>
-             <property name="buddy">
-              <cstring>orthoTraumatoRhumato_PTE</cstring>
              </property>
             </widget>
            </item>
@@ -600,6 +617,27 @@
             </widget>
            </item>
           </layout>
+          <zorder>ophtalmo</zorder>
+          <zorder>occlusal</zorder>
+          <zorder>uroGyneco</zorder>
+          <zorder>pyscho</zorder>
+          <zorder>orl</zorder>
+          <zorder>orthoTraumatoRhumato</zorder>
+          <zorder>digest</zorder>
+          <zorder>cardioPneumo</zorder>
+          <zorder>endocrino</zorder>
+          <zorder>neuro</zorder>
+          <zorder>allergoDermato</zorder>
+          <zorder>uroGyneco_INFO</zorder>
+          <zorder>endocrino_INFO</zorder>
+          <zorder>digest_INFO</zorder>
+          <zorder>orl_INFO</zorder>
+          <zorder>neuro_INFO</zorder>
+          <zorder>psycho_INFO</zorder>
+          <zorder>ophtalmo_INFO</zorder>
+          <zorder>occlusal_INFO</zorder>
+          <zorder>orthoTraumatoRhumato_INFO</zorder>
+          <zorder>allergoDermato_INFO</zorder>
          </widget>
         </widget>
        </item>

@@ -22,7 +22,9 @@
 
 #include <QCryptographicHash>
 #include <QByteArray>
-#include <QString>
+
+#include "typedefs.hpp"
+
 #include <QDebug>
 #include <QChar>
 
@@ -55,10 +57,10 @@ public: // Constructeur ********************************************************
 public: // Fonctions publiques **********************************************************
 
     // une fonction pour crypter des chaines de caractères
-    static QString encrypt (const QString& strToEncrypt);
+    static string encrypt (const string& strToEncrypt);
 
     // fonction de décryptage de la fonction précédente
-    static QString decrypt (const QString& strToDecrypt);
+    static string decrypt (const string& strToDecrypt);
 
 private: // fonctions privées ***********************************************************
 
@@ -74,15 +76,15 @@ private: // fonctions privées *************************************************
 
     // Retourne le résultat du hash avec la méthode sha256 de la chaine passée en paramètre
     // sous la forme d'une chaine de caractères
-    static QString hashIt_SHA256 (const QString& strToHash);
+    static string hashIt_SHA256 (const string& strToHash);
 
     // Pareil que la fonction hashIt_SHA256 mais en utilisant la méthode md5
-    static QString hashIt_MD5(const QString& strToHash);
+    static string hashIt_MD5(const string& strToHash);
 
     // Vérifie que la chaine de caractères à crypter n'est pas vide
     // sachant que l'on considère qu'elle est vide si elle n'est composée
     // que d'espace(s)
-    static bool strToCryptNotEmpty (const QString& strToCrypt);
+    static bool strToCryptNotEmpty (const string& strToCrypt);
 
 };
 

@@ -28,7 +28,7 @@
        <item>
         <widget class="QLineEdit" name="searchPatient_LE">
          <property name="text">
-          <string>Entrez le nom d'un patient à rechercher dans ce champs</string>
+          <string>Nom / Prénom</string>
          </property>
         </widget>
        </item>

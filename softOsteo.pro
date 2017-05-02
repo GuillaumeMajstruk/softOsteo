@@ -1,7 +1,8 @@
 CONFIG += c++14
-CONFIG += console
 
 QT += widgets gui core uitools sql
+
+QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-variable
 
 HEADERS += \
     Messages/messages.hpp \
@@ -19,7 +20,9 @@ HEADERS += \
     typedefs.hpp \
     UserInterface/UserInterfaceSourcesFiles/createnewdate.hpp \
     UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.hpp \
-    DataBase/patientdatabase.hpp
+    DataBase/databasestatements.hpp \
+    DataBase/patient/patientdatabase.hpp \
+    DataBase/patient/patient.hpp
 
 SOURCES += \
     UserInterface/userinterfaceloader.cpp \
@@ -35,7 +38,8 @@ SOURCES += \
     UserInterface/UserInterfaceSourcesFiles/createnewdate.cpp \
     UserInterface/UserInterfaceSourcesFiles/patientmedicalfolderscreen.cpp \
     UserInterface/screen.cpp \
-    DataBase/patientdatabase.cpp
+    DataBase/patient/patientdatabase.cpp \
+    DataBase/patient/patient.cpp
 
 FORMS += \
     UserInterface/ui_Files/mainwindow.ui \

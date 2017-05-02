@@ -23,6 +23,7 @@
 
 #include "database.h"
 #include "CryptData/dataencryptor.hpp"
+#include "databasestatements.hpp"
 
 class ConnectionDialog;
 
@@ -38,13 +39,13 @@ public: // Constructeur / destructeur ******************************************
 private: // Fonctions privées *********************************************************************************
 
     // Une fonction pour insérer dans la base de données de connection un nouvel utilisateur et son mot de passe
-    void insert (const QString& userName, const QString& password);
+    void insert (const string& userName, const string& password);
 
     // Fonction de hashage sans sel
-    static QString hashWithoutSalt(const QString& strToHash);
+    static string hashWithoutSalt(const string& strToHash);
 
     // Fonction de hashage avec sel
-    static QString hashWithSalt(const QString& strToHash);
+    static string hashWithSalt(const string& strToHash);
 };
 
 #endif // CONNECTIONDATABASE_HPP

@@ -22,7 +22,10 @@ using SharedVar::Debug::log_d;
 
 // Constructeur / destructeur ***************************************************************************
 
-dataBase::dataBase() {  m_db = QSqlDatabase::addDatabase("QSQLITE"); }
+dataBase::dataBase()
+{
+    m_db = QSqlDatabase::addDatabase("QSQLCIPHER");
+}
 
 // Fonctions privées ************************************************************************************
 
@@ -37,14 +40,29 @@ bool dataBase::checkConnectionToDatabase()
                              QMessageBox::Ok);
         isConnected = false;
     }
-    // / Connection à la base de donnée établie avec succés !
+
+    // Connection à la base de donnée établie avec succés !
     else
     {
+        // Decryptage de la base de données
+        execStatement(string("PRAGMA key = '%1'").arg(KEY));
+
         msgBox::information(NULL,
                                   Message::MsgBoxTitle::title_ConnectionToDataBase_Ok,
-                                 QString(Message::MsgBoxContent::content_DatabaseConnectionOk).arg(m_db.databaseName()));
+                                 string(Message::MsgBoxContent::content_DatabaseConnectionOk).arg(m_db.databaseName()));
         isConnected = true;
     }
-    log_d(static_cast<int>(isConnected));
+    log_d(as<int>(isConnected));
     return isConnected;
+}
+
+QSqlQuery* dataBase::execStatement(const string &a_statement)
+{
+    QSqlQuery *query  = new QSqlQuery (getDatabaseConnection());
+
+    if (! query->exec(a_statement))
+    {
+        msgBox::warning(NULL, "Error !", "Error trying to execute statement: " + query->lastError().text());
+    }
+    return query;
 }

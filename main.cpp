@@ -21,9 +21,8 @@
 
 #include "UserInterface/UserInterfaceSourcesFiles/mainwindow.hpp"
 #include "UserInterface/ConnectionScreen/connectiondialog.h"
-#include "DataBase/patientdatabase.hpp"
+#include "DataBase/patient/patientdatabase.hpp"
 
-#include <memory>
 
 int main(int argc, char *argv[])
 {
@@ -39,7 +38,10 @@ int main(int argc, char *argv[])
 //    ConnectionDialog *d = new ConnectionDialog(NULL);
 //    d->exec();
 
-    patientDatabase *pdb = new patientDatabase;
+//    patientDatabase *pdb = new patientDatabase;
+
+//    dataBaseManipulation::getPatientList(*pdb);
+
 
     MainWindow *mainWindow =  new MainWindow;
     mainWindow ->show();

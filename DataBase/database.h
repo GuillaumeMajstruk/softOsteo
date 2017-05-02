@@ -22,13 +22,16 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QString>
+#include <string>
 #include <QMessageBox>
 #include <QTextStream>
 
 #include "Messages/messages.hpp"
+#include "database/databasestatements.hpp"
 #include "UserInterface/interfaceGlobal.hpp"
 #include "typedefs.hpp"
+
+#define KEY string("Guigui")
 
 class connectionDataBase;
 class patientDatabase;
@@ -48,7 +51,12 @@ public: // Fonctions publiques *************************************************
     // Retourne la connection à la base de données
     virtual QSqlDatabase& getDatabaseConnection() { return m_db; }
 
-    // Vérifie que la base de données est bien connectée
+    // Tente d'éxécuter la déclaration et gère le cas où celle-ci ne fonctionne pas
+    // -> avec possibilité d'itération(s) dans la requête
+    virtual QSqlQuery* execStatement(const string &a_statement);
+
+    // Vérifie qu'une connection vers la base de données est possible
+    // en ouvrant puis décryptant la base de données
     bool checkConnectionToDatabase();
 
 

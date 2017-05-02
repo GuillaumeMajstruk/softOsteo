@@ -26,13 +26,51 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
         <layout class="QGridLayout" name="generalTabLayout">
-         <item row="2" column="0">
-          <widget class="QLabel" name="patientSurname">
+         <item row="7" column="0">
+          <widget class="QLabel" name="patientJob">
            <property name="text">
-            <string>Prénom du patient:</string>
+            <string>Profession du patient:</string>
            </property>
            <property name="buddy">
-            <cstring>patientSurname_LE</cstring>
+            <cstring>patientJob_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLineEdit" name="patientJob_LE">
+           <property name="toolTip">
+            <string>Entrez la profession du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="patientSurname_LE">
+           <property name="toolTip">
+            <string>Entrez le prénom du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="patientName_LE">
+           <property name="toolTip">
+            <string>Entrez le nom de famille du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="patientPhoneNumber_LE">
+           <property name="toolTip">
+            <string>Entrez le numéro de téléphone du patient</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="patientHobbies">
+           <property name="text">
+            <string>Loisir(s) pratiqué(s):</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientHobbies_LE</cstring>
            </property>
           </widget>
          </item>
@@ -47,6 +85,26 @@
           <widget class="QLabel" name="patientAdress">
            <property name="text">
             <string>Adresse du patient:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="patientSurname">
+           <property name="text">
+            <string>Prénom du patient:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientSurname_LE</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="patientSex">
+           <property name="text">
+            <string>Sexe du patient: </string>
+           </property>
+           <property name="buddy">
+            <cstring>patientSex_CB</cstring>
            </property>
           </widget>
          </item>
@@ -77,16 +135,6 @@
            </property>
            <property name="buddy">
             <cstring>patientEmail_LE</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="patientSex">
-           <property name="text">
-            <string>Sexe du patient: </string>
-           </property>
-           <property name="buddy">
-            <cstring>patientSex_CB</cstring>
            </property>
           </widget>
          </item>
@@ -169,6 +217,13 @@
            </property>
           </widget>
          </item>
+         <item row="9" column="1">
+          <widget class="QLineEdit" name="patientHobbies_LE">
+           <property name="toolTip">
+            <string>Entrez le(s) loisir(s) pratiqué(s) par le patient, s'il y en a ...</string>
+           </property>
+          </widget>
+         </item>
          <item row="8" column="0">
           <widget class="QLabel" name="patientCurrentMedic">
            <property name="text">
@@ -179,10 +234,13 @@
            </property>
           </widget>
          </item>
-         <item row="9" column="1">
-          <widget class="QLineEdit" name="patientHobbies_LE">
-           <property name="toolTip">
-            <string>Entrez le(s) loisir(s) pratiqué(s) par le patient, s'il y en a ...</string>
+         <item row="6" column="0">
+          <widget class="QLabel" name="patientFamilialStatus">
+           <property name="text">
+            <string>Situation Familiale:</string>
+           </property>
+           <property name="buddy">
+            <cstring>patientFamilialStatus_CB</cstring>
            </property>
           </widget>
          </item>
@@ -241,61 +299,23 @@
            </item>
           </layout>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="patientFamilialStatus">
+         <item row="10" column="0">
+          <widget class="QLabel" name="patientSocialSecurityNumber">
            <property name="text">
-            <string>Situation Familiale:</string>
+            <string>Numéro de sécurité sociale:</string>
            </property>
            <property name="buddy">
-            <cstring>patientFamilialStatus_CB</cstring>
+            <cstring>patientSocialSecurityNumber_LE</cstring>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="patientSurname_LE">
+         <item row="10" column="1">
+          <widget class="QLineEdit" name="patientSocialSecurityNumber_LE">
            <property name="toolTip">
-            <string>Entrez le prénom du patient</string>
+            <string>Entrez le numéro de sécurité sociale du patient en incluant la clé</string>
            </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="patientJob">
-           <property name="text">
-            <string>Profession du patient:</string>
-           </property>
-           <property name="buddy">
-            <cstring>patientJob_LE</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QLineEdit" name="patientJob_LE">
-           <property name="toolTip">
-            <string>Entrez la profession du patient</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="patientName_LE">
-           <property name="toolTip">
-            <string>Entrez le nom de famille du patient</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="0">
-          <widget class="QLabel" name="patientHobbies">
-           <property name="text">
-            <string>Loisir(s) pratiqué(s):</string>
-           </property>
-           <property name="buddy">
-            <cstring>patientHobbies_LE</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="patientPhoneNumber_LE">
-           <property name="toolTip">
-            <string>Entrez le numéro de téléphone du patient</string>
+           <property name="maxLength">
+            <number>15</number>
            </property>
           </widget>
          </item>
@@ -651,6 +671,7 @@
  </widget>
  <tabstops>
   <tabstop>informationTabs</tabstop>
+  <tabstop>patientSex_CB</tabstop>
   <tabstop>patientName_LE</tabstop>
   <tabstop>patientSurname_LE</tabstop>
   <tabstop>streetAndNumAdress_LE</tabstop>
@@ -663,6 +684,7 @@
   <tabstop>patientJob_LE</tabstop>
   <tabstop>patientCurrentMedic_LE</tabstop>
   <tabstop>patientHobbies_LE</tabstop>
+  <tabstop>patientSocialSecurityNumber_LE</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>cardioPneumo_PTE</tabstop>
   <tabstop>patientIsSmoker_CKB</tabstop>
@@ -673,12 +695,14 @@
   <tabstop>neuro_PTE</tabstop>
   <tabstop>psycho_PTE</tabstop>
   <tabstop>allergoDermato_PTE</tabstop>
-  <tabstop>ophtalmo_PTE</tabstop>
-  <tabstop>occlusal_PTE</tabstop>
-  <tabstop>orthoTraumatoRhumato_PTE</tabstop>
   <tabstop>currentMedCure_PTE</tabstop>
   <tabstop>patientFamilialAntecedents_PTE</tabstop>
   <tabstop>reasonForConsultation_PTE</tabstop>
+  <tabstop>return_PB</tabstop>
+  <tabstop>savePatientFolder_PB</tabstop>
+  <tabstop>occlusal_PTE</tabstop>
+  <tabstop>orthoTraumatoRhumato_PTE</tabstop>
+  <tabstop>ophtalmo_PTE</tabstop>
  </tabstops>
  <resources/>
  <connections/>

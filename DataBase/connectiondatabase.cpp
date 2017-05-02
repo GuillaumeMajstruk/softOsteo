@@ -23,25 +23,20 @@
 connectionDataBase::connectionDataBase()
 {
 
-    // Connection à la base de donnée de connection
-    //m_db = QSqlDatabase::addDatabase("QSQLITE");
-
 #ifdef Q_OS_WIN
-    getDatabaseConnection().setDatabaseName("F:/Programmes/Programme_Alisson/ConnectionDataBase/connectionDB.db");
+    getDatabaseConnection().setDatabaseName("F:/Programmes/Programme_Alisson/ConnectionDataBase/connection.db");
 #else
     m_db.setDatabaseName("/Users/Guillaume/softOsteo/ConnectionDataBase/connectionDB.db");
 #endif
-
-    getDatabaseConnection().setPassword("1234");
-
 
     // vérification que la connection à pue être établie
     checkConnectionToDatabase();
 
     QSqlQuery query(getDatabaseConnection());
 
-    if (!query.exec("CREATE TABLE IF NOT EXISTS users (Username TEXT PRIMARY KEY, Password TEXT )"))
-        QMessageBox::warning(NULL, "error", query.lastError().text());
+
+
+    execStatement(Statement::connectionDatabase::createTableStatement);
 
     insert("Guillaume", "030893Guigui");
     insert("Tatiana", "jesuistata");
@@ -49,28 +44,20 @@ connectionDataBase::connectionDataBase()
 
 // Fonctions privées ********************************************************************************
 
-void connectionDataBase::insert(const QString &userName, const QString &password)
+void connectionDataBase::insert(const string &userName, const string &password)
 {
-    QSqlQuery query (getDatabaseConnection());
-
-
     // Insère dans la base de donnée ce qui à été hashé pour les stocker
-    if (!query.exec("INSERT INTO users (Username, Password)"
-                       "VALUES  ( "
-                            " '" + hashWithoutSalt(userName) + "',"
-                            " '" + hashWithSalt(password) + "'"
-                                ")"))
-        QMessageBox::warning(NULL, "error", query.lastError().text());
+    execStatement(string(Statement::connectionDatabase::insertStatement).arg(hashWithoutSalt(userName), hashWithSalt(password)));
 }
 
-QString connectionDataBase::hashWithoutSalt(const QString &strToHash)
+string connectionDataBase::hashWithoutSalt(const string &strToHash)
 {
     return dataEncryptor::hashIt_SHA256(strToHash);
 }
 
-QString connectionDataBase::hashWithSalt(const QString &strToHash)
+string connectionDataBase::hashWithSalt(const string &strToHash)
 {
-    return QString ( dataEncryptor::hashIt_MD5(SALT_BEFORE) +
+    return string ( dataEncryptor::hashIt_MD5(SALT_BEFORE) +
                      dataEncryptor::hashIt_SHA256(strToHash) +
                      dataEncryptor::hashIt_MD5(SALT_AFTER));
 }

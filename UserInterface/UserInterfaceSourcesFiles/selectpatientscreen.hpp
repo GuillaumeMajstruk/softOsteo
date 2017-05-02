@@ -19,14 +19,8 @@
 #ifndef SELECTPATIENTSCREEN_HPP
 #define SELECTPATIENTSCREEN_HPP
 
-#include <QWidget>
-#include <QLabel>
-#include <QLineEdit>
-#include <QListWidget>
-
 #include "UserInterface/userinterfaceloader.hpp"
 #include "typedefs.hpp"
-
 
 
 class SelectPatientScreen : public Screen
@@ -43,7 +37,7 @@ signals: // Signals ************************************************************
     void returnButton_hasBeenClicked();
     void validateSelectionButton_hasBeenClicked();
     void searchButton_hasBeenClicked();
-    void searchPatientLineEdit_textHasBeenEdited(const QString&);
+    void searchPatientLineEdit_textHasBeenEdited(const string&);
 
 private slots: // Slots privés *****************************************************
 
@@ -53,11 +47,11 @@ private slots: // Slots privés ************************************************
         emit newPatientButton_hasBeenClicked();
     }
 
-    void returnButton_clicked()
-    {
-        qDebug() << "returnButton_clicked()";
-        emit returnButton_hasBeenClicked();
-    }
+//    void returnButton_clicked()
+//    {
+//        qDebug() << "returnButton_clicked()";
+//        emit returnButton_hasBeenClicked();
+//    }
 
     void validateSelectionButton_clicked()
     {
@@ -71,10 +65,10 @@ private slots: // Slots privés ************************************************
         emit validateSelectionButton_hasBeenClicked();
     }
 
-    void searchPatientLineEdit_textEdited(const QString&)
+    void searchPatientLineEdit_textEdited(const string&)
     {
         qDebug() << "searchPatientLineEdit_textedited()";
-        emit searchPatientLineEdit_textHasBeenEdited(dynamic_cast<lineEdit*>(getWidget("searchPatient_LE"))->text());
+        emit searchPatientLineEdit_textHasBeenEdited(as<lineEdit*>(getWidget("searchPatient_LE"))->text());
     }
 
 };
