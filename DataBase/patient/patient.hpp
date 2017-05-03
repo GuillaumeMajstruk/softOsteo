@@ -19,26 +19,21 @@
 #ifndef PATIENT_HPP
 #define PATIENT_HPP
 
-#include "typedefs.hpp"
 #include <QString>
+#include <QMessageBox>
 
-enum class Familial_Status
-{
-    Married, // = 0
-    Single,  // = 1
-    Divorced // = 2
-};
-
-enum class Patient_Sex
-{
-    Male,  // = 0
-    Female // = 1
-};
+#include "patientdatabase.hpp"
+#include "typedefs.hpp"
 
 class Patient
 {
 public: // Constructeur / destructeur ****************************************************
-    Patient(string, string, string, string, string, string, string, string, string, string, string, Familial_Status, Patient_Sex, int);
+
+    // Création d'un nouveau patient "à la main"
+    Patient(string, string, string, string, string, string, string, string, string, string, string, string, string, string);
+
+    // Création d'un nouveau patient depuis une base de données (automatique)
+    Patient(patientDatabase a_Pdb);
 
 public: // Fonctions (ACCESSEURS) ********************************************************
 
@@ -54,17 +49,21 @@ public: // Fonctions (ACCESSEURS) **********************************************
     string getStreetAndNum ()               const { return p_StreetAndNumAddr; }
     string getSocialSecurityNumber()        const { return p_SocialSecurityNumber; }
 
-    Familial_Status getFamilialStatus ()    const { return p_FamilialStatus; }
-    Patient_Sex getSex()                    const { return p_Sex; }
+    string getFamilialStatus ()             const { return p_FamilialStatus; }
+    string getSex()                         const { return p_Sex; }
 
-    int getChildrenNumber()                 const { return p_ChildrenNumber; }
+    string getChildrenNumber()                 const { return p_ChildrenNumber; }
 
     int getID ()                            const { return p_ID; }
 
 public: // Fonctions *********************************************************************
 
+    // Affiche un résumé du patient dans un msgBox
+    void resume();
+
 private: // Fonctions ********************************************************************
 
+    // Vérifie que les champs obligatoires ne sont pas vides
     bool checkInput ();
 
 private: // Attributs privés *************************************************************
@@ -80,11 +79,9 @@ string p_PostalCodeAddr;
 string p_CityNameAddr;
 string p_StreetAndNumAddr;
 string p_SocialSecurityNumber;
-
-Familial_Status p_FamilialStatus;
-Patient_Sex p_Sex;
-
-int p_ChildrenNumber;
+string p_FamilialStatus;
+string p_Sex;
+string p_ChildrenNumber;
 
 int p_ID;
 };

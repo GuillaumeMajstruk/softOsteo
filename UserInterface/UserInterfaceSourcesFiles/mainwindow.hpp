@@ -27,8 +27,12 @@
 #include <QSize>
 #include <QSettings>
 #include <QStackedWidget>
+#include <QComboBox>
+#include <QSpinBox>
 
 #include <memory>
+
+#include "DataBase/patient/patient.hpp"
 
 #include "DataBase/patient/patientdatabase.hpp"
 #include "UserInterface/UserInterfaceSourcesFiles/selectpatientscreen.hpp"
@@ -49,8 +53,6 @@ class  MainWindow : public QMainWindow
 
 public: // Constructeur / destructeur ***********************************************
     explicit MainWindow(QWidget *parent = 0);
-
-    virtual ~MainWindow();
 
     // Fonctions publiques **********************************************************
 

@@ -60,14 +60,6 @@ MainWindow::MainWindow(QWidget *parent) :
                          5000 );
 }
 
-MainWindow::~MainWindow()
-{
-    delete m_uiLoader;
-    delete m_windowSize;
-    delete allInterfaces;
-    delete ui;
-}
-
 // Fonctions privés *******************************************************************************
 
 void MainWindow::initStackedInterfaces()
@@ -421,30 +413,45 @@ int MainWindow::getPatientIndexFromList(QListWidgetItem * an_item)
             string pStreetAndNumAdress (as <lineEdit*>(tempScreenInstance->getWidget("streetAndNumAdress_LE"))->text());
             string pSocialSecurityNumber (as <lineEdit*>(tempScreenInstance->getWidget("patientSocialSecurityNumber_LE"))->text());
 
+            string pSex (as <comboBox*>(tempScreenInstance->getWidget("patientSex_CB"))->currentText());
+            string pFamStatus (as <comboBox*>(tempScreenInstance->getWidget("patientFamilialStatus_CB"))->currentText());
+            string pChildNumber (as <spinBox*>(tempScreenInstance->getWidget("patientChildNumber_SB"))->value());
+
             QSqlQuery insertion (as <patientDatabase*>(p_db.get())->getDatabaseConnection());
+
+            Patient * tempP = new Patient (pName, pSurname, pJob, pPhoneNumber,
+                                           pEmail, pCurrentMedic, pHobbies,
+                                           pPostalCodeAdress, pCityNameAdress,
+                                           pStreetAndNumAdress, pSocialSecurityNumber,
+                                           pFamStatus, pSex, pChildNumber);
 
             // FIXME réaranger la fonction d'insertion !!!!!!
             insertion.prepare   (
-                                    "INSERT INTO general_infos (patientName, patientSurname, patientAdress_street_and_number ,patientAdress_postalCode"
-                                    ",patientAdress_cityName, patientPhoneNumber ,patientEmail, patientJob, patientMedic, patientHobbies"
-                                    ", patientSocialSecurityNumber)"
-                                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                                    "INSERT INTO general_infos (name, surname, street_and_number, postal_code"
+                                    ", city_name, phone, email, job, current_medic, hobbies"
+                                    ", social_security_number, familial_status, sex, children_numb)"
+                                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                                 );
 
-            insertion.bindValue(0, pName);
-            insertion.bindValue(1, pSurname);
-            insertion.bindValue(2, pStreetAndNumAdress);
-            insertion.bindValue(3, pPostalCodeAdress);
-            insertion.bindValue(4, pCityNameAdress);
-            insertion.bindValue(5, pPhoneNumber);
-            insertion.bindValue(6, pEmail);
-            insertion.bindValue(7, pJob);
-            insertion.bindValue(8, pCurrentMedic);
-            insertion.bindValue(9, pHobbies);
-            insertion.bindValue(10, pSocialSecurityNumber);
+            insertion.bindValue(0, tempP->getName());
+            insertion.bindValue(1, tempP->getSurname());
+            insertion.bindValue(2, tempP->getStreetAndNum());
+            insertion.bindValue(3, tempP->getPostalCode());
+            insertion.bindValue(4, tempP->getCityName());
+            insertion.bindValue(5, tempP->getPhoneNumber());
+            insertion.bindValue(6, tempP->getEmail());
+            insertion.bindValue(7, tempP->getJob());
+            insertion.bindValue(8, tempP->getMedic());
+            insertion.bindValue(9, tempP->getHobbies());
+            insertion.bindValue(10, tempP->getSocialSecurityNumber());
+            insertion.bindValue(11, tempP->getFamilialStatus());
+            insertion.bindValue(12, tempP->getSex());
+            insertion.bindValue(13, tempP->getChildrenNumber());
 
             if (!insertion.exec())
                 msgBox::warning(NULL, "insertion error", insertion.lastError().text());
+
+            tempP->resume();
             return;
         }
 

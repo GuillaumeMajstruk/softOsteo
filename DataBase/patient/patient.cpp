@@ -19,10 +19,11 @@
 #include "patient.hpp"
 
 Patient::Patient(string name, string surname, string job, string phone, string email, string currentMedic, string hobbies, string postalCode, string cityName, string streetAndNum, string socialSecurityNum,
-                 Familial_Status fStatus, Patient_Sex sex, int childNum):
+                 string fStatus, string sex, string childNum):
     p_Name(name),
     p_Surname (surname),
     p_Job (job),
+    p_PhoneNumber (phone),
     p_Email (email),
     p_CurrentMedic (currentMedic),
     p_Hobbies (hobbies),
@@ -34,10 +35,41 @@ Patient::Patient(string name, string surname, string job, string phone, string e
     p_Sex (sex),
     p_ChildrenNumber (childNum)
 {
-
+    if (!checkInput())
+        msgBox::critical(NULL, "Error !", "Erreur à la création du patient, pensez à remplir tous les champs obligatoires !");
 }
 
 bool Patient::checkInput()
 {
-    return false;
+    return !( p_Name.isEmpty() ||
+              p_Surname.isEmpty() ||
+              p_StreetAndNumAddr.isEmpty() ||
+              p_PostalCodeAddr.isEmpty() ||
+              p_CityNameAddr.isEmpty() ||
+              p_PhoneNumber.isEmpty() ||
+              p_SocialSecurityNumber.isEmpty() );
+}
+
+void Patient::resume()
+{
+    string _resume (
+                    "Sexe: " + p_Sex + "\n" +
+                    "Nom: " + p_Name + "\n" +
+                    "Prénom: " + p_Surname + "\n" +
+                    "Adresse: " + p_StreetAndNumAddr + ", " + p_PostalCodeAddr + ", " + p_CityNameAddr + "\n" +
+                    "Numéro de téléphone: " + p_PhoneNumber + "\n" +
+                    "Email: " + p_Email + "\n" +
+                    "Status familiale: " + p_FamilialStatus + "\n" +
+                    "Nombre d'enfant(s): " + p_ChildrenNumber + "\n" +
+                    "Métier: " + p_Job + "\n" +
+                    "Médecin traitant: " + p_CurrentMedic + "\n" +
+                    "Passes temps/ Loisirs: " + p_Hobbies + "\n" +
+                    "Numéro de sécurité sociale: " + p_SocialSecurityNumber + "\n"
+                    );
+
+    msgBox::information(
+                NULL,
+                "Patient",
+                _resume
+                );
 }

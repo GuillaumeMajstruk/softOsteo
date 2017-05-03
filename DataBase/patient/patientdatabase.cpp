@@ -34,7 +34,7 @@ void dataBaseManipulation::getPatientList(patientDatabase *a_db, listWidget *a_l
 
     QSqlQuery selectEverything (a_db->getDatabaseConnection());
 
-    selectEverything.exec("SELECT patientName, patientSurname FROM general_infos");
+    selectEverything.exec("SELECT name, surname FROM general_infos");
 
     while (selectEverything.next())
     {
