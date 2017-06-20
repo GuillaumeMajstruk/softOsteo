@@ -1,0 +1,12 @@
+/* Contains all fonts for the website */
+
+/* Adding font for Main title */
+@font-face {
+    font-family: 'Bungee-Shade';
+    src:url("../fonts/Bungee-Shade.otf");
+}
+
+@font-face {
+    font-family: 'Bungee-regular';
+    src: url("../fonts/Bungee-Regular.otf");
+}
