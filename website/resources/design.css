@@ -1,5 +1,7 @@
-body {
-  background-color: #ffffa8;
+body
+{
+  background-image: url("../images/bois.jpg");
+  background-attachment: fixed;
 }
 
 p, h1, a, h2
