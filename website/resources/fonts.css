@@ -3,10 +3,15 @@
 /* Adding font for Main title */
 @font-face {
     font-family: 'Bungee-Shade';
-    src:url("../fonts/Bungee-Shade.otf");
+    src:url("../fonts/titles/Bungee-Shade.otf");
 }
 
 @font-face {
     font-family: 'Bungee-regular';
-    src: url("../fonts/Bungee-Regular.otf");
+    src: url("../fonts/titles/Bungee-Regular.otf");
+}
+
+@font-face {
+    font-family: 'PermanentMarker';
+    src: url("../fonts/titles/PermanentMarker.ttf");
 }
